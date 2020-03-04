@@ -1,0 +1,93 @@
+{
+  "name": "exposomeglobe",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "preserve": "gulp",
+    "prebuild": "gulp",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@amcharts/amcharts4": "^4.9.4",
+    "core-js": "^3.6.4",
+    "vue": "^2.6.11",
+    "vue-class-component": "^7.2.3",
+    "vue-property-decorator": "^8.4.0",
+    "vue-router": "^3.1.5",
+    "vuetify": "^2.2.14"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.0",
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
+    "@vue/cli-plugin-babel": "~4.2.0",
+    "@vue/cli-plugin-eslint": "~4.2.0",
+    "@vue/cli-plugin-router": "~4.2.0",
+    "@vue/cli-plugin-typescript": "~4.2.0",
+    "@vue/cli-service": "~4.2.0",
+    "@vue/eslint-config-typescript": "^5.0.1",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.1.2",
+    "fibers": "^4.0.2",
+    "gulp": "^4.0.2",
+    "gulp-header": "^2.0.9",
+    "gulp-markdownit": "^1.0.3",
+    "gulp-rename": "^2.0.0",
+    "html-loader": "^0.5.5",
+    "markdown-it": "latest",
+    "markdown-it-deflist": "^2.0.3",
+    "node-sass": "^4.12.0",
+    "sass": "^1.25.0",
+    "sass-loader": "^8.0.2",
+    "typescript": "^3.8.3",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.42.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/recommended",
+      "eslint:recommended",
+      "@vue/typescript"
+    ],
+    "parserOptions": {
+      "parser": "@typescript-eslint/parser"
+    },
+    "rules": {
+      "vue/camelcase": "warn",
+      "vue/comma-dangle": "error",
+      "vue/component-tags-order": [
+        "error",
+        {
+          "order": [
+            "template",
+            "script",
+            "style"
+          ]
+        }
+      ],
+      "vue/eqeqeq": "warn",
+      "vue/key-spacing": "warn",
+      "vue/no-deprecated-scope-attribute": "warn",
+      "vue/no-deprecated-slot-attribute": "warn",
+      "vue/no-deprecated-slot-scope-attribute": "warn",
+      "vue/padding-line-between-blocks": "warn",
+      "vue/valid-v-bind-sync": "error",
+      "vue/valid-v-slot": "error",
+      "vue/singleline-html-element-content-newline": "off",
+      "vue/max-attributes-per-line": ["error", {
+        "singleline": 4
+      }]
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
