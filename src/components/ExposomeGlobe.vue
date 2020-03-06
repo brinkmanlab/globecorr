@@ -3,114 +3,46 @@
 </template>
 
 <script lang="ts">
-    import {Component, Prop, Vue} from 'vue-property-decorator';
+    import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
 
     import * as am4core from "@amcharts/amcharts4/core";
     import * as am4charts from "@amcharts/amcharts4/charts";
     import am4themesAnimated from "@amcharts/amcharts4/themes/animated";
     import {Chart, ChordDiagramDataItem, ChordNode} from "@amcharts/amcharts4/charts";
-    import {Data, RGBA, HexColor} from "@/@types/data";
+    import {Data, RGBA} from "@/@types/data";
 
     am4core.useTheme(am4themesAnimated);
-
-    function rgbToHex(rgb: RGBA): HexColor {
-        return "#" + ((1 << 24) + (rgb.r << 16) + (rgb.g << 8) + rgb.b).toString(16).slice(1);
-    }
-
-    function colorScale(color: RGBA, scalefactor: number): HexColor {
-        if (scalefactor >= 0) {
-            color = {
-                r: color.r + (225 - color.r) * (1 - scalefactor),
-                g: color.g + (225 - color.g) * (1 - scalefactor),
-                b: color.b + (225 - color.b) * (1 - scalefactor),
-                a: 1, // TODO can we replace all of this with a: datum.coef?
-            }
-        }
-
-        return rgbToHex(color);
-    }
 
     @Component
     export default class ExposomeGlobe extends Vue {
         private chart: Chart | null = null;
         @Prop(Number) threshold!: number;
-        @Prop(Object) positiveCorrelationColor: RGBA = {r: 79, g: 117, b: 210, a: 1};
-        @Prop(Object) negativeCorrelationColor: RGBA = {r: 223, g: 60, b: 60, a: 1};
-        @Prop(Object) noCorrelationColor: RGBA = {r: 211, g: 211, b: 211, a: 1};
-        get noCorrelationColorHex(): HexColor { return rgbToHex(this.positiveCorrelationColor); }
-        @Prop(Array) data!: Data[];
+        @Prop(Object) positiveCorrelationColor: RGBA = {r: 79, g: 117, b: 210, a: 255};
+        @Prop(Object) negativeCorrelationColor: RGBA = {r: 223, g: 60, b: 60, a: 255};
+        @Prop(Object) noCorrelationColor: RGBA = {r: 211, g: 211, b: 211, a: 255};
+        @Prop(Array) value!: Data[];
 
         get filteredData(): Data[] {
-            return this.data.filter(datum => Math.abs(datum.coef) >= this.threshold).map(datum=>{return {
+            return this.value.filter(datum => Math.abs(datum.coef) >= this.threshold).map(datum=>{return {
                 ...datum,
-                linkColor: datum.coef === 0 ? this.noCorrelationColorHex : colorScale(datum.coef > 0 ? this.positiveCorrelationColor : this.negativeCorrelationColor, Math.abs(datum.coef))
+                linkColor: am4core.color(datum.coef === 0 ? this.noCorrelationColor : {...(datum.coef > 0 ? this.positiveCorrelationColor : this.negativeCorrelationColor), a: Math.round(200 * Math.abs(datum.coef) + 55)}),
+                label: (Math.round(datum.coef * 1000) / 1000).toString(10),
+                value: Math.abs(datum.coef),
             }});
         }
 
-        positiveStyles = {
-            'default': {
-                color: {
-                    width: '36px',
-                    height: '14px',
-                    borderRadius: '2px',
-                    background: `rgba(${this.positiveCorrelationColor.r}, ${this.positiveCorrelationColor.g}, ${this.positiveCorrelationColor.b}, ${this.positiveCorrelationColor.a})`,
-                },
-                swatch: {
-                    padding: '5px',
-                    background: '#fff',
-                    borderRadius: '1px',
-                    boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
-                    display: 'inline-block',
-                    cursor: 'pointer',
-                },
-                popover: {
-                    position: 'absolute',
-                    zIndex: '2',
-                },
-                cover: {
-                    position: 'fixed',
-                    top: '0px',
-                    right: '0px',
-                    bottom: '0px',
-                    left: '0px',
-                },
-            },
-        };
+        @Watch('filteredData')
+        updateGlobe(): void {
+            if (this.chart)
+              this.chart.data = this.filteredData;
+        }
 
-        negativeStyles = {
-            'default': {
-                color: {
-                    width: '36px',
-                    height: '14px',
-                    borderRadius: '2px',
-                    background: `rgba(${this.negativeCorrelationColor.r}, ${this.negativeCorrelationColor.g}, ${this.negativeCorrelationColor.b}, ${this.negativeCorrelationColor.a})`,
-                },
-                swatch: {
-                    padding: '5px',
-                    background: '#fff',
-                    borderRadius: '1px',
-                    boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
-                    display: 'inline-block',
-                    cursor: 'pointer',
-                },
-                popover: {
-                    position: 'absolute',
-                    zIndex: '2',
-                },
-                cover: {
-                    position: 'fixed',
-                    top: '0px',
-                    right: '0px',
-                    bottom: '0px',
-                    left: '0px',
-                },
-            },
-        };
-
-        updated(): void {
+        mounted(): void {
+            if (this.chart) this.chart.dispose();
             if (this.$el instanceof HTMLElement) {
                 // Export
                 const chart = am4core.create(this.$el, am4charts.ChordDiagram);
+                this.chart = chart;
                 chart.exporting.menu = new am4core.ExportMenu();
                 chart.exporting.filePrefix = "exposome-globe";
 
@@ -181,7 +113,7 @@
                 // Link formatting
                 const linkTemplate = chart.links.template;
                 linkTemplate.strokeOpacity = 0;
-                linkTemplate.fillOpacity = 0.15;
+                linkTemplate.fillOpacity = 1; //0.15;
                 linkTemplate.tooltipText = "{variable1} → {variable2}: {label}";
                 linkTemplate.colorMode = "solid";
                 linkTemplate.propertyFields.fill = "linkColor";
@@ -191,6 +123,8 @@
                 const hoverState = linkTemplate.states.create("hover");
                 hoverState.properties.fillOpacity = 1.0;
                 hoverState.properties.strokeOpacity = 1.0;
+            } else {
+                console.debug('ExposomeGlobe root element not DOM');
             }
         }
 
@@ -199,41 +133,6 @@
                 this.chart.dispose();
             }
         }
-
-        /*onFileChange(event: InputEvent & { target: EventTarget & { files: FileList } }) {
-            let file = event.target.files[0];
-            let reader = new FileReader();
-            reader.readAsText(file);
-            let that = this;
-            reader.onload = function (event) {
-                if (event.target && typeof event.target.result === 'string') {
-                    const data = loadCSV(event.target.result);
-                    const filteredData = data.filter(
-                        function (x) {
-                            return Math.abs(parseFloat(x.coef)) >= that.threshold;
-                        }
-                    );
-                    const positiveColor = rgbToHex({
-                        r: that.positiveCorrelationColor.r,
-                        g: that.positiveCorrelationColor.g,
-                        b: that.positiveCorrelationColor.b,
-                        a: 1
-                    });
-                    const negativeColor = rgbToHex({
-                        r: that.negativeCorrelationColor.r,
-                        g: that.negativeCorrelationColor.g,
-                        b: that.negativeCorrelationColor.b,
-                        a: 1
-                    });
-                    for (let i = 0; i < filteredData.length; i++) {
-                        filteredData[i].linkColor = getColorDichromatic(parseFloat(filteredData[i].coef), positiveColor, negativeColor);
-                        filteredData[i].value = Math.abs(parseFloat(filteredData[i].coef));
-                        filteredData[i].label = (Math.round(parseFloat(filteredData[i].coef) * 1000) / 1000).toString(10);
-                    }
-                    that.data = filteredData;
-                }
-            };
-        }*/
     }
 </script>
 

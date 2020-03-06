@@ -1,5 +1,7 @@
+import {Color, iRGB} from "@amcharts/amcharts4/core";
+
 export interface Data {
-    [key: string]: string | number;
+    [key: string]: string | number | Color;
 
     variable1: string;
     var1_domain: string;
@@ -7,16 +9,8 @@ export interface Data {
     var2_domain: string;
     coef: number;
     value: number;
-    linkColor: string;
-    rounded: string;
+    linkColor: Color;
     label: string;
 }
 
-export interface RGBA {
-    r: number;
-    g: number;
-    b: number;
-    a: number;
-}
-
-export type HexColor = string;
+export type RGBA = iRGB;

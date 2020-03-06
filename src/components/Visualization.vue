@@ -1,8 +1,8 @@
 <template>
   <v-card min-height="50vh">
-    <v-file-input label="CSV Data" placeholder="Upload data to visualize" solo accept="csv,tsv" @change="load" />
-    <ExposomeGlobe :data="data" :threshold="threshold" :positive-correlation-color="positiveCorrelationColor" :negative-correlation-color="negativeCorrelationColor" />
-    <TabulatorComponent v-model="data" :integration="{ updateStrategy: 'UPDATE' }" />
+    <v-file-input show-size label="CSV Data" placeholder="Upload data to visualize" solo accept="csv,tsv" @change="load" />
+    <ExposomeGlobe v-model="value" :threshold="threshold" :positive-correlation-color="positiveCorrelationColor" :negative-correlation-color="negativeCorrelationColor" />
+    <TabulatorComponent v-model="value" :integration="{ updateStrategy: 'UPDATE' }" />
     <v-navigation-drawer
       absolute
       mini-variant
@@ -72,7 +72,7 @@
                 <v-list-item-subtitle>Pick the color for the positive correlation lines</v-list-item-subtitle>
               </v-list-item-content>
             </template>
-            <v-color-picker v-model="positiveCorrelationColor" mode="rgba" />
+            <v-color-picker v-model="positiveCorrelationColor" mode="RGBA" />
           </v-menu>
         </v-list-item>
 
@@ -87,7 +87,7 @@
                 <v-list-item-subtitle>Pick the color for the negative correlation lines</v-list-item-subtitle>
               </v-list-item-content>
             </template>
-            <v-color-picker v-model="negativeCorrelationColor" mode="rgba" />
+            <v-color-picker v-model="negativeCorrelationColor" mode="RGBA" />
           </v-menu>
         </v-list-item>
       </v-list>
@@ -108,18 +108,19 @@
     })
     export default class Visualization extends Vue {
         private threshold = 0.6;
-        private data: Data[] = [];
-        private positiveCorrelationColor: RGBA = {r: 79, g: 117, b: 210, a: 1};
-        private negativeCorrelationColor: RGBA = {r: 223, g: 60, b: 60, a: 1};
+        private value: Data[] = [];
+        private positiveCorrelationColor: RGBA = {r: 79, g: 117, b: 210, a: 255};
+        private negativeCorrelationColor: RGBA = {r: 223, g: 60, b: 60, a: 255};
 
-        load(files: File[]): void {
-            if (files.length !== 1) return; // TDO show error
-            papaparse.parse(files[0], {
+        load(file: File): void {
+            console.debug('Started parsing %O', file);
+            papaparse.parse(file, {
                 header: true,
                 dynamicTyping: true,
                 skipEmptyLines: 'greedy',
                 complete: (results: ParseResult)=>{
-                  this.data = results.data;
+                  this.value = results.data;
+                  console.debug('Finished parsing data: %O', this.value);
                 }
             })
         }
