@@ -1,5 +1,6 @@
 <template>
-  <div class="static_content" v-html="content" :class="slug" v-once></div>
+  <!-- eslint-disable-next-line vue/no-v-html -->
+  <div v-once class="static_content" :class="slug" v-html="content" />
 </template>
 
 <script lang="ts">

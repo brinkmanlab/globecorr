@@ -109,8 +109,8 @@
     export default class Visualization extends Vue {
         private threshold = 0.6;
         private value: Data[] = [];
-        private positiveCorrelationColor: RGBA = {r: 79, g: 117, b: 210, a: 255};
-        private negativeCorrelationColor: RGBA = {r: 223, g: 60, b: 60, a: 255};
+        private positiveCorrelationColor: RGBA = {r: 79, g: 117, b: 210};
+        private negativeCorrelationColor: RGBA = {r: 223, g: 60, b: 60};
 
         load(file: File): void {
             console.debug('Started parsing %O', file);

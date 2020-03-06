@@ -3,6 +3,7 @@
     <v-card v-for="(item, index) of value" :key="index">
       <v-card-title>{{ item.title }}</v-card-title>
       <v-card-subtitle>{{ (new Date(item.date)).toDateString() }}</v-card-subtitle>
+      <!-- eslint-disable-next-line vue/no-v-html -->
       <v-card-text v-html="item.body" />
     </v-card>
   </v-item-group>

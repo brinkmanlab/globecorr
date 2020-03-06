@@ -17,18 +17,22 @@
     export default class ExposomeGlobe extends Vue {
         private chart: Chart | null = null;
         @Prop(Number) threshold!: number;
-        @Prop(Object) positiveCorrelationColor: RGBA = {r: 79, g: 117, b: 210, a: 255};
-        @Prop(Object) negativeCorrelationColor: RGBA = {r: 223, g: 60, b: 60, a: 255};
-        @Prop(Object) noCorrelationColor: RGBA = {r: 211, g: 211, b: 211, a: 255};
+        @Prop(Object) positiveCorrelationColor: RGBA = {r: 79, g: 117, b: 210};
+        @Prop(Object) negativeCorrelationColor: RGBA = {r: 223, g: 60, b: 60};
+        @Prop(Object) noCorrelationColor: RGBA = {r: 211, g: 211, b: 211};
         @Prop(Array) value!: Data[];
 
         get filteredData(): Data[] {
-            return this.value.filter(datum => Math.abs(datum.coef) >= this.threshold).map(datum=>{return {
-                ...datum,
-                linkColor: am4core.color(datum.coef === 0 ? this.noCorrelationColor : {...(datum.coef > 0 ? this.positiveCorrelationColor : this.negativeCorrelationColor), a: Math.round(200 * Math.abs(datum.coef) + 55)}),
-                label: (Math.round(datum.coef * 1000) / 1000).toString(10),
-                value: Math.abs(datum.coef),
-            }});
+            return this.value.filter(datum => Math.abs(datum.coef) >= this.threshold).map(datum=>{
+                const intensity = Math.abs(datum.coef);
+                return {
+                  ...datum,
+                  linkColor: am4core.color(datum.coef === 0 ? this.noCorrelationColor : datum.coef > 0 ? this.positiveCorrelationColor : this.negativeCorrelationColor),
+                  linkOpacity: intensity * 0.9 + 0.1,
+                  label: (Math.round(datum.coef * 1000) / 1000).toString(10),
+                  value: intensity,
+                }
+            });
         }
 
         @Watch('filteredData')
@@ -113,10 +117,11 @@
                 // Link formatting
                 const linkTemplate = chart.links.template;
                 linkTemplate.strokeOpacity = 0;
-                linkTemplate.fillOpacity = 1; //0.15;
+                linkTemplate.fillOpacity = 0.15;
                 linkTemplate.tooltipText = "{variable1} → {variable2}: {label}";
                 linkTemplate.colorMode = "solid";
                 linkTemplate.propertyFields.fill = "linkColor";
+                linkTemplate.propertyFields.fillOpacity = "linkOpacity";
                 chart.sortBy = "name";
                 linkTemplate.clickable = false;
 
