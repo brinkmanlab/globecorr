@@ -16,12 +16,15 @@
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^8.4.0",
     "vue-router": "^3.1.5",
-    "vuetify": "^2.2.14"
+    "vuetify": "^2.2.14",
+    "papaparse": "^5.1.1",
+    "vue-tabulator": "^1.2.2",
+    "tabulator-tables": "^4.5.3"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0",
-    "@typescript-eslint/eslint-plugin": "^2.18.0",
-    "@typescript-eslint/parser": "^2.18.0",
+    "@typescript-eslint/eslint-plugin": "^2.22.0",
+    "@typescript-eslint/parser": "^2.22.0",
     "@vue/cli-plugin-babel": "~4.2.0",
     "@vue/cli-plugin-eslint": "~4.2.0",
     "@vue/cli-plugin-router": "~4.2.0",
@@ -29,7 +32,8 @@
     "@vue/cli-service": "~4.2.0",
     "@vue/eslint-config-typescript": "^5.0.1",
     "babel-eslint": "^10.0.3",
-    "eslint": "^6.7.2",
+    "deepmerge": "^4.2.2",
+    "eslint": "^6.8.0",
     "eslint-plugin-vue": "^6.1.2",
     "fibers": "^4.0.2",
     "gulp": "^4.0.2",
@@ -39,12 +43,15 @@
     "html-loader": "^0.5.5",
     "markdown-it": "latest",
     "markdown-it-deflist": "^2.0.3",
+    "material-design-icons-iconfont": "^5.0.1",
     "node-sass": "^4.12.0",
-    "sass": "^1.25.0",
+    "sass": "^1.26.2",
     "sass-loader": "^8.0.2",
     "typescript": "^3.8.3",
     "vue-template-compiler": "^2.6.11",
-    "webpack": "^4.42.0"
+    "vuetify-loader": "^1.4.3",
+    "webpack": "^4.42.0",
+    "@types/papaparse": "^5.0.3"
   },
   "eslintConfig": {
     "root": true,
@@ -52,9 +59,13 @@
       "node": true
     },
     "extends": [
+      "plugin:@typescript-eslint/recommended",
       "plugin:vue/recommended",
       "eslint:recommended",
       "@vue/typescript"
+    ],
+    "plugins": [
+      "@typescript-eslint"
     ],
     "parserOptions": {
       "parser": "@typescript-eslint/parser"
@@ -81,9 +92,12 @@
       "vue/valid-v-bind-sync": "error",
       "vue/valid-v-slot": "error",
       "vue/singleline-html-element-content-newline": "off",
-      "vue/max-attributes-per-line": ["error", {
-        "singleline": 4
-      }]
+      "vue/max-attributes-per-line": [
+        "error",
+        {
+          "singleline": 6
+        }
+      ]
     }
   },
   "browserslist": [

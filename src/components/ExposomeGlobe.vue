@@ -1,145 +1,50 @@
 <template>
-    <div>
-        <div>
-            <label>
-                Threshold: <textarea v-model="threshold" />
-            </label>
-            <input type="file" @change="onFileChange" />
-        </div>
-        <div>
-            <div :style="positiveStyles.swatch" @click="displayPositiveColorPicker = !displayPositiveColorPicker">
-                <div :style="positiveStyles.color" />
-            </div>
-            <div v-if="displayPositiveColorPicker" :style="positiveStyles.popover">
-                <div :style="positiveStyles.cover" @click="displayPositiveColorPicker = false" />
-                <v-color-picker v-model="positiveCorrelationColor" mode="rgba" />
-            </div>
-            <button @click="handleSubmit">Update colors</button>
-        </div>
-
-        <div>
-            <div :style="negativeStyles.swatch" @click="displayNegativeColorPicker = !displayNegativeColorPicker">
-                <div :style="negativeStyles.color" />
-            </div>
-            <div v-if="displayNegativeColorPicker" :style="negativeStyles.popover">
-                <div :style="negativeStyles.cover" @click="displayNegativeColorPicker = false" />
-                <v-color-picker v-model="negativeCorrelationColor" mode="rgba" />
-            </div>
-        </div>
-
-        <a href="https://raw.githubusercontent.com/brinkmanlab/exposomeglobe/master/data/sample_small.csv?token=AI7O3IS7RRGKDBJTGIFAULK6MXEO2" download>Sample file</a>
-
-        <div id="chartdiv" :style="{ width: '100%', height: '875px' }" ref="chartdiv"></div>
-    </div>
+  <div :style="{ width: '100%', height: '875px' }" />
 </template>
 
 <script lang="ts">
-    import {Component, Vue} from 'vue-property-decorator';
+    import {Component, Prop, Vue} from 'vue-property-decorator';
 
     import * as am4core from "@amcharts/amcharts4/core";
     import * as am4charts from "@amcharts/amcharts4/charts";
-    import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+    import am4themesAnimated from "@amcharts/amcharts4/themes/animated";
     import {Chart, ChordDiagramDataItem, ChordNode} from "@amcharts/amcharts4/charts";
+    import {Data, RGBA, HexColor} from "@/@types/data";
 
-    am4core.useTheme(am4themes_animated);
+    am4core.useTheme(am4themesAnimated);
 
-    interface Data {
-        [key: string]: any;
-        variable1: string;
-        var1_domain: string;
-        variable2: string;
-        var2_domain: string;
-        coef: string;
-        value: number;
-        linkColor: string;
-        rounded: string;
-        label: string;
-    }
-
-    interface RGBA {
-        r: number;
-        g: number;
-        b: number;
-        a: number;
-    }
-
-    type hexColor = string;
-
-    // TODO: replace with PapaParse
-    function loadCSV(text: string): Data[] {
-        let arr = text.split("\n");
-        let header = ["variable1", "var1_domain", "variable2", "var2_domain", "coef", "value", "linkColor", "label"];
-        let data = [];
-        for (let i = 1; i < arr.length; i++) {
-            let row: Data = {
-                variable1: "",
-                var1_domain: "",
-                variable2: "",
-                var2_domain: "",
-                coef: "0",
-                value: 0,
-                linkColor: "#c1cc3d",
-                rounded: "0",
-                label: "",
-            };
-            let row_data = arr[i].split(",");
-            for (let j = 0; j < header.length; j++)
-                row[header[j]] = row_data[j];
-            data.push(row);
-        }
-        return data;
-    }
-
-    function getColorDichromatic(correlation: number, positiveColor: hexColor, negativeColor: hexColor): hexColor {
-        if (correlation > 0)
-            return colorScale(positiveColor, Math.abs(correlation));
-        if (correlation < 0)
-            return colorScale(negativeColor, Math.abs(correlation));
-        return "#D3D3D3"
-    }
-
-    function colorScale(hexstr: hexColor, scalefactor: number): hexColor {
-
-        if (scalefactor < 0)
-            return hexstr;
-
-        let r = parseInt(hexstr.slice(1, 3), 16);
-        let g = parseInt(hexstr.slice(3, 5), 16);
-        let b = parseInt(hexstr.slice(5, 7), 16);
-
-        r = r + (225 - r) * (1 - scalefactor);
-        g = g + (225 - g) * (1 - scalefactor);
-        b = b + (225 - b) * (1 - scalefactor);
-
-        return rgbToHex({r, g, b, a: 1});
-    }
-
-    function rgbToHex(rgb: RGBA): string {
+    function rgbToHex(rgb: RGBA): HexColor {
         return "#" + ((1 << 24) + (rgb.r << 16) + (rgb.g << 8) + rgb.b).toString(16).slice(1);
+    }
+
+    function colorScale(color: RGBA, scalefactor: number): HexColor {
+        if (scalefactor >= 0) {
+            color = {
+                r: color.r + (225 - color.r) * (1 - scalefactor),
+                g: color.g + (225 - color.g) * (1 - scalefactor),
+                b: color.b + (225 - color.b) * (1 - scalefactor),
+                a: 1, // TODO can we replace all of this with a: datum.coef?
+            }
+        }
+
+        return rgbToHex(color);
     }
 
     @Component
     export default class ExposomeGlobe extends Vue {
-        chart: Chart | null = null;
-        threshold: number = 0.6;
-        displayPositiveColorPicker: boolean = false;
-        displayNegativeColorPicker: boolean = false;
-        positiveCorrelationColor: RGBA = {r: 79, g: 117, b: 210, a: 1};
-        negativeCorrelationColor: RGBA = {r: 223, g: 60,b: 60, a: 1};
-        data: Data[] = [{
-            variable1: "",
-            var1_domain: "",
-            variable2: "",
-            var2_domain: "",
-            coef: "0",
-            value: 0,
-            linkColor: "#c1cc3d",
-            rounded: "0",
-            label: "",
-        }];
+        private chart: Chart | null = null;
+        @Prop(Number) threshold!: number;
+        @Prop(Object) positiveCorrelationColor: RGBA = {r: 79, g: 117, b: 210, a: 1};
+        @Prop(Object) negativeCorrelationColor: RGBA = {r: 223, g: 60, b: 60, a: 1};
+        @Prop(Object) noCorrelationColor: RGBA = {r: 211, g: 211, b: 211, a: 1};
+        get noCorrelationColorHex(): HexColor { return rgbToHex(this.positiveCorrelationColor); }
+        @Prop(Array) data!: Data[];
 
-        get filteredData() {
-            return this.data.filter(x=>Math.abs(parseFloat(x.coef)) >= this.threshold);
+        get filteredData(): Data[] {
+            return this.data.filter(datum => Math.abs(datum.coef) >= this.threshold).map(datum=>{return {
+                ...datum,
+                linkColor: datum.coef === 0 ? this.noCorrelationColorHex : colorScale(datum.coef > 0 ? this.positiveCorrelationColor : this.negativeCorrelationColor, Math.abs(datum.coef))
+            }});
         }
 
         positiveStyles = {
@@ -202,10 +107,10 @@
             },
         };
 
-        updated() {
-            if (this.$refs["chartdiv"] instanceof HTMLElement) {
+        updated(): void {
+            if (this.$el instanceof HTMLElement) {
                 // Export
-                let chart = am4core.create(this.$refs["chartdiv"], am4charts.ChordDiagram);
+                const chart = am4core.create(this.$el, am4charts.ChordDiagram);
                 chart.exporting.menu = new am4core.ExportMenu();
                 chart.exporting.filePrefix = "exposome-globe";
 
@@ -232,8 +137,8 @@
                 nodeTemplate.propertyFields.fill = "color";
 
                 // eslint-disable-next-line no-inner-declarations
-                function hover(isHover: boolean): (this: unknown, event: { type: "over" | "out", target: ChordNode } & PointerEvent & am4core.MouseTouchEvent & am4core.PointerEvent) => void {
-                    return (event) => {
+                function hover(isHover: boolean): (this: unknown, event: { type: "over" | "out"; target: ChordNode } & PointerEvent & am4core.MouseTouchEvent & am4core.PointerEvent) => void {
+                    return (event): void => {
                         const node = event.target;
                         node.outgoingDataItems.each(function (dataItem) {
                             if (dataItem.toNode) {
@@ -253,10 +158,12 @@
                 }
 
                 // Highlight links when hovering over node
+                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
                 //@ts-ignore
                 nodeTemplate.events.on("over", hover(true));
 
                 // When un-hovering from node, un-hover over links
+                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
                 //@ts-ignore
                 nodeTemplate.events.on("out", hover(false));
 
@@ -265,7 +172,7 @@
                 label.relativeRotation = 90;
                 label.fillOpacity = 0.4;
                 label.marginTop = 100;
-                let labelHS = label.states.create("hover");
+                const labelHS = label.states.create("hover");
                 labelHS.properties.fillOpacity = 1;
 
                 // Hover formatting
@@ -287,13 +194,13 @@
             }
         }
 
-        beforeDestroy() {
+        beforeDestroy(): void {
             if (this.chart) {
                 this.chart.dispose();
             }
         }
 
-        onFileChange(event: InputEvent & {target: EventTarget & {files: FileList}}) {
+        /*onFileChange(event: InputEvent & { target: EventTarget & { files: FileList } }) {
             let file = event.target.files[0];
             let reader = new FileReader();
             reader.readAsText(file);
@@ -306,8 +213,18 @@
                             return Math.abs(parseFloat(x.coef)) >= that.threshold;
                         }
                     );
-                    const positiveColor = rgbToHex({r: that.positiveCorrelationColor.r, g: that.positiveCorrelationColor.g, b: that.positiveCorrelationColor.b, a: 1});
-                    const negativeColor = rgbToHex({r: that.negativeCorrelationColor.r, g: that.negativeCorrelationColor.g, b: that.negativeCorrelationColor.b, a: 1});
+                    const positiveColor = rgbToHex({
+                        r: that.positiveCorrelationColor.r,
+                        g: that.positiveCorrelationColor.g,
+                        b: that.positiveCorrelationColor.b,
+                        a: 1
+                    });
+                    const negativeColor = rgbToHex({
+                        r: that.negativeCorrelationColor.r,
+                        g: that.negativeCorrelationColor.g,
+                        b: that.negativeCorrelationColor.b,
+                        a: 1
+                    });
                     for (let i = 0; i < filteredData.length; i++) {
                         filteredData[i].linkColor = getColorDichromatic(parseFloat(filteredData[i].coef), positiveColor, negativeColor);
                         filteredData[i].value = Math.abs(parseFloat(filteredData[i].coef));
@@ -316,15 +233,7 @@
                     that.data = filteredData;
                 }
             };
-        }
-
-        handleSubmit() {
-            const positiveColor = rgbToHex({r: this.positiveCorrelationColor.r, g: this.positiveCorrelationColor.g, b: this.positiveCorrelationColor.b, a: 1});
-            const negativeColor = rgbToHex({r: this.negativeCorrelationColor.r, g: this.negativeCorrelationColor.g, b: this.negativeCorrelationColor.b, a: 1});
-            for (const datum of this.filteredData) {
-                this.$set(datum, 'linkColor', getColorDichromatic(parseFloat(datum.coef), positiveColor, negativeColor));
-            }
-        }
+        }*/
     }
 </script>
 
