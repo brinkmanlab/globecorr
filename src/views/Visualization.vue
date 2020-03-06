@@ -97,7 +97,7 @@
 
 <script lang="ts">
     import {Component, Vue} from 'vue-property-decorator';
-    import ExposomeGlobe from "./ExposomeGlobe.vue";
+    import ExposomeGlobe from "../components/ExposomeGlobe.vue";
     import {Data, RGBA} from "@/@types/data";
     import papaparse, {ParseResult} from 'papaparse';
     import {TabulatorComponent} from "vue-tabulator";

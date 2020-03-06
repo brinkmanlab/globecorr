@@ -13,17 +13,18 @@
   "dependencies": {
     "@amcharts/amcharts4": "^4.9.4",
     "core-js": "^3.6.4",
+    "papaparse": "^5.1.1",
+    "tabulator-tables": "^4.5.3",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^8.4.0",
     "vue-router": "^3.1.5",
-    "vuetify": "^2.2.14",
-    "papaparse": "^5.1.1",
     "vue-tabulator": "^1.2.2",
-    "tabulator-tables": "^4.5.3"
+    "vuetify": "^2.2.14"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0",
+    "@types/papaparse": "^5.0.3",
     "@typescript-eslint/eslint-plugin": "^2.22.0",
     "@typescript-eslint/parser": "^2.22.0",
     "@vue/cli-plugin-babel": "~4.2.0",
@@ -38,7 +39,9 @@
     "eslint-plugin-vue": "^6.1.2",
     "fibers": "^4.0.2",
     "gulp": "^4.0.2",
+    "gulp-concat-json-to-array": "^0.0.1",
     "gulp-header": "^2.0.9",
+    "gulp-markdown-to-json": "^1.1.0",
     "gulp-markdownit": "^1.0.3",
     "gulp-rename": "^2.0.0",
     "html-loader": "^0.5.5",
@@ -51,8 +54,7 @@
     "typescript": "^3.8.3",
     "vue-template-compiler": "^2.6.11",
     "vuetify-loader": "^1.4.3",
-    "webpack": "^4.42.0",
-    "@types/papaparse": "^5.0.3"
+    "webpack": "^4.42.0"
   },
   "eslintConfig": {
     "root": true,
