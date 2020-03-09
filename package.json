@@ -75,6 +75,8 @@
     },
     "rules": {
       "vue/camelcase": "warn",
+      "@typescript-eslint/camelcase": "warn",
+      "@typescript-eslint/ban-ts-ignore": "warn",
       "vue/comma-dangle": "error",
       "vue/component-tags-order": [
         "error",

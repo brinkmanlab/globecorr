@@ -35,6 +35,12 @@
             });
         }
 
+        export<Key extends keyof am4core.ExportOptions>(type: Key, options?: am4core.IExportOptions[Key]): void {
+            if (this.chart) {
+                this.chart.exporting.export(type, options);
+            }
+        }
+
         @Watch('filteredData')
         updateGlobe(): void {
             if (this.chart)
@@ -47,7 +53,7 @@
                 // Export
                 const chart = am4core.create(this.$el, am4charts.ChordDiagram);
                 this.chart = chart;
-                chart.exporting.menu = new am4core.ExportMenu();
+                //chart.exporting.menu = new am4core.ExportMenu();
                 chart.exporting.filePrefix = "exposome-globe";
 
                 // Color settings
