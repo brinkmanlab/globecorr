@@ -32,7 +32,7 @@ After loading your data, the image will render automatically.
 
 **Layout and colouring**
 
-- The orientation of the domains around the circumference of the circle can be changed by clicking the domain and dragging. 
+- The orientation of the domains around the circumference of the circle can be changed by clicking the domain and dragging. However, you will need to move other domains to accomodate the changes. It is possible to have domains overlapping. 
 
 - To update the colour of the ribbons shown in the globe, hover over the ` Globe Options` menu on the right hand side of the screen. To change the colours for positive corrlations, click `Positive Correlation Colour`. You can select using the slider or by selecting a colour on the palette. The colour will change automatically. The user can also specify opacity using the bottom slider. To change the colours for negative corrlations, click `Negative Correlation Colour`. You can select using the slider or by selecting a colour on the palette. The colour will change automatically.The user can also specify opacity using the bottom slider.
 
