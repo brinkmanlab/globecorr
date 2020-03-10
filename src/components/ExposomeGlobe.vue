@@ -17,9 +17,9 @@
     export default class ExposomeGlobe extends Vue {
         private chart: Chart | null = null;
         @Prop(Number) threshold!: number;
-        @Prop(Object) positiveCorrelationColor: RGBA = {r: 79, g: 117, b: 210};
-        @Prop(Object) negativeCorrelationColor: RGBA = {r: 223, g: 60, b: 60};
-        @Prop(Object) noCorrelationColor: RGBA = {r: 211, g: 211, b: 211};
+        @Prop({default: ()=>({r: 79, g: 117, b: 210})}) readonly positiveCorrelationColor?: RGBA;
+        @Prop({default: ()=>({r: 223, g: 60, b: 60})}) readonly negativeCorrelationColor?: RGBA;
+        @Prop({default: ()=>({r: 211, g: 211, b: 211})}) readonly noCorrelationColor?: RGBA;
         @Prop(Array) value!: Data[];
 
         get filteredData(): Data[] {

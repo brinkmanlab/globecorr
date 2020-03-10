@@ -19,7 +19,10 @@ function news() {
     return src('static/news/*.md')
         //.pipe(ListStream.obj())
         .pipe(markdownToJSON(mdI.render.bind(mdI), 'news.json'))
-        .pipe(concatJson('news.json', (data)=>new Buffer(JSON.stringify(data.map(item=>{item.date = new Date(item.date); return item}).sort((a,b)=>b.date-a.date))))) // TODO list-streams broken for some reason, subbing this in
+        .pipe(concatJson('news.json', (data)=>{
+            const d = JSON.stringify(data.map(item=>{item.date = new Date(item.date); return item}).sort((a,b)=>b.date-a.date));
+            return Buffer.alloc(d.length, d);
+        })) // TODO list-streams broken for some reason, subbing this in
         .pipe(dest('src/assets/'));
 }
 
