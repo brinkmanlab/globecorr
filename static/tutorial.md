@@ -1,5 +1,5 @@
 # Tutorial 
-Please see our [About]() and [FAQ]() for more information.  
+Please see our [About](/about) and [FAQ](/faq) for more information.  
 
 
 ## **1. Upload your data**
@@ -7,7 +7,7 @@ Please see our [About]() and [FAQ]() for more information.
 To upload data, click the `Upload data to visualize` bar at the top of the page. 
 
 GlobeCorr requires a 5 column dataset in .csv format. There are required headings for each of the columns, which are described in the table below. 
-If you would like an example, feel free to download one of our [sample datasets](). 
+If you would like an example, feel free to download one of our [sample datasets](/sample_small.csv). 
 |Column|Required Header|Content|
 |:-----------:|:-----------:|:-----------:|
   |Column 1|variable1|Variable Name 1|
