@@ -6,13 +6,16 @@ Please see our [About]() and [FAQ]() for more information.
 
 To upload data, click the `Upload data to visualize` bar at the top of the page. 
 
-GlobeCorr requires a 5 column dataset in .csv format. If you would like an example, feel free to download one of our [sample datasets](). 
+GlobeCorr requires a 5 column dataset in .csv format. There are required headings for each of the columns, which are described in the table below. 
+If you would like an example, feel free to download one of our [sample datasets](). 
+|Column|Required Header|Content|
+|:-----------:|:-----------:|:-----------:|
+  |Column 1|variable1|Variable Name 1|
+  |Column 2|var1_domain |Domain of Variable 1|
+  |Column 3|variable2 |Variable Name 2|
+  |Column 4|var2_domain |Domain of Variable 2|
+  |Column 5|coef |Correlation Coefficient| 
 
-  + Column 1: Variable Name 1
-  + Column 2: Domain of Variable 1
-  + Column 3: Variable Name 2
-  + Column 4: Domain of Variable 2
-  + Column 5: Correlation Coefficient 
 
 After loading your data, the image will render automatically. 
 
@@ -34,11 +37,9 @@ After loading your data, the image will render automatically.
 
 - To update the colour of the ribbons shown in the globe, hover over the ` Globe Options` menu on the right hand side of the screen. To change the colours for positive corrlations, click `Positive Correlation Colour`. You can select using the slider or by selecting a colour on the palette. The colour will change automatically. The user can also specify opacity using the bottom slider. To change the colours for negative corrlations, click `Negative Correlation Colour`. You can select using the slider or by selecting a colour on the palette. The colour will change automatically.The user can also specify opacity using the bottom slider.
 
-<!-- ## **3. Save your results** 
+ ## **3. Save your results** 
 
-- To save the image, click the `...` icon on the right hand side. Hover over the `image` button to see available options for image export. After clicking on the desired output format, the image will download automatically. 
+- To save the image, hover over the ` Globe Options` menu on the right hand side of the screen. Click on the `Export` button and select an output format. After selecting an export format the download will start automatically and the file name will be taken from the file name of the input dataset. 
 
-- To save the data, click the `...` icon on the right side. Hover over the `data` button to see available options for data export. After clicking on the desired output format, the data will download automatically. The data contained within this download will only be what is shown in the current rendering of the visualization. So if a correlation threshold has been set to exclude some data, the user will download a subset of the data. 
-
-- To send the image directly to the printer click the `...` icon on the right side. Click the `print` button and then follow the instructions for your printer.  -->
+- To send the image directly to the printer hover over the ` Globe Options` menu on the right hand side of the screen. Click on the `Export` button, then click `Send to printer` and follow the instructions for your printer. 
 
