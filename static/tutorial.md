@@ -6,15 +6,14 @@ Please see our [About](/about) and [FAQ](/faq) for more information.
 
 To upload data, click the `Upload data to visualize` bar at the top of the page. 
 
-GlobeCorr requires a 5 column dataset in .csv format. There are required headings for each of the columns, which are described in the table below. 
-If you would like an example, feel free to download one of our [sample datasets](/sample_small.csv). 
-|Column|Required Header|Content|
-|:-----------:|:-----------:|:-----------:|
-  |Column 1|variable1|Variable Name 1|
-  |Column 2|var1_domain |Domain of Variable 1|
-  |Column 3|variable2 |Variable Name 2|
-  |Column 4|var2_domain |Domain of Variable 2|
-  |Column 5|coef |Correlation Coefficient| 
+GlobeCorr requires a 5 column dataset in .csv format. There are required headings for each of the columns, which are shown below. 
+If you would like an example, feel free to download one of our [sample datasets](). 
+
++ **Column 1:** variable1
++ **Column 2:** var1_domain
++ **Column 3:** variable2
++ **Column 4:** var2_domain
++ **Column 5:** coef
 
 
 After loading your data, the image will render automatically. 
