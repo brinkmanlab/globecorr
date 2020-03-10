@@ -10,7 +10,7 @@ GlobeCorr requires a 5 column dataset in .csv format. There are required heading
 If you would like an example, feel free to download one of our [sample datasets](). 
 ||Required Header|Content|
 | ----------- |-----------| ----------- |
-  |Column 1|varible1|Variable Name 1|
+  |Column 1|variable1|Variable Name 1|
   |Column 2|var1_domain |Domain of Variable 1|
   |Column 3|variable2 |Variable Name 2|
   |Column 4|var2_domain |Domain of Variable 2|
