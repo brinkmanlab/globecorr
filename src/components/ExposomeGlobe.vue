@@ -1,5 +1,5 @@
 <template>
-  <div :style="{ width: '100%', height: '875px' }" />
+  <div class="exposome-globe" />
 </template>
 
 <script lang="ts">

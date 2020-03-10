@@ -1,11 +1,12 @@
 <template>
-  <v-card min-height="50vh">
+  <v-card min-height="70vh">
     <v-file-input show-size label="CSV Data" placeholder="Upload data to visualize" solo accept="csv,tsv" @change="load" />
     <ExposomeGlobe ref="globe" v-model="value" :title="title" :threshold="threshold" :positive-correlation-color="positiveCorrelationColor" :negative-correlation-color="negativeCorrelationColor" />
     <!--TabulatorComponent v-model="value" :options="tabOptions" /-->
     <v-navigation-drawer
       persistent
       absolute
+      hide-overlay
       mini-variant
       expand-on-hover
       right
@@ -200,6 +201,11 @@
 <style scoped>
   .v-card {
     padding-right: 60px;
+  }
+
+  .exposome-globe {
+    height: 70vh;
+    width: 100%;
   }
 
   .v-list-item__icon {
