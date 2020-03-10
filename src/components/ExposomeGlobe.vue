@@ -16,6 +16,7 @@
     @Component
     export default class ExposomeGlobe extends Vue {
         private chart: Chart | null = null;
+        @Prop(String) readonly title!: string;
         @Prop(Number) threshold!: number;
         @Prop({default: ()=>({r: 79, g: 117, b: 210})}) readonly positiveCorrelationColor?: RGBA;
         @Prop({default: ()=>({r: 223, g: 60, b: 60})}) readonly negativeCorrelationColor?: RGBA;
@@ -47,6 +48,12 @@
               this.chart.data = this.filteredData;
         }
 
+        @Watch('title')
+        updatePrefix(): void {
+            if (this.chart)
+              this.chart.exporting.filePrefix = this.title;
+        }
+
         mounted(): void {
             if (this.chart) this.chart.dispose();
             if (this.$el instanceof HTMLElement) {
@@ -54,7 +61,6 @@
                 const chart = am4core.create(this.$el, am4charts.ChordDiagram);
                 this.chart = chart;
                 //chart.exporting.menu = new am4core.ExportMenu();
-                chart.exporting.filePrefix = "exposome-globe";
 
                 // Color settings
                 chart.colors.saturation = 0.45;

@@ -1,7 +1,7 @@
 <template>
   <v-card min-height="50vh">
     <v-file-input show-size label="CSV Data" placeholder="Upload data to visualize" solo accept="csv,tsv" @change="load" />
-    <ExposomeGlobe ref="globe" v-model="value" :threshold="threshold" :positive-correlation-color="positiveCorrelationColor" :negative-correlation-color="negativeCorrelationColor" />
+    <ExposomeGlobe ref="globe" v-model="value" :title="title" :threshold="threshold" :positive-correlation-color="positiveCorrelationColor" :negative-correlation-color="negativeCorrelationColor" />
     <!--TabulatorComponent v-model="value" :options="tabOptions" /-->
     <v-navigation-drawer
       persistent
@@ -115,6 +115,9 @@
               <v-list-item v-for="t of ['png', 'jpg', 'svg', 'pdf']" :key="t" link @click="$refs.globe.export(t)">
                 <v-list-item-title>Export as {{ t }}</v-list-item-title>
               </v-list-item>
+              <v-list-item link @click="$refs.globe.export('print')">
+                <v-list-item-title>Send to printer</v-list-item-title>
+              </v-list-item>
             </v-list>
           </v-menu>
         </v-list-item>
@@ -140,6 +143,7 @@
         components: {ExposomeGlobe, /*TabulatorComponent*/}
     })
     export default class Visualization extends Vue {
+        private title = 'exposome-globe';
         private threshold = 0.6;
         private value: Data[] = [];
         private positiveCorrelationColor: RGBA = {r: 79, g: 117, b: 210};
@@ -179,6 +183,7 @@
 
         load(file: File): void {
             console.debug('Started parsing %O', file);
+            this.title = file.name.split('.').slice(0, -1).join('.');
             papaparse.parse(file, {
                 header: true,
                 dynamicTyping: true,
