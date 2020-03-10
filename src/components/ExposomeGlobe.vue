@@ -134,12 +134,14 @@
                 linkTemplate.colorMode = "solid";
                 linkTemplate.propertyFields.fill = "linkColor";
                 linkTemplate.propertyFields.fillOpacity = "linkOpacity";
-                chart.sortBy = "name";
+                //chart.sortBy = "name";
                 linkTemplate.clickable = false;
+                linkTemplate.zIndex = 0;
 
                 const hoverState = linkTemplate.states.create("hover");
                 hoverState.properties.fillOpacity = 1.0;
                 hoverState.properties.strokeOpacity = 1.0;
+                hoverState.properties.zIndex = 1000;
             } else {
                 console.debug('ExposomeGlobe root element not DOM');
             }
