@@ -34,11 +34,11 @@ After loading your data, the image will render automatically.
 
 - The orientation of the domains around the circumference of the circle can be changed by clicking the domain and dragging. However, you will need to move other domains to accomodate the changes. It is possible to have domains overlapping. 
 
-- To update the colour of the ribbons shown in the globe, hover over the ` Globe Options` menu on the right hand side of the screen. To change the colours for positive corrlations, click `Positive Correlation Colour`. You can select using the slider or by selecting a colour on the palette. The colour will change automatically. The user can also specify opacity using the bottom slider. To change the colours for negative corrlations, click `Negative Correlation Colour`. You can select using the slider or by selecting a colour on the palette. The colour will change automatically.The user can also specify opacity using the bottom slider.
+- To update the colour of the ribbons shown in the globe, hover over the ` Globe Options` <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. To change the colours for positive corrlations, click `Positive Correlation Colour`. You can select using the slider or by selecting a colour on the palette. The colour will change automatically. The user can also specify opacity using the bottom slider. To change the colours for negative corrlations, click `Negative Correlation Colour`. You can select using the slider or by selecting a colour on the palette. The colour will change automatically.The user can also specify opacity using the bottom slider.
 
  ## **3. Save your results** 
 
-- To save the image, hover over the ` Globe Options` menu on the right hand side of the screen. Click on the `Export` button and select an output format. After selecting an export format the download will start automatically and the file name will be taken from the file name of the input dataset. 
+- To save the image, hover over the ` Globe Options` <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Click on the `Export` button and select an output format. After selecting an export format the download will start automatically and the file name will be taken from the file name of the input dataset. 
 
-- To send the image directly to the printer hover over the ` Globe Options` menu on the right hand side of the screen. Click on the `Export` button, then click `Send to printer` and follow the instructions for your printer. 
+- To send the image directly to the printer hover over the ` Globe Options` <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Click on the `Export` button, then click `Send to printer` and follow the instructions for your printer. 
 
