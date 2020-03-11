@@ -22,7 +22,7 @@ After loading your data, the image will render automatically.
 
 **Change what correlations are shown** 
 
-- Change the correlation threshold for the globe by hovering over the `Globe Options` menu on the right hand side of the screen. Use the slider to select your desired threshold. The visualization will update automatically. 
+- Change the correlation threshold for the globe by hovering over the `Globe Options` <i data-v-a48fe74c=“” class=“v-icon mdi mdi-tune” style=“background-color:#1976d2;color:white;“></i> menu on the right hand side of the screen. Use the slider to select your desired threshold. The visualization will update automatically. 
 
 - To remove domains from the visualization, click on its location at the circumference. The correlation ribbons will disappear, but a small grey box will remain at the circumference representing the hidden domain should the user want to include those correlations again. 
 
