@@ -7,7 +7,7 @@
     import {Component, Prop, Vue} from 'vue-property-decorator';
 
     @Component
-    export default class App extends Vue {
+    export default class HTMLFragment extends Vue {
         @Prop(String) readonly content!: string;
         @Prop(String) readonly slug?: string;
     }

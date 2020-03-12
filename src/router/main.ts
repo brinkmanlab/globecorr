@@ -1,28 +1,32 @@
-import HTMLFragment from "@/components/HTMLFragment.vue";
 import {RouteConfig} from "vue-router/types/router";
 import Visualization from "@/views/Visualization.vue";
 import Home from "@/views/Home.vue";
+
+//import content from '@/../static/*.md';
+import tutorial from '#/tutorial.md';
+import faq from '#/faq.md';
+import acknowledgements from '#/acknowledgements.md';
 
 const routes: RouteConfig[] = [
     { path: '/', component: Home, name: "Home" },
     { path: '/globe', component: Visualization, name: "Exposome Globe" },
     {
         path: '/tutorial',
-        component: HTMLFragment,
+        component: tutorial({}),
         name: "Tutorial",
-        props: {content: require('html-loader!@/assets/tutorial.htm'), slug: 'tutorial'}
+        props: {slug: 'tutorial'}
     },
     {
         path: '/faq',
-        component: HTMLFragment,
+        component: faq({}),
         name: "FAQ",
-        props: {content: require('html-loader!@/assets/faq.htm'), slug: 'faq'}
+        props: {slug: 'faq'}
     },
     {
         path: '/acknowledgements',
-        component: HTMLFragment,
+        component: acknowledgements({}),
         name: "Acknowledgements",
-        props: {content: require('html-loader!@/assets/acknowledgements.htm'), slug: 'acknowledgements'}
+        props: {slug: 'acknowledgements'}
     },
 ];
 

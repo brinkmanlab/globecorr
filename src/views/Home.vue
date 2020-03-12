@@ -2,13 +2,13 @@
   <v-container class="Home">
     <v-row>
       <v-col class="floating welcome">
-        <HTMLFragment :content="welcome" />
+        <welcome />
       </v-col>
     </v-row>
     <v-row>
       <v-col class="floating examples">
         <h1>Getting Started</h1>
-        <HTMLFragment :content="examples" />
+        <examples />
       </v-col>
       <v-col class="floating">
         <h1>News and Updates</h1>
@@ -21,18 +21,16 @@
 
 <script lang="ts">
     import {Component, Vue} from 'vue-property-decorator';
-    import HTMLFragment from "@/components/HTMLFragment.vue";
     import News from "@/components/News.vue";
 
     import news from "@/assets/news.json";
-    import welcome from "html-loader!@/assets/welcome.htm"
-    import examples from "html-loader!@/assets/examples.htm"
+    import welcome from "#/welcome.md";
+    import examples from "#/examples.md";
 
     @Component({
-        components: {News, HTMLFragment},
+        components: {News, welcome: welcome({name: 'welcome'}), examples: examples({name: 'examples'})},
     })
     export default class Home extends Vue {
-        private origin = origin;
         private news = news;
         private welcome = welcome;
         private examples = examples;

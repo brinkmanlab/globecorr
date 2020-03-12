@@ -1,7 +1,4 @@
 const { src, dest, parallel } = require('gulp');
-const md = require('gulp-markdownit');
-const rename = require('gulp-rename');
-const header = require('gulp-header');
 const markdownToJSON = require('gulp-markdown-to-json');
 const concatJson = require('gulp-concat-json-to-array');
 
@@ -26,15 +23,4 @@ function news() {
         .pipe(dest('src/assets/'));
 }
 
-function pages() {
-    // Render static markdown to html fragments
-    return src('static/*.md')
-        .pipe(md(MD_CONFIG))
-        .pipe(rename({
-            extname: ".htm",
-        }))
-        .pipe(header('<!-- DO NOT MODIFY! THIS CONTENT WAS DYNAMICALLY GENERATED AND ANY CHANGES WILL BE OVERWRITTEN. See ../static/*.md -->\n'))
-        .pipe(dest('src/assets/'));
-}
-
-exports.default = parallel(pages, news);
+exports.default = parallel(news);

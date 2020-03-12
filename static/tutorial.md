@@ -1,5 +1,5 @@
 # Tutorial 
-Please see our [About](/about) and [FAQ](/faq) for more information.  
+Please see our [About](#/about) and [FAQ](#/faq) for more information.  
 
 
 ## **1. Upload your data**

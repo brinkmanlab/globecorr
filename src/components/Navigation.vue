@@ -18,7 +18,7 @@
     export default class Navigation extends Vue {
         @Prop(Array) readonly routes!: RouteConfig[];
 
-        get pages() {
+        get pages(): RouteConfig[] {
             return this.routes.filter(route =>
                 // eslint-disable-next-line no-prototype-builtins
                 (!route.hasOwnProperty('meta') || !route.meta.hasOwnProperty('navbar') || route.meta.navbar === true) // Allow to be hidden using meta tag
