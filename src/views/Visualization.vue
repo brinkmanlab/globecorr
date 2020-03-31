@@ -185,7 +185,12 @@
         load(file: File): void {
             console.debug('Started parsing %O', file);
             this.title = file.name.split('.').slice(0, -1).join('.');
-            papaparse.parse(file, {
+
+        }
+
+        parse(path: string | File): void {
+            papaparse.parse(path, {
+                download: typeof path === 'string',
                 header: true,
                 dynamicTyping: true,
                 skipEmptyLines: 'greedy',
@@ -194,6 +199,10 @@
                     console.debug('Finished parsing data: %O', this.value);
                 }
             })
+        }
+
+        mounted(): void {
+            if (this.$route.query.view) this.parse(this.$route.query.view as string);
         }
     }
 </script>
