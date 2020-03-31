@@ -182,15 +182,11 @@
             ],
         };
 
-        load(file: File): void {
+        load(file: File | string): void {
             console.debug('Started parsing %O', file);
-            this.title = file.name.split('.').slice(0, -1).join('.');
-
-        }
-
-        parse(path: string | File): void {
-            papaparse.parse(path, {
-                download: typeof path === 'string',
+            this.title = ((typeof file === 'string') ? file : file.name).split('.').slice(0, -1).join('.');
+            papaparse.parse(file, {
+                download: typeof file === 'string',
                 header: true,
                 dynamicTyping: true,
                 skipEmptyLines: 'greedy',
@@ -202,7 +198,7 @@
         }
 
         mounted(): void {
-            if (this.$route.query.view) this.parse(this.$route.query.view as string);
+            if (this.$route.query.view) this.load(this.$route.query.view as string);
         }
     }
 </script>
