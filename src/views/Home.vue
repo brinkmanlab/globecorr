@@ -2,13 +2,13 @@
   <v-container class="Home">
     <v-row>
       <v-col class="floating welcome">
-        <welcome />
+        <Welcome />
       </v-col>
     </v-row>
     <v-row>
       <v-col class="floating examples">
         <h1>Getting Started</h1>
-        <examples />
+        <Examples />
       </v-col>
       <v-col class="floating">
         <h1>News and Updates</h1>
@@ -24,16 +24,14 @@
     import News from "@/components/News.vue";
 
     import news from "@/assets/news.json";
-    import welcome from "#/welcome.md";
-    import examples from "#/examples.md";
+    import Welcome from "#/welcome.md"
+    import Examples from "#/examples.md"
 
     @Component({
-        components: {News, welcome: welcome({name: 'welcome'}), examples: examples({name: 'examples'})},
+        components: {News, Welcome: Welcome.vue.component, Examples: Examples.vue.component},
     })
     export default class Home extends Vue {
         private news = news;
-        private welcome = welcome;
-        private examples = examples;
     }
 </script>
 

@@ -1,4 +1,9 @@
-# Tutorial 
+---
+title: Tutorial
+slug: tutorial
+nav: 2
+---
+# {{ $attrs.title }} 
 Please see our [About](#/about) and [FAQ](#/faq) for more information.  
 
 

@@ -12,13 +12,17 @@
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
-      "webpack-env"
+      "webpack-env",
+      "jest",
+      "vuetify"
     ],
     "paths": {
       "@/*": [
         "src/*"
       ],
-      "#/*": ["static/*"]
+      "#/*": [
+        "static/*"
+      ]
     },
     "lib": [
       "esnext",

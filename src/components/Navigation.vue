@@ -1,8 +1,8 @@
 <template>
   <v-tabs align-with-title>
     <slot name="before" />
-    <v-tab v-for="page in pages" :key="page.name" :to="page.path">
-      {{ page.name }}
+    <v-tab v-for="page in pages" :key="page.meta.slug" :to="page.path">
+      {{ page.meta.title || page.meta.slug || page.name }}
     </v-tab>
     <slot />
     <slot name="after" />
@@ -11,18 +11,15 @@
 
 <script lang="ts">
     import {Component, Prop, Vue} from 'vue-property-decorator';
-    // eslint-disable-next-line no-unused-vars
-    import {RouteConfig} from "vue-router";
+    import { RouteConfig } from "vue-router";
+    import { PageRoute } from "@/@types/pageprops";
 
     @Component
     export default class Navigation extends Vue {
-        @Prop(Array) readonly routes!: RouteConfig[];
+        @Prop(Array) readonly routes!: (RouteConfig | PageRoute)[];
 
-        get pages(): RouteConfig[] {
-            return this.routes.filter(route =>
-                // eslint-disable-next-line no-prototype-builtins
-                (!route.hasOwnProperty('meta') || !route.meta.hasOwnProperty('navbar') || route.meta.navbar === true) // Allow to be hidden using meta tag
-            );
+        get pages(): (RouteConfig | PageRoute)[] {
+            return this.routes.filter(route => route.meta.nav !== undefined);
         }
     }
 </script>

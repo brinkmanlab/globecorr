@@ -1,4 +1,9 @@
-# FAQ
+---
+title: FAQ
+slug: faq
+nav: 3
+---
+# {{ $attrs.title }} 
 **What input file format do I need to use?**  
 GlobeCorr takes csv files. If you are using other file formats, such as .xlms, .xlsx or .txt the image will not render. Please convert the file to .csv and consult the [tutorial](/tutorial) for further instructions. 
 

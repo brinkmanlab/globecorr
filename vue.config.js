@@ -1,8 +1,9 @@
-const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
 const mdDeflist = require('markdown-it-deflist');
 const path = require('path');
+const Mode = require('frontmatter-markdown-loader/mode');
 
 module.exports = {
+    publicPath: process.env.BASE_URL,
     parallel: true,
     configureWebpack: {
         resolve: {
@@ -14,18 +15,15 @@ module.exports = {
             rules: [
                 {
                     test: /\.md$/,
-                    use: ['vue-template-loader', {
-                        loader: 'wrap-loader',
+                    use: [{
+                        loader: 'frontmatter-markdown-loader',
                         options: {
-                            before: '<section class="markdown">',
-                            after: '</section>'
-                        }
-                    }, {
-                        loader: 'markdown-it-loader',
-                        options: {
-                            preset: 'default',
-                            html: true,
-                            use: [mdDeflist]
+                            mode: [Mode.VUE_COMPONENT],
+                            markdownIt: {
+                                preset: 'default',
+                                html: true,
+                                use: [mdDeflist]
+                            }
                         }
                     }, {
                         loader: 'string-replace-loader',
@@ -37,9 +35,6 @@ module.exports = {
                     }],
                 }
             ],
-        },
-        plugins: [
-            new VuetifyLoaderPlugin(),
-        ]
+        }
     }
 };
