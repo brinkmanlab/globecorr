@@ -52,4 +52,8 @@
     max-height: 8em;
     float: right;
   }
+
+  .welcome >>> p:first-of-type {
+    padding-top: 2em;
+  }
 </style>
