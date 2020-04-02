@@ -47,4 +47,9 @@
     text-decoration: none;
     background: rgba(0, 0, 0, 0.03);
   }
+
+  .welcome >>> img:first-of-type {
+    max-height: 8em;
+    float: right;
+  }
 </style>

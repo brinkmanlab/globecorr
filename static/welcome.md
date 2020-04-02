@@ -1,4 +1,4 @@
-<img alt="GlobeCorr" src="/globecorr_logo_text.svg" style="float: right">
+<img alt="GlobeCorr" src="/globecorr_logo_text.svg">
 
  
 <div class="container vertical-horizontal">
