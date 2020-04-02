@@ -1,7 +1,7 @@
 <template>
   <v-app id="app">
     <v-app-bar absolute app>
-      <v-toolbar-title>GlobeCorr</v-toolbar-title>
+      <v-toolbar-title><img alt="GlobeCorr" src="/globecorr_logo.svg">GlobeCorr</v-toolbar-title>
       <v-spacer />
       <template v-slot:extension>
         <Navigation :routes="routes" />
@@ -30,5 +30,15 @@
     }
 </script>
 
-<style>
+<style scoped>
+  .v-toolbar__title {
+    height: inherit;
+  }
+
+  .v-toolbar__title img {
+    height: inherit;
+    vertical-align: middle;
+    object-fit: contain;
+    padding: 5px;
+  }
 </style>
