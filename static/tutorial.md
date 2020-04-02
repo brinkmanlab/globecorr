@@ -47,7 +47,7 @@ After loading your data, the image will render automatically.
 
 - To explore all correlations within a specific domain, hover over the domain on the circumference of the circle and all correlations within that domain will go from transparent to opaque. 
 
-![Domain Hover example](https://github.com/brinkmanlab/exposomeglobe/blob/master/public/corr_domain.png)
+![Domain Hover Example2](/public/tutorial/corr_domain.png)
 
 
 - To explore specific correlations, hover over the ribbons on the interior of the circle to see the variable and their corresponding correlation coefficient. 
