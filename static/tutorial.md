@@ -8,11 +8,17 @@ nav: 2
 
 GlobeCorr is a data visualization software developed to facilitate the viewing and analysis of multiple correlation datasets. To enable further, dynamic exploration of your data, users can upload a table of correlations in csv format and GlobeCorr provides an interactive and customizable “globe-based” visualization.  
 
-This software and website has been developed by the [Brinkman Lab](https://www.brinkman.mbb.sfu.ca/) at Simon Fraser University, Canada. Please [contact us](/acknowledgements) with any questions. 
+The domains specified your csv will be shown around the circumference of the globe. Each domain will be present as a distinct arc with a unique colour. Correlations are represented as ribbons. When there are correlations between variables within the same domain, you will see the ribbon tracing back onto its domain of origin. When correlated variables are in separate domains, the ribbons will arrange as needed across the circle to reach the required domain. The variables specified in the csv for the  correlations can be viewed by hovering over each ribbon. The default colour for positive correlations is blue, whereas the default for negative is red. GlobeCorr defaults to showing on those correlations above 0.4. 
+
+GlobeCorr users can customize their image by changing: 
+* default correlation threshold 
+* colour of positive and negative correlation ribbons 
+* opacity of the correlation ribbons 
+* arrangement of domains around the circumference 
 
 To explore GlobeCorr, you can download one of our [sample datasets](/sample_small.csv), view the correlation globe [directly](/globe?view=%2Fsample_small.csv), or read our [tutorial](/tutorial) for more information.
 
-Please see our [About](#/about) and [FAQ](#/faq) for more information.  
+Please see our [FAQ](/faq) for more information.  
 
 
 ## **1. Upload your data**
