@@ -47,6 +47,19 @@ After loading your data, the image will render automatically.
 
 - To explore all correlations within a specific domain, hover over the domain on the circumference of the circle and all correlations within that domain will go from transparent to opaque. 
 
+![your image caption](/public/corr_domain.png)
+
+<!---
+<center>
+
+![your image caption](/public/corr_domain.png)
+
+</center>
+ 
+<img src="/public/corr_domain.png" align="center" width="600">
+
+--->
+
 - To explore specific correlations, hover over the ribbons on the interior of the circle to see the variable and their corresponding correlation coefficient. 
 
 **Layout and colouring**
