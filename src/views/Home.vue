@@ -48,12 +48,12 @@
     background: rgba(0, 0, 0, 0.03);
   }
 
-  .welcome >>> img:first-of-type {
+  /*.welcome >>> img:first-of-type {
     max-height: 8em;
     float: right;
   }
 
   .welcome >>> p:first-of-type {
     padding-top: 2em;
-  }
+  }*/
 </style>
