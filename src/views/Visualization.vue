@@ -5,7 +5,7 @@
       <v-file-input show-size label="CSV Data" placeholder="Upload data to visualize" solo accept="csv,tsv" @change="load" />
       <ExposomeGlobe ref="globe" v-model="value" :title="title" :threshold="globeOptions.threshold" :positive-correlation-color="globeOptions.positiveCorrelationColor" :negative-correlation-color="globeOptions.negativeCorrelationColor" />
       <!--TabulatorComponent v-model="value" :options="tabOptions" /-->
-      <ExposomeGlobeDrawer v-model="globeOptions" @export="$refs.globe.export" />
+      <ExposomeGlobeDrawer v-model="globeOptions" @export="type=>this.$refs.globe.export(type)" />
     </v-card>
   </div>
 </template>
@@ -28,9 +28,12 @@
     };
 
     @Component({
-        components: {ExposomeGlobeDrawer, ExposomeGlobe, /*TabulatorComponent, */ Instructions}
+        components: {ExposomeGlobeDrawer, ExposomeGlobe, /*TabulatorComponent, */ Instructions: Instructions.vue.component}
     })
     export default class Visualization extends Vue {
+        $refs!: {
+            globe: ExposomeGlobe;
+        };
         private title = 'exposome-globe';
         private value: Data[] = [];
         private globeOptions: ExposomeConfig = {

@@ -136,9 +136,9 @@
         private _value?: Value;
 
         input(key: keyof Value, val: number & RGBA ): void {
-          if (!this._value) this._value = this.value;
-          this._value[key] = val;
-          this.$emit('input', this._value);
+            if (!this._value) this._value = this.value;
+            this._value[key] = val;
+            this.$emit('input', this._value);
         }
     }
 </script>
