@@ -47,16 +47,20 @@ After loading your data, the image will render automatically.
 
 - To explore all correlations within a specific domain, hover over the domain on the circumference of the circle and all correlations within that domain will go from transparent to opaque. 
 
-![Domain Hover Example3](https://github.com/brinkmanlab/exposomeglobe/blob/master/public/tutorial/corr_domain.png)
+![Domain Hover Example4](/tutorial/corr_domain.png)
 
 
 - To explore specific correlations, hover over the ribbons on the interior of the circle to see the variable and their corresponding correlation coefficient. 
+
+![Variable Hover Example](/tutorial/corr_var.png)
 
 **Layout and colouring**
 
 - The orientation of the domains around the circumference of the circle can be changed by clicking the domain and dragging. However, you will need to move other domains to accomodate the changes. It is possible to have domains overlapping. 
 
 - To update the colour of the ribbons shown in the globe, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. To change the colours for positive corrlations, click "Positive Correlation Colour". You can select using the slider or by selecting a colour on the palette. The colour will change automatically. The user can also specify opacity using the bottom slider. To change the colours for negative corrlations, click "Negative Correlation Colour". You can select using the slider or by selecting a colour on the palette. The colour will change automatically.The user can also specify opacity using the bottom slider.
+
+![Menu Example](/tutorial/corr_menu.png)
 
  ## **3. Save your results** 
 
