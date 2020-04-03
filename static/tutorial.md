@@ -16,7 +16,7 @@ GlobeCorr users can customize their image by changing:
 * opacity of the correlation ribbons 
 * arrangement of domains around the circumference 
 
-To explore GlobeCorr, you can download one of our [sample datasets](/sample_small.csv), view the correlation globe [directly](/globe?view=%2Fsample_small.csv), or read our [tutorial](/tutorial) for more information.
+To explore GlobeCorr, you can download one of our [sample datasets](/sample_small.csv) or view the correlation globe [directly](/globe?view=%2Fsample_small.csv).
 
 Please see our [FAQ](/faq) for more information.  
 
