@@ -2,6 +2,8 @@ import {PageRoute, Pages} from "@/@types/pageprops";
 
 import Visualization from "@/views/Visualization.vue";
 import Home from "@/views/Home.vue";
+import News from "@/components/News.vue";
+import {RouteConfig} from "vue-router";
 
 const pages: {[key: string]: Pages} = {};
 
@@ -23,6 +25,7 @@ const routes: PageRoute[] = [
         props: page.attributes,
         meta: page.attributes,
     })),
-].sort((a,b)=>a.meta.nav-b.meta.nav);
+    { path: '/news', component: News, name: "News", props: {value: require('@/assets/news')}} as PageRoute,
+].sort((a,b)=>(a.meta && b.meta && a.meta.nav !== undefined && b.meta.nav !== undefined)?a.meta.nav-b.meta.nav:1);
 
 export default routes;

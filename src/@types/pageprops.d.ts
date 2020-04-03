@@ -9,7 +9,7 @@ export interface PageProps {
 }
 
 export interface PageRoute extends RouteConfig {
-    props: PageProps;
+    props: PageProps | RouteConfig['props'];
 }
 
 export interface Pages extends FrontMatter {

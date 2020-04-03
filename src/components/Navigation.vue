@@ -19,7 +19,7 @@
         @Prop(Array) readonly routes!: (RouteConfig | PageRoute)[];
 
         get pages(): (RouteConfig | PageRoute)[] {
-            return this.routes.filter(route => route.meta.nav !== undefined);
+            return this.routes.filter(route => route.meta && route.meta.nav !== undefined);
         }
     }
 </script>
