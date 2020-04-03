@@ -1,7 +1,7 @@
 <template>
   <v-app id="app">
     <v-app-bar absolute app>
-      <v-toolbar-title><img src="/logo/globecorr_logo.svg">GlobeCorr</v-toolbar-title>
+      <v-toolbar-title><img src="/logo/globecorr_logo_no_text.svg">GlobeCorr</v-toolbar-title>
       <v-spacer />
       <template v-slot:extension>
         <Navigation :routes="routes" />
