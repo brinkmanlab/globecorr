@@ -43,24 +43,31 @@ After loading your data, the image will render automatically.
 
 - Change the correlation threshold for the globe by hovering over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Use the slider to select your desired threshold. You can also click on the box to the right of the slider and type in the desired threshold. The visualization will update automatically. 
 
+![Menu Example](tutorial/corr_menu.png)
+
 - To remove domains from the visualization, click on its location at the circumference. The correlation ribbons will disappear, but a small grey box will remain at the circumference representing the hidden domain should the user want to include those correlations again. 
 
 - To explore all correlations within a specific domain, hover over the domain on the circumference of the circle and all correlations within that domain will go from transparent to opaque. 
 
-![Domain Hover Example4](tutorial/corr_domain.png)
+![Domain Hover Example 5](tutorial/corr_domain.png)
 
 
 - To explore specific correlations, hover over the ribbons on the interior of the circle to see the variable and their corresponding correlation coefficient. 
 
-![Variable Hover Example](tutorial/corr_var.png)
+![Variable Hover Example 2](tutorial/corr_var.png)
 
 **Layout and colouring**
 
 - The orientation of the domains around the circumference of the circle can be changed by clicking the domain and dragging. However, you will need to move other domains to accomodate the changes. It is possible to have domains overlapping. 
 
-- To update the colour of the ribbons shown in the globe, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. To change the colours for positive corrlations, click "Positive Correlation Colour". You can select using the slider or by selecting a colour on the palette. The colour will change automatically. The user can also specify opacity using the bottom slider. To change the colours for negative corrlations, click "Negative Correlation Colour". You can select using the slider or by selecting a colour on the palette. The colour will change automatically.The user can also specify opacity using the bottom slider.
+- To update the colour of the ribbons shown in the globe, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. To change the colours for positive corrlations, click "Positive Correlation Colour". Colours can be selected several ways: 
+  + Select preset colour
+  + Select using slider (opacity can also be changed this way)
+  + Selecting a colour on the palette. 
+  + Specify RGB code
 
-![Menu Example](tutorial/corr_menu.png)
+-  To change the colours for negative corrlations, click "Negative Correlation Colour" and follow the same procedure for positive correlations. The colours will update automatically. 
+
 
  ## **3. Save your results** 
 
