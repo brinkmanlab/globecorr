@@ -1,20 +1,20 @@
 <template>
   <v-navigation-drawer
-      persistent
-      absolute
-      hide-overlay
-      mini-variant
-      expand-on-hover
-      right
-      dark
-      :value="true"
-      color="primary"
-      width="25em"
+    persistent
+    absolute
+    hide-overlay
+    mini-variant
+    expand-on-hover
+    right
+    dark
+    :value="true"
+    color="primary"
+    width="25em"
   >
     <v-list
-        dense
-        nav
-        class="py-0"
+      dense
+      nav
+      class="py-0"
     >
       <v-list-item two-line>
         <v-list-item-icon>
@@ -33,28 +33,28 @@
         </v-list-item-icon>
         <v-list-item-content>
           <v-slider
-              :value="value.threshold"
-              @input="val=>input('threshold', val)"
-              class="align-center"
-              max="1"
-              min="0"
-              step="0.01"
-              hide-details
-              label="Threshold"
-              dense
+            :value="value.threshold"
+            max="1"
+            class="align-center"
+            min="0"
+            step="0.01"
+            dense
+            label="Threshold"
+            hide-details
+            @input="val=>input('threshold', val)"
           >
             <template v-slot:append>
               <v-text-field
-                  :value="value.threshold"
-                  @input="val=>input('threshold', val)"
-                  dense
-                  type="number"
-                  min="0"
-                  max="1"
-                  step="0.1"
-                  class="mt-0 pt-0"
-                  hide-details
-                  single-line
+                :value="value.threshold"
+                single-line
+                hide-details
+                class="mt-0 pt-0"
+                min="0"
+                dense
+                type="number"
+                max="1"
+                step="0.1"
+                @input="val=>input('threshold', val)"
               />
             </template>
           </v-slider>
@@ -76,7 +76,7 @@
               <v-list-item-subtitle>Pick the color for the positive correlation lines</v-list-item-subtitle>
             </v-list-item-content>
           </template>
-          <v-color-picker :value="value.positiveCorrelationColor" @input="val=>input('positiveCorrelationColor', val)" mode="RGBA" />
+          <v-color-picker v-bind="colorPickerOptions" :value="value.positiveCorrelationColor" @input="val=>input('positiveCorrelationColor', val)" />
         </v-menu>
       </v-list-item>
 
@@ -95,7 +95,7 @@
               <v-list-item-subtitle>Pick the color for the negative correlation lines</v-list-item-subtitle>
             </v-list-item-content>
           </template>
-          <v-color-picker :value="value.negativeCorrelationColor" @input="val=>input('negativeCorrelationColor', val)" mode="RGBA" />
+          <v-color-picker v-bind="colorPickerOptions" :value="value.negativeCorrelationColor" @input="val=>input('negativeCorrelationColor', val)" />
         </v-menu>
       </v-list-item>
 
@@ -134,6 +134,18 @@
         $refs!: {};
         @Prop(Object) value!: Value;
         private _value?: Value;
+        private colorPickerOptions = {
+            mode: "rgba",
+            "show-swatches": true,
+            swatches: [
+              ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', ],
+              ['#2ca02c', '#98df8a', '#d62728', '#ff9896', ],
+              ['#9467bd', '#c5b0d5', '#8c564b', '#c49c94', ],
+              ['#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', ],
+              ['#bcbd22', '#dbdb8d', '#17becf', '#9edae5', ],
+            ],
+            "hide-inputs": false,
+        };
 
         input(key: keyof Value, val: number & RGBA ): void {
             if (!this._value) this._value = this.value;
@@ -151,5 +163,11 @@
 
   .v-list-item {
     text-align: left;
+  }
+
+  >>> .v-color-picker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 </style>
