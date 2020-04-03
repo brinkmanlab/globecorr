@@ -1,13 +1,19 @@
 <template>
-  <div>
-    <Instructions />
-    <v-card min-height="70vh">
-      <v-file-input show-size label="CSV Data" placeholder="Upload data to visualize" solo accept="csv,tsv" @change="load" />
-      <ExposomeGlobe ref="globe" v-model="value" :title="title" :threshold="globeOptions.threshold" :positive-correlation-color="globeOptions.positiveCorrelationColor" :negative-correlation-color="globeOptions.negativeCorrelationColor" />
-      <!--TabulatorComponent v-model="value" :options="tabOptions" /-->
-      <ExposomeGlobeDrawer v-model="globeOptions" @export="type=>this.$refs.globe.export(type)" />
-    </v-card>
-  </div>
+  <v-card min-height="70vh">
+    <v-file-input show-size label="CSV Data" placeholder="Upload data to visualize" solo accept="csv,tsv" @change="load" />
+    <ExposomeGlobe
+      v-if="value.length"
+      ref="globe"
+      v-model="value"
+      :title="title"
+      :threshold="globeOptions.threshold"
+      :positive-correlation-color="globeOptions.positiveCorrelationColor"
+      :negative-correlation-color="globeOptions.negativeCorrelationColor"
+    />
+    <Instructions v-else />
+    <!--TabulatorComponent v-model="value" :options="tabOptions" /-->
+    <ExposomeGlobeDrawer v-model="globeOptions" @export="type=>this.$refs.globe.export(type)" />
+  </v-card>
 </template>
 
 <script lang="ts">
@@ -98,20 +104,24 @@
 <style scoped>
   .v-card {
     padding-right: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+  }
+
+  .v-card > * {
+    width: 100%;
   }
 
   .exposome-globe {
     height: 70vh;
-    width: 100%;
   }
 
-  .v-list-item__icon {
-    margin-top: auto !important;
-    margin-bottom: auto !important;
-  }
-
-  .v-list-item {
-    text-align: left;
+  .frontmatter-markdown {
+    max-width: 30em;
+    flex-grow: 1;
   }
 </style>
 

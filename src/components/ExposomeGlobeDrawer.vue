@@ -144,5 +144,12 @@
 </script>
 
 <style scoped>
+  .v-list-item__icon {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+  }
 
+  .v-list-item {
+    text-align: left;
+  }
 </style>
