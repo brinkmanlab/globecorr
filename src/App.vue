@@ -1,7 +1,7 @@
 <template>
   <v-app id="app">
     <v-app-bar absolute app>
-      <v-toolbar-title><img src="/logo/globecorr_logo_no_text.svg">GlobeCorr</v-toolbar-title>
+      <v-toolbar-title><img alt="" src="/logo/globecorr_logo_no_text.svg">GlobeCorr</v-toolbar-title>
       <v-spacer />
       <template v-slot:extension>
         <Navigation :routes="routes" />
@@ -10,7 +10,7 @@
 
     <v-content>
       <v-container fluid>
-        <router-view />
+        <router-view :class="$route.meta && $route.meta.slug || ''" />
       </v-container>
     </v-content>
   </v-app>
@@ -41,4 +41,8 @@
     object-fit: contain;
     padding: 5px;
   }
+</style>
+
+<style lang="scss">
+  @import '@/assets/main.scss';
 </style>
