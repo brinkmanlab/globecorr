@@ -49,12 +49,12 @@ After loading your data, the image will render automatically.
 
 - To explore all correlations within a specific domain, hover over the domain on the circumference of the circle and all correlations within that domain will go from transparent to opaque. 
 
-![Domain Hover Example 5](./tutorial/corr_domain.png)
+![Domain Hover Example](./tutorial/corr_domain.png)
 
 
 - To explore specific correlations, hover over the ribbons on the interior of the circle to see the variable and their corresponding correlation coefficient. 
 
-![Variable Hover Example 2](./tutorial/corr_var.png)
+![Variable Hover Example](./tutorial/corr_var.png)
 
 **Layout and colouring**
 
@@ -67,6 +67,8 @@ After loading your data, the image will render automatically.
   + Specify RGB code
 
 -  To change the colours for negative corrlations, click "Negative Correlation Colour" and follow the same procedure for positive correlations. The colours will update automatically. 
+
+![Colour Example](./tutorial/corr_colurs.png)
 
 
  ## **3. Save your results** 
