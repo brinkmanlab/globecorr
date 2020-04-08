@@ -126,6 +126,7 @@
 
   .v-file-input >>> .v-input__control {
     min-height: unset !important;
+    max-width: 25ch;
   }
 
   .v-file-input >>> .v-input__prepend-outer {
