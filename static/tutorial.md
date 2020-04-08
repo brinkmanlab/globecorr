@@ -39,6 +39,8 @@ After loading your data, the image will render automatically.
 
 ## **2. Customize your view**
 
+- As default, only correlations above 0.4 are shown. Red ribbons represent negative correlations, while blue represent positive. All domains specified in the input file are included, but can be faded out.
+
 **Change what correlations are shown** 
 
 - Change the correlation threshold for the globe by hovering over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Use the slider to select your desired threshold. You can also click on the box to the right of the slider and type in the desired threshold. The visualization will update automatically. 
@@ -49,12 +51,12 @@ After loading your data, the image will render automatically.
 
 - To explore all correlations within a specific domain, hover over the domain on the circumference of the circle and all correlations within that domain will go from transparent to opaque. 
 
-![Domain Hover Example 5](./tutorial/corr_domain.png)
+![Domain Hover Example](./tutorial/corr_domain.png)
 
 
 - To explore specific correlations, hover over the ribbons on the interior of the circle to see the variable and their corresponding correlation coefficient. 
 
-![Variable Hover Example 2](./tutorial/corr_var.png)
+![Variable Hover Example](./tutorial/corr_var.png)
 
 **Layout and colouring**
 
@@ -67,6 +69,8 @@ After loading your data, the image will render automatically.
   + Specify RGB code
 
 -  To change the colours for negative corrlations, click "Negative Correlation Colour" and follow the same procedure for positive correlations. The colours will update automatically. 
+
+![Colour Example](./tutorial/corr_colurs.png)
 
 
  ## **3. Save your results** 
