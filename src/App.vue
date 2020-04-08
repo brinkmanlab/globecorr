@@ -1,11 +1,9 @@
 <template>
   <v-app id="app">
-    <v-app-bar absolute app>
+    <v-app-bar absolute app dense>
       <v-toolbar-title><img alt="" src="/logo/globecorr_logo_no_text.svg">GlobeCorr</v-toolbar-title>
       <v-spacer />
-      <template v-slot:extension>
-        <Navigation :routes="routes" />
-      </template>
+      <Navigation :routes="routes" />
     </v-app-bar>
 
     <v-content>
@@ -33,6 +31,10 @@
 <style scoped>
   .v-toolbar__title {
     height: inherit;
+  }
+
+  .v-toolbar__title {
+    min-width: calc(10ch + 1.5em);
   }
 
   .v-toolbar__title img {

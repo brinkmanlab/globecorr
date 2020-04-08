@@ -1,5 +1,5 @@
 <template>
-  <v-tabs align-with-title>
+  <v-tabs>
     <slot name="before" />
     <v-tab v-for="page in pages" :key="page.meta.slug" :to="page.path">
       {{ page.meta.title || page.meta.slug || page.name }}

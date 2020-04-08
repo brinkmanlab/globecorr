@@ -1,6 +1,15 @@
 <template>
   <v-card min-height="70vh">
-    <v-file-input show-size label="CSV Data" placeholder="Upload data to visualize" solo accept="csv,tsv" @change="load" />
+    <v-file-input
+      dense
+      show-size
+      label="CSV Data"
+      placeholder="Upload data to visualize"
+      solo
+      accept="csv,tsv"
+      hide-details="auto"
+      @change="load"
+    />
     <ExposomeGlobe
       v-if="value.length"
       ref="globe"
@@ -113,6 +122,14 @@
 
   .v-card > * {
     width: 100%;
+  }
+
+  .v-file-input >>> .v-input__control {
+    min-height: unset !important;
+  }
+
+  .v-file-input >>> .v-input__prepend-outer {
+    margin-top: 4px !important;
   }
 
   .exposome-globe {
