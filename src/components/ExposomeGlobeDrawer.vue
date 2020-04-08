@@ -53,7 +53,7 @@
                 dense
                 type="number"
                 max="1"
-                step="0.1"
+                step="0.01"
                 @input="val=>input('threshold', val)"
               />
             </template>
@@ -163,6 +163,10 @@
 
   .v-list-item {
     text-align: left;
+  }
+
+  .v-input >>> .v-text-field input {
+    min-width: 4ch;
   }
 
   >>> .v-color-picker {

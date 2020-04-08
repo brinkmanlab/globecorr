@@ -5,6 +5,9 @@ const Mode = require('frontmatter-markdown-loader/mode');
 module.exports = {
     publicPath: process.env.BASE_URL,
     parallel: true,
+    devServer: {
+        disableHostCheck: true,
+    },
     configureWebpack: {
         resolve: {
             alias: {
