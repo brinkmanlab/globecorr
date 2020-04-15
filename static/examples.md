@@ -2,5 +2,7 @@ To explore GlobeCorr, you can view a correlation globe example [directly](/globe
 
 Please note that Firefox has known issues when exporting from this site. Please consider using Chrome or Safari for optimal results. 
 
+![globe example](./tutorial/homepage_globe.png)
+
 
 
