@@ -19,9 +19,13 @@
       :positive-correlation-color="globeOptions.positiveCorrelationColor"
       :negative-correlation-color="globeOptions.negativeCorrelationColor"
     />
-    <Instructions v-else />
+    <Instructions class="instructions" :class="{'footer': value.length}" />
     <!--TabulatorComponent v-model="value" :options="tabOptions" /-->
-    <ExposomeGlobeDrawer v-model="globeOptions" @export="type=>this.$refs.globe.export(type)" />
+    <ExposomeGlobeDrawer v-model="globeOptions" @export="type=>this.$refs.globe.export(type)">
+      <template v-if="value.length" v-slot:info>
+        <Instructions class="instructions"/>
+      </template>
+    </ExposomeGlobeDrawer>
   </v-card>
 </template>
 

@@ -10,6 +10,7 @@
     :value="true"
     color="primary"
     width="25em"
+    class="exposome-globe-controls"
   >
     <v-list
       dense
@@ -119,6 +120,12 @@
             </v-list-item>
           </v-list>
         </v-menu>
+      </v-list-item>
+      <v-list-item v-if="!!$slots['info']">
+        <v-list-item-icon><v-icon>mdi-information</v-icon></v-list-item-icon>
+        <v-list-item-content>
+          <slot name="info" />
+        </v-list-item-content>
       </v-list-item>
     </v-list>
   </v-navigation-drawer>
