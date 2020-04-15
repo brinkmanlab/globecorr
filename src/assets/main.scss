@@ -1,25 +1,5 @@
-@import '~vuetify/src/components/VList/_variables.scss';
-
 [slug='tutorial'] img {
   max-height: 20em;
   display: block;
   margin: 0 auto;
-}
-
-.exposome-globe-controls .instructions {
-  font-size: $list-dense-subheader-font-size;
-}
-
-.exposome-globe-controls .instructions, .instructions.footer {
-  & > * {
-    display: none;
-  }
-}
-
-.exposome-globe-controls .instructions > p:nth-child(2) {
-  display: unset;
-}
-
-.instructions.footer > p:nth-child(3) {
-  display: unset;
 }

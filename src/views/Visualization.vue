@@ -141,12 +141,34 @@
     height: 70vh;
   }
 
-  .frontmatter-markdown {
-    max-width: 30em;
+  .instructions {
     flex-grow: 1;
+  }
+
+  .instructions:not(.footer) {
+    max-width: 30em;
   }
 </style>
 
 <style lang="scss">
-  @import "~vue-tabulator/dist/scss/bootstrap/tabulator_bootstrap4.scss";
+  //@import "~vue-tabulator/dist/scss/bootstrap/tabulator_bootstrap4.scss";
+  @import '~vuetify/src/components/VList/_variables.scss';
+
+  .exposome-globe-controls .instructions {
+    font-size: $list-dense-subheader-font-size;
+  }
+
+  .exposome-globe-controls .instructions, .instructions.footer {
+    & > * {
+      display: none;
+    }
+  }
+
+  .exposome-globe-controls .instructions > p:nth-child(2) {
+    display: unset;
+  }
+
+  .instructions.footer > p:nth-child(3) {
+    display: unset;
+  }
 </style>
