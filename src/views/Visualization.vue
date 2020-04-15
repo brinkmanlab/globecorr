@@ -23,7 +23,7 @@
     <!--TabulatorComponent v-model="value" :options="tabOptions" /-->
     <ExposomeGlobeDrawer v-model="globeOptions" @export="type=>this.$refs.globe.export(type)">
       <template v-if="value.length" v-slot:info>
-        <Instructions class="instructions"/>
+        <Instructions class="instructions" />
       </template>
     </ExposomeGlobeDrawer>
   </v-card>
