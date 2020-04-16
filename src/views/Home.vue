@@ -48,6 +48,12 @@
     background: rgba(0, 0, 0, 0.03);
   }
 
+  @media (min-width: 3000px) {
+    .container {
+      max-width: 2500px;
+    }
+  }
+
   /*.welcome >>> img:first-of-type {
     max-height: 8em;
     float: right;

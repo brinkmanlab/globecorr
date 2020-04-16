@@ -3,3 +3,9 @@
   display: block;
   margin: 0 auto;
 }
+
+.Home .examples img:first-child {
+  max-height: 8em;
+  float: left;
+  margin-right: 0.8em;
+}
