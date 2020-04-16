@@ -175,6 +175,7 @@
         input(key: keyof Value, val: number & RGBA ): void {
             this.internalValue[key] = val;
             this.$emit('input', this.internalValue);
+            this.resetOptions();
         }
 
         resetOptions() {
