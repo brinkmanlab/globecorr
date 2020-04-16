@@ -34,7 +34,7 @@
         </v-list-item-icon>
         <v-list-item-content>
           <v-slider
-            :value="value.threshold"
+            :value="internalValue.threshold"
             max="1"
             class="align-center"
             min="0"
@@ -46,7 +46,7 @@
           >
             <template v-slot:append>
               <v-text-field
-                :value="value.threshold"
+                :value="internalValue.threshold"
                 single-line
                 hide-details
                 class="mt-0 pt-0"
@@ -77,7 +77,7 @@
               <v-list-item-subtitle>Pick the color for the positive correlation lines</v-list-item-subtitle>
             </v-list-item-content>
           </template>
-          <v-color-picker v-bind="colorPickerOptions" :value="value.positiveCorrelationColor" @input="val=>input('positiveCorrelationColor', val)" />
+          <v-color-picker v-bind="colorPickerOptions" :value="internalValue.positiveCorrelationColor" @input="val=>input('positiveCorrelationColor', val)" />
         </v-menu>
       </v-list-item>
 
@@ -96,7 +96,7 @@
               <v-list-item-subtitle>Pick the color for the negative correlation lines</v-list-item-subtitle>
             </v-list-item-content>
           </template>
-          <v-color-picker v-bind="colorPickerOptions" :value="value.negativeCorrelationColor" @input="val=>input('negativeCorrelationColor', val)" />
+          <v-color-picker v-bind="colorPickerOptions" :value="internalValue.negativeCorrelationColor" @input="val=>input('negativeCorrelationColor', val)" />
         </v-menu>
       </v-list-item>
 
@@ -121,6 +121,22 @@
           </v-list>
         </v-menu>
       </v-list-item>
+      <v-list-item>
+        <v-list-item-icon><v-icon>mdi-content-copy</v-icon></v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>Quick Settings</v-list-item-title>
+          <v-text-field
+            v-model="optionsString"
+            hide-details
+            dense
+            :error="invalidOptions"
+            style="margin-top: 0; font-size: 0.8rem"
+            @click="$event.target.select()"
+            @blur="resetOptions"
+          />
+          <v-list-item-subtitle>Copy and Paste this to quickly recover your settings</v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
       <v-list-item v-if="!!$slots['info']">
         <v-list-item-icon><v-icon>mdi-information</v-icon></v-list-item-icon>
         <v-list-item-content>
@@ -132,7 +148,7 @@
 </template>
 
 <script lang="ts">
-    import {Component, Prop, Vue} from 'vue-property-decorator';
+    import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
     import {RGBA} from "@/@types/data";
     import {Value} from './ExposomeGlobeDrawer'
 
@@ -140,7 +156,9 @@
     export default class ExposomeGlobeDrawer extends Vue {
         $refs!: {};
         @Prop(Object) value!: Value;
-        private _value?: Value;
+        private internalValue: Value = this.value;
+        private invalidOptions = false;
+        private optionsString = JSON.stringify(this.value);
         private colorPickerOptions = {
             mode: "rgba",
             "show-swatches": true,
@@ -155,9 +173,28 @@
         };
 
         input(key: keyof Value, val: number & RGBA ): void {
-            if (!this._value) this._value = this.value;
-            this._value[key] = val;
-            this.$emit('input', this._value);
+            this.internalValue[key] = val;
+            this.$emit('input', this.internalValue);
+        }
+
+        resetOptions() {
+            this.optionsString = JSON.stringify(this.internalValue);
+            this.invalidOptions = false;
+        }
+
+        @Watch('optionsString')
+        parseOptions(options: string): void {
+            try {
+                this.invalidOptions = false;
+                const value = JSON.parse(options);
+                if (typeof value === 'object' && Object.keys(this.internalValue).every(v=>v in value)) {
+                  Object.assign(this.internalValue, value);
+                } else {
+                    this.invalidOptions = true;
+                }
+            } catch (e) {
+                this.invalidOptions = true;
+            }
         }
     }
 </script>
