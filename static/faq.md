@@ -12,3 +12,9 @@ GlobeCorr takes csv files. If you are using other file formats, such as .xlms, .
 
 **The domain labels are cut off in my image, what can I do to fix this?**  
 This can depend on the size of the your screen. We are currenty working to get the diagram to render relative to the screen size of the user. However, it is best practice to avoid long domain names. 
+
+**Can I run GlobeCorr locally?**  
+GlobeCorr is already running locally, we are not storing any data on our servers. You can also run GlobeCorr offline. See the following links for how to execute this in [Chrome](https://support.google.com/chrome/answer/7343019?co=GENIE.Platform%3DDesktop&hl=en) or [Safari](https://support.apple.com/en-ca/HT200294). 
+
+**Can I share an interactive view instead of a static image?**  
+To do this, you will need to provide other users the csv you are using and they will have to upload it to GlobeCorr themselves. To replicate any customizations use the 'Quick Settings' feature as specified in the [tutorial](/tutorial). 
