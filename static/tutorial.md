@@ -26,6 +26,7 @@ To explore GlobeCorr, you can download one of our [sample datasets](/sample_smal
 Please see our [FAQ](/faq) for more information.  
 
 
+
 ## **1. Upload your data**
 
 To upload data, click the "Upload data to visualize" bar at the top of the page. 
@@ -89,4 +90,7 @@ After loading your data, the image will render automatically.
 - If you want to keep a record of the custom settings used for you image, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Under 'Quick Settings', you will see a dynamic textbox that will update as you change the settings in your diagram. You can copy this text to save it. In the event you wish to replicate the settings, paste the saved text into the box, being sure to completely overwrite the original text. 
 
 ![quick settings](./tutorial/quick_settings.png)
+
+## **4. Running Locally**  
+GlobeCorr is already running locally, we are not storing any data on our servers. You can also run GlobeCorr offline. See the following links for how to execute this in [Chrome](https://support.google.com/chrome/answer/7343019?co=GENIE.Platform%3DDesktop&hl=en) or [Safari](https://support.apple.com/en-ca/HT200294). 
 
