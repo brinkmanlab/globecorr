@@ -168,7 +168,12 @@
     display: unset;
   }
 
-  .instructions.footer > p:nth-child(3) {
-    display: unset;
+  .instructions.footer > p:nth-child(3), .instructions.footer > p:nth-child(4) {
+    display: block;
+    margin: 0;
+  }
+
+  .instructions.footer {
+    margin-top: 1em;
   }
 </style>
