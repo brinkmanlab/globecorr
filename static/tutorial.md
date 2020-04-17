@@ -86,3 +86,7 @@ After loading your data, the image will render automatically.
 
 - To send the image directly to the printer hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Click on the "Export" button, then click "Send to printer" and follow the instructions for your printer. 
 
+- If you want to keep a record of the custom settings used for you image, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Under 'Quick Settings', you will see a dynamic textbox that will update as you change the settings in your diagram. You can copy this text to save it. In the event you wish to replicate the settings, paste the saved text into the box, being sure to completely overwrite the original text. 
+
+![quick settings](./tutorial/quick_settings.png)
+
