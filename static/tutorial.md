@@ -10,7 +10,9 @@ GlobeCorr is a data visualization software developed to facilitate the viewing a
 
 Please note that Firefox has known issues when exporting from this site. Please consider switching to Chrome or Safari for optimal results. 
 
-The domains specified your csv will be shown around the circumference of the globe. Each domain will be present as a distinct arc with a unique colour. Correlations are represented as ribbons. When there are correlations between variables within the same domain, you will see the ribbon tracing back onto its domain of origin. When correlated variables are in separate domains, the ribbons will arrange as needed across the circle to reach the required domain. The variables specified in the csv for the  correlations can be viewed by hovering over each ribbon. The default colour for positive correlations is blue, whereas the default for negative is red. GlobeCorr defaults to showing on those correlations above 0.4. 
+You can see a static example of a correlation globe below. The domains specified your csv will be shown around the circumference of the globe. Each domain will be present as a distinct arc with a unique colour. Correlations are represented as ribbons. When there are correlations between variables within the same domain, you will see the ribbon tracing back onto its domain of origin. When correlated variables are in separate domains, the ribbons will arrange as needed across the circle to reach the required domain. The variables specified in the csv for the  correlations can be viewed by hovering over each ribbon. The default colour for positive correlations is blue, whereas the default for negative is red. GlobeCorr defaults to showing on those correlations above 0.4. 
+
+![globe example](./tutorial/example_globe.png)
 
 GlobeCorr users can customize their image by changing: 
 * default correlation threshold 
@@ -21,7 +23,7 @@ GlobeCorr users can customize their image by changing:
 
 Please note that by leaving the "Globe Analysis" page, you will lose any customization that has been done to your correlation globe. 
 
-To explore GlobeCorr, you can download one of our [sample datasets](/sample_small.csv) or view the correlation globe [directly](/globe?view=%2Fsample_small.csv).
+To explore GlobeCorr, you can download our [sample datasets](/sample_small.csv) or view the correlation globe [directly](/globe?view=%2Fsample_small.csv).
 
 Please see our [FAQ](/faq) for more information.  
 
@@ -83,7 +85,7 @@ After loading your data, the image will render automatically.
 
  ## **3. Save your results** 
 
-- To save the image, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Click on the "Export" button and select an output format. After selecting an export format the download will start automatically and the file name will be taken from the file name of the input dataset. 
+- To save the image, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Click on the "Export" button and select an output format. After selecting an export format the download will start automatically. If your image does not download automatically, check yor browser security settings. 
 
 - To send the image directly to the printer hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Click on the "Export" button, then click "Send to printer" and follow the instructions for your printer. 
 
