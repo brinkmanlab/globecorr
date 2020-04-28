@@ -27,9 +27,6 @@ Please note that by leaving the "Globe Analysis" page, you will lose any customi
 To explore GlobeCorr, you can download our [sample datasets](/sample_small.csv) or view the correlation globe [directly](/globe?view=%2Fsample_small.csv).
 
 Please see our [FAQ](/faq) for more information.  
-\
-\
-\
 
 ## **1. Upload your data**
 
