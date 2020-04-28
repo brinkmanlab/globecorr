@@ -1,5 +1,10 @@
 <template>
-  <v-card min-height="70vh">
+  <v-card
+    min-height="70vh"
+    @dragstart.native.stop.prevent
+    @dragover.native.prevent
+    @drop.native.prevent="load($event.dataTransfer ? $event.dataTransfer.files[0] : $event.target.files[0])"
+  >
     <v-file-input
       dense
       show-size
