@@ -3,7 +3,12 @@
   display: block;
   margin: 0 auto;
 }
-
+[alt='globe example']img{
+  max-height: 20em;
+  display: block;
+  margin: 0 auto;
+  style="float:right";
+}
 .Home .examples img:first-child {
   max-height: 16em;
   margin-left: auto;
