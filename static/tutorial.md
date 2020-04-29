@@ -63,6 +63,9 @@ After loading your data, the image will render automatically.
 
 ![domain_var_hover_ex](./tutorial/domain_var.png)
 
+<br />
+<br />
+
 - To remove domains from the visualization, click on its location at the circumference. The correlation ribbons will disappear, but a small grey box will remain at the circumference representing the hidden domain should the user want to include those correlations again. 
 
 - To explore all correlations within a specific domain, hover over the domain on the circumference of the circle and all correlations within that domain will go from transparent to opaque (Globe A). 
@@ -70,8 +73,8 @@ After loading your data, the image will render automatically.
 
 - To explore specific correlations, hover over the ribbons on the interior of the circle to see the variable and their corresponding correlation coefficient (Globe B). 
 
-
-
+<br />
+<br />
 
 **Layout and colouring**
 
