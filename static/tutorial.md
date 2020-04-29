@@ -34,7 +34,7 @@ Please see our [FAQ](/faq) for more information.
 
 ## **1. Upload your data**
 
-To upload data, click the "Upload data to visualize" bar at the top of the page. 
+To upload data, click the "Upload data to visualize" bar at the top of the page, a file explorer will appear and you can select your data. Alternatively, you can drag and drop your file into the 'Globe Analysis' window.  
 
 GlobeCorr requires a 5 column dataset in .csv format. There are required headings for each of the columns, which are shown below. 
 If you would like an example, feel free to download one of our [sample datasets](/sample_small.csv). 
