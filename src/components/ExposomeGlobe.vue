@@ -76,13 +76,15 @@
                 this.chart = chart;
 
                 //chart.exporting.menu = new am4core.ExportMenu();
-                const PADDING = 60;
+                const PADDING = 10;
                 const FONTSIZE = 12;
                 const LEGENDSIZE = FONTSIZE;
+                const MINNODESIZE = 0.01;
 
                 // Color settings
                 chart.colors.saturation = 0.45;
                 chart.paddingTop = PADDING;
+                chart.valign = "middle";
 
                 chart.data = this.filteredData;
                 chart.dataFields.fromName = "var1_domain";
@@ -91,7 +93,7 @@
 
                 // Chart spacing settings
                 chart.nodePadding = 0.5;
-                chart.minNodeSize = 0.01;
+                chart.minNodeSize = MINNODESIZE;
                 chart.sortBy = "value";
                 chart.fontSize = FONTSIZE;
                 chart.height = am4core.percent(80);
