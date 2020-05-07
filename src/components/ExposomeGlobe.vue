@@ -33,9 +33,9 @@
                 if (datum.coef !== 0 && color) {
                   // eslint-disable-next-line no-var
                    scaledColor = {
-                      r: Math.round(color.r + (225 - color.r) * (1 - intensity)),
-                      g: Math.round(color.g + (225 - color.g) * (1 - intensity)),
-                      b: Math.round(color.b + (225 - color.b) * (1 - intensity)),
+                      r: Math.round(color.r + (255 - color.r) * (0.75 - intensity)),
+                      g: Math.round(color.g + (255 - color.g) * (0.75 - intensity)),
+                      b: Math.round(color.b + (255 - color.b) * (0.75 - intensity)),
                   }
                 }
                 return {
@@ -155,7 +155,7 @@
                 // Link formatting
                 const linkTemplate = chart.links.template;
                 linkTemplate.strokeOpacity = 0;
-                linkTemplate.fillOpacity = 0.15;
+                linkTemplate.fillOpacity = 0.5;
                 linkTemplate.tooltipText = "{variable1} ↔ {variable2}: {label}";
                 linkTemplate.colorMode = "solid";
                 linkTemplate.propertyFields.fill = "linkColor";
