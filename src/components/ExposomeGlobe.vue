@@ -86,10 +86,11 @@
                 this.chart = chart;
 
                 //chart.exporting.menu = new am4core.ExportMenu();
-                const PADDING = 10;
-                const FONTSIZE = 12;
+                const FONTSIZE = 15;
                 const LEGENDSIZE = FONTSIZE;
-                const MINNODESIZE = 0.01;
+                const MINNODESIZE = 0.01 * FONTSIZE/5;
+                const LABELMAXWIDTH = 110;
+                const PADDING = 0;
 
                 // Color settings
                 chart.colors.saturation = 0.45;
@@ -106,7 +107,7 @@
                 chart.minNodeSize = MINNODESIZE;
                 chart.sortBy = "value";
                 chart.fontSize = FONTSIZE;
-                chart.height = am4core.percent(80);
+                chart.height = chart.pixelHeight - (LABELMAXWIDTH * 2);
                 chart.fontFamily = "Open Sans";
                 const nodeTemplate = chart.nodes.template;
                 nodeTemplate.propertyFields.fill = "color";
@@ -145,7 +146,7 @@
                 label.relativeRotation = 90;
                 label.fillOpacity = 0.4;
                 label.truncate = true;
-                label.maxWidth = 80;
+                label.maxWidth = LABELMAXWIDTH;
                 const labelHS = label.states.create("hover");
                 labelHS.properties.fillOpacity = 1;
 
