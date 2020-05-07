@@ -16,6 +16,8 @@
     @Component
     export default class ExposomeGlobe extends Vue {
         private chart: Chart | null = null;
+        private posLegendIcon: am4core.RoundedRectangle | null = null;
+        private negLegendIcon: am4core.RoundedRectangle | null = null;
         @Prop(String) readonly title!: string;
         @Prop(Number) threshold!: number;
         @Prop({default: ()=>({r: 79, g: 117, b: 210})}) readonly positiveCorrelationColor?: RGBA;
@@ -46,6 +48,18 @@
         updateGlobe(): void {
             if (this.chart)
               this.chart.data = this.filteredData;
+        }
+
+        @Watch('positiveCorrelationColor')
+        updatePositiveLegend(): void {
+            if (this.posLegendIcon)
+                this.posLegendIcon.fill = am4core.color(this.positiveCorrelationColor);
+        }
+
+        @Watch('negativeCorrelationColor')
+        updateNegativeLegend(): void {
+            if (this.negLegendIcon)
+                this.negLegendIcon.fill = am4core.color(this.negativeCorrelationColor);
         }
 
         @Watch('title')
@@ -115,7 +129,7 @@
 
                 // Node label formatting
                 const label = nodeTemplate.label;
-                
+
                 label.relativeRotation = 90;
                 label.fillOpacity = 0.4;
                 label.truncate = true;
@@ -154,6 +168,7 @@
                 positiveLegendItem.padding(chart.fontSize,chart.fontSize,chart.fontSize,chart.fontSize);
 
                 const positiveLegendIcon = positiveLegendItem.createChild(am4core.RoundedRectangle);
+                this.posLegendIcon = positiveLegendIcon;
                 positiveLegendIcon.width = LEGENDSIZE;
                 positiveLegendIcon.height = LEGENDSIZE;
                 positiveLegendIcon.fill = am4core.color(this.positiveCorrelationColor);
@@ -168,6 +183,7 @@
                 negativeLegendItem.padding(chart.fontSize,chart.fontSize,chart.fontSize,chart.fontSize);
 
                 const negativeLegendIcon = negativeLegendItem.createChild(am4core.RoundedRectangle);
+                this.negLegendIcon = negativeLegendIcon;
                 negativeLegendIcon.width = LEGENDSIZE;
                 negativeLegendIcon.height = LEGENDSIZE;
                 negativeLegendIcon.fill = am4core.color(this.negativeCorrelationColor);
