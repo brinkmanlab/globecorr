@@ -28,10 +28,20 @@
         get filteredData(): Data[] {
             return this.value.filter(datum => Math.abs(datum.coef) >= this.threshold).map(datum=>{
                 const intensity = Math.abs(datum.coef);
+                const color = datum.coef === 0 ? this.noCorrelationColor : datum.coef > 0 ? this.positiveCorrelationColor : this.negativeCorrelationColor;
+                let scaledColor: RGBA | null = null;
+                if (color) {
+                  // eslint-disable-next-line no-var
+                   scaledColor = {
+                      r: Math.round(color.r + (225 - color.r) * (1 - intensity)),
+                      g: Math.round(color.g + (225 - color.g) * (1 - intensity)),
+                      b: Math.round(color.b + (225 - color.b) * (1 - intensity)),
+                  }
+                }
                 return {
                   ...datum,
-                  linkColor: am4core.color(datum.coef === 0 ? this.noCorrelationColor : datum.coef > 0 ? this.positiveCorrelationColor : this.negativeCorrelationColor),
-                  linkOpacity: intensity * 0.9 + 0.1,
+                  linkColor: am4core.color(scaledColor || color),
+                  linkOpacity: 0.4,
                   label: (Math.round(datum.coef * 1000) / 1000).toString(10),
                   value: intensity,
                 }
