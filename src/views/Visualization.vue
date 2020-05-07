@@ -61,7 +61,7 @@
         private title = 'exposome-globe';
         private value: Data[] = [];
         private globeOptions: ExposomeConfig = {
-            threshold: 0.4,
+            threshold: 0.0,
             positiveCorrelationColor: {r: 79, g: 117, b: 210},
             negativeCorrelationColor: {r: 223, g: 60, b: 60},
         };
@@ -143,7 +143,8 @@
   }
 
   .exposome-globe {
-    height: 70vh;
+    height: 100vh;
+    min-width: 120vh;
   }
 
   .instructions {

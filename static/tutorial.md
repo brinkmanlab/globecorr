@@ -10,7 +10,7 @@ GlobeCorr is a data visualization software developed to facilitate the viewing a
 
 Please note that Firefox has known issues when exporting from this site. Please consider switching to Chrome or Safari for optimal results. 
 
-You can see a static example of a correlation globe below. The domains specified your csv will be shown around the circumference of the globe. Each domain will be present as a distinct arc with a unique colour. Correlations are represented as ribbons. When there are correlations between variables within the same domain, you will see the ribbon tracing back onto its domain of origin. When correlated variables are in separate domains, the ribbons will arrange as needed across the circle to reach the required domain. The variables specified in the csv for the  correlations can be viewed by hovering over each ribbon. The default colour for positive correlations is blue, whereas the default for negative is red. GlobeCorr defaults to showing on those correlations above 0.4. 
+You can see a static example of a correlation globe below. The domains specified your csv will be shown around the circumference of the globe. Each domain will be present as a distinct arc with a unique colour. Correlations are represented as ribbons. When there are correlations between variables within the same domain, you will see the ribbon tracing back onto its domain of origin. When correlated variables are in separate domains, the ribbons will arrange as needed across the circle to reach the required domain. The variables specified in the csv for the  correlations can be viewed by hovering over each ribbon. The default colour for positive correlations is blue, whereas the default for negative is red. GlobeCorr defaults to showing all correlation. 
 
 ![globe example1](./tutorial/example_globe.png)
 
@@ -50,7 +50,7 @@ After loading your data, the image will render automatically.
 
 ## **2. Customize your view**
 
-- As default, only correlations above 0.4 are shown. Red ribbons represent negative correlations, while blue represent positive. All domains specified in the input file are included, but can be faded out.
+- As default, all correlations are shown. Red ribbons represent negative correlations, while blue represent positive. All domains specified in the input file are included, but can be faded out.
 
 - Currently, the GlobeCorr diagram renders relative to the size of the user's screen. This can result in domain names being cut off if they are too long. It is best practice to avoid using long domain names, but we are actively working to remedy this problem. 
 

@@ -8,7 +8,7 @@
     import * as am4core from "@amcharts/amcharts4/core";
     import * as am4charts from "@amcharts/amcharts4/charts";
     import am4themesAnimated from "@amcharts/amcharts4/themes/animated";
-    import {Chart, ChordDiagramDataItem, ChordNode} from "@amcharts/amcharts4/charts";
+    import {Chart, ChordNode} from "@amcharts/amcharts4/charts";
     import {Data, RGBA} from "@/@types/data";
 
     am4core.useTheme(am4themesAnimated);
@@ -16,6 +16,8 @@
     @Component
     export default class ExposomeGlobe extends Vue {
         private chart: Chart | null = null;
+        private posLegendIcon: am4core.RoundedRectangle | null = null;
+        private negLegendIcon: am4core.RoundedRectangle | null = null;
         @Prop(String) readonly title!: string;
         @Prop(Number) threshold!: number;
         @Prop({default: ()=>({r: 79, g: 117, b: 210})}) readonly positiveCorrelationColor?: RGBA;
@@ -26,10 +28,19 @@
         get filteredData(): Data[] {
             return this.value.filter(datum => Math.abs(datum.coef) >= this.threshold).map(datum=>{
                 const intensity = Math.abs(datum.coef);
+                const color = datum.coef === 0 ? this.noCorrelationColor : datum.coef > 0 ? this.positiveCorrelationColor : this.negativeCorrelationColor;
+                let scaledColor: RGBA | null = null;
+                if (datum.coef !== 0 && color) {
+                  // eslint-disable-next-line no-var
+                   scaledColor = {
+                      r: Math.round(color.r + (255 - color.r) * (0.75 - intensity)),
+                      g: Math.round(color.g + (255 - color.g) * (0.75 - intensity)),
+                      b: Math.round(color.b + (255 - color.b) * (0.75 - intensity)),
+                  }
+                }
                 return {
                   ...datum,
-                  linkColor: am4core.color(datum.coef === 0 ? this.noCorrelationColor : datum.coef > 0 ? this.positiveCorrelationColor : this.negativeCorrelationColor),
-                  linkOpacity: intensity * 0.9 + 0.1,
+                  linkColor: am4core.color(scaledColor || color),
                   label: (Math.round(datum.coef * 1000) / 1000).toString(10),
                   value: intensity,
                 }
@@ -48,6 +59,18 @@
               this.chart.data = this.filteredData;
         }
 
+        @Watch('positiveCorrelationColor')
+        updatePositiveLegend(): void {
+            if (this.posLegendIcon)
+                this.posLegendIcon.fill = am4core.color(this.positiveCorrelationColor);
+        }
+
+        @Watch('negativeCorrelationColor')
+        updateNegativeLegend(): void {
+            if (this.negLegendIcon)
+                this.negLegendIcon.fill = am4core.color(this.negativeCorrelationColor);
+        }
+
         @Watch('title')
         updatePrefix(): void {
             if (this.chart)
@@ -60,27 +83,31 @@
                 // Export
                 const chart = am4core.create(this.$el, am4charts.ChordDiagram);
                 this.chart = chart;
+
                 //chart.exporting.menu = new am4core.ExportMenu();
+                const FONTSIZE = 15;
+                const LEGENDSIZE = FONTSIZE;
+                const MINNODESIZE = 0.01 * FONTSIZE/5;
+                const LABELMAXWIDTH = 110;
+                const PADDING = 0;
 
                 // Color settings
                 chart.colors.saturation = 0.45;
+                chart.paddingTop = PADDING;
+                chart.valign = "middle";
 
                 chart.data = this.filteredData;
-                // Read data from JSON file
                 chart.dataFields.fromName = "var1_domain";
                 chart.dataFields.toName = "var2_domain";
                 chart.dataFields.value = "value";
 
                 // Chart spacing settings
                 chart.nodePadding = 0.5;
-                chart.minNodeSize = 0.01;
+                chart.minNodeSize = MINNODESIZE;
                 chart.sortBy = "value";
-                chart.fontSize = 15;
-                // ?
+                chart.fontSize = FONTSIZE;
+                chart.height = chart.pixelHeight - (LABELMAXWIDTH * 2);
                 chart.fontFamily = "Open Sans";
-                //hart.textDecoration
-
-
                 const nodeTemplate = chart.nodes.template;
                 nodeTemplate.propertyFields.fill = "color";
 
@@ -91,14 +118,11 @@
                         node.outgoingDataItems.each(function (dataItem) {
                             if (dataItem.toNode) {
                                 dataItem.link.isHover = isHover;
-                                if (dataItem instanceof ChordDiagramDataItem)
-                                    dataItem.toNode.label.isHover = isHover;
                             }
                         });
                         node.incomingDataItems.each(function (dataItem) {
                             if (dataItem.fromNode) {
                                 dataItem.link.isHover = isHover;
-                                dataItem.fromNode.label.isHover = isHover;
                             }
                         });
                         node.label.isHover = isHover;
@@ -117,9 +141,11 @@
 
                 // Node label formatting
                 const label = nodeTemplate.label;
+
                 label.relativeRotation = 90;
                 label.fillOpacity = 0.4;
-                label.marginTop = 100;
+                label.truncate = true;
+                label.maxWidth = LABELMAXWIDTH;
                 const labelHS = label.states.create("hover");
                 labelHS.properties.fillOpacity = 1;
 
@@ -129,12 +155,10 @@
                 // Link formatting
                 const linkTemplate = chart.links.template;
                 linkTemplate.strokeOpacity = 0;
-                linkTemplate.fillOpacity = 0.15;
-                linkTemplate.tooltipText = "{variable1} → {variable2}: {label}";
+                linkTemplate.fillOpacity = 0.5;
+                linkTemplate.tooltipText = "{variable1} ↔ {variable2}: {label}";
                 linkTemplate.colorMode = "solid";
                 linkTemplate.propertyFields.fill = "linkColor";
-                linkTemplate.propertyFields.fillOpacity = "linkOpacity";
-                //chart.sortBy = "name";
                 linkTemplate.clickable = false;
                 linkTemplate.zIndex = 0;
 
@@ -142,6 +166,43 @@
                 hoverState.properties.fillOpacity = 1.0;
                 hoverState.properties.strokeOpacity = 1.0;
                 hoverState.properties.zIndex = 1000;
+
+                // Legend
+                const legend = chart.chartContainer.createChild(am4core.Container);
+                legend.x = am4core.percent(75);
+                legend.y = am4core.percent(40);
+                legend.padding(10, 10, 10, 10);
+                legend.layout = "vertical";
+
+                const positiveLegendItem = legend.createChild(am4core.Container);
+                positiveLegendItem.layout = "horizontal";
+                positiveLegendItem.padding(chart.fontSize,chart.fontSize,chart.fontSize,chart.fontSize);
+
+                const positiveLegendIcon = positiveLegendItem.createChild(am4core.RoundedRectangle);
+                this.posLegendIcon = positiveLegendIcon;
+                positiveLegendIcon.width = LEGENDSIZE;
+                positiveLegendIcon.height = LEGENDSIZE;
+                positiveLegendIcon.fill = am4core.color(this.positiveCorrelationColor);
+
+                const positiveLegendLabel = positiveLegendItem.createChild(am4core.Label);
+                positiveLegendLabel.text = "Positive";
+                positiveLegendLabel.valign = "middle";
+                positiveLegendLabel.marginLeft = chart.fontSize;
+
+                const negativeLegendItem = legend.createChild(am4core.Container);
+                negativeLegendItem.layout = "horizontal";
+                negativeLegendItem.padding(chart.fontSize,chart.fontSize,chart.fontSize,chart.fontSize);
+
+                const negativeLegendIcon = negativeLegendItem.createChild(am4core.RoundedRectangle);
+                this.negLegendIcon = negativeLegendIcon;
+                negativeLegendIcon.width = LEGENDSIZE;
+                negativeLegendIcon.height = LEGENDSIZE;
+                negativeLegendIcon.fill = am4core.color(this.negativeCorrelationColor);
+
+                const negativeLegendLabel = negativeLegendItem.createChild(am4core.Label);
+                negativeLegendLabel.text = "Negative";
+                negativeLegendLabel.valign = "middle";
+                negativeLegendLabel.marginLeft = chart.fontSize;
             } else {
                 console.debug('ExposomeGlobe root element not DOM');
             }
