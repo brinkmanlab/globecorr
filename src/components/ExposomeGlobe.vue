@@ -80,7 +80,7 @@
                 const LEGENDSIZE = FONTSIZE;
                 const MINNODESIZE = 0.01 * FONTSIZE/5;
                 const LABELMAXWIDTH = 110;
-                const PADDING = 1;
+                const PADDING = 0;
 
                 // Color settings
                 chart.colors.saturation = 0.45;
@@ -97,7 +97,7 @@
                 chart.minNodeSize = MINNODESIZE;
                 chart.sortBy = "value";
                 chart.fontSize = FONTSIZE;
-                chart.height = am4core.percent(80);
+                chart.height = chart.pixelHeight - (LABELMAXWIDTH * 2);
                 chart.fontFamily = "Open Sans";
                 const nodeTemplate = chart.nodes.template;
                 nodeTemplate.propertyFields.fill = "color";
