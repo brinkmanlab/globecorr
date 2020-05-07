@@ -30,7 +30,7 @@
                 const intensity = Math.abs(datum.coef);
                 const color = datum.coef === 0 ? this.noCorrelationColor : datum.coef > 0 ? this.positiveCorrelationColor : this.negativeCorrelationColor;
                 let scaledColor: RGBA | null = null;
-                if (color) {
+                if (datum.coef !== 0 && color) {
                   // eslint-disable-next-line no-var
                    scaledColor = {
                       r: Math.round(color.r + (225 - color.r) * (1 - intensity)),
@@ -41,7 +41,6 @@
                 return {
                   ...datum,
                   linkColor: am4core.color(scaledColor || color),
-                  linkOpacity: 0.4,
                   label: (Math.round(datum.coef * 1000) / 1000).toString(10),
                   value: intensity,
                 }
@@ -160,7 +159,6 @@
                 linkTemplate.tooltipText = "{variable1} ↔ {variable2}: {label}";
                 linkTemplate.colorMode = "solid";
                 linkTemplate.propertyFields.fill = "linkColor";
-                linkTemplate.propertyFields.fillOpacity = "linkOpacity";
                 linkTemplate.clickable = false;
                 linkTemplate.zIndex = 0;
 
