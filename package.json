@@ -81,7 +81,12 @@
       "vue/camelcase": "warn",
       "@typescript-eslint/camelcase": "warn",
       "@typescript-eslint/ban-ts-ignore": "warn",
-      "@typescript-eslint/explicit-function-return-type": ["warn", { "allowTypedFunctionExpressions": true }],
+      "@typescript-eslint/explicit-function-return-type": [
+        "warn",
+        {
+          "allowTypedFunctionExpressions": true
+        }
+      ],
       "vue/comma-dangle": "error",
       "vue/component-tags-order": [
         "error",
