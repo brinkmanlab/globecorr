@@ -143,7 +143,7 @@
   }
 
   .exposome-globe {
-    height: 70vh;
+    height: 80vh;
   }
 
   .instructions {
