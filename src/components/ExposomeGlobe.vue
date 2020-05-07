@@ -64,7 +64,7 @@
                 //chart.exporting.menu = new am4core.ExportMenu();
                 const PADDING = 60;
                 const FONTSIZE = 7;
-                const LEGENDSIZE = 10;
+                const LEGENDSIZE = FONTSIZE;
 
                 // Color settings
                 chart.colors.saturation = 0.45;
