@@ -77,7 +77,7 @@
 
                 //chart.exporting.menu = new am4core.ExportMenu();
                 const PADDING = 60;
-                const FONTSIZE = 7;
+                const FONTSIZE = 12;
                 const LEGENDSIZE = FONTSIZE;
 
                 // Color settings
