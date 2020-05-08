@@ -1,5 +1,5 @@
 \
-View a sample globe [directly](/globe?view=%2Fsample_small.csv).  
+View a [simple sample globe](/globe?view=%2Fsample_small.csv) or a more [complex sample globe](/globe?view=%2Fsample.csv).  
 
 You can access a sample dataset and work through our [tutorial](/tutorial) for more information.
 
