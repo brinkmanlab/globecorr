@@ -24,7 +24,11 @@ GlobeCorr users can customize their image by changing:
 
 Please note that by leaving the "Globe Analysis" page, you will lose any customization that has been done to your correlation globe. 
 
-To explore GlobeCorr, you can download our [sample datasets](/sample_small.csv) and follow along with the tutorial. You can also view a [sample globe](#sample-globes)
+To explore GlobeCorr, you can download our [sample datasets](/sample_small.csv) and follow along with the tutorial. You can also view a sample globe.
+
+#### **Sample Globes**
+- [simple sample globe](/globe?view=%2Fsample_small.csv) 
+- [complex sample globe](/globe?view=%2Fsample.csv).
 
 Please see our [FAQ](/faq) for more information.  
 <br />
