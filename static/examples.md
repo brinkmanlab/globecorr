@@ -1,5 +1,5 @@
 \
-View one of our [sample globes](/tutorial/#sample-globes).
+View one of our [sample globes](/tutorial#sample-globes).
 
 You can access a sample dataset and work through our [tutorial](/tutorial) for more information.
 
