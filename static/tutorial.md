@@ -10,7 +10,7 @@ GlobeCorr is a data visualization software developed to facilitate the viewing a
 
 Please note that Firefox has known issues when exporting from this site. Please consider switching to Chrome or Safari for optimal results. 
 
-You can see a static example of a correlation globe below. The domains specified your csv will be shown around the circumference of the globe. Each domain will be present as a distinct arc with a unique colour. Correlations are represented as ribbons. When there are correlations between variables within the same domain, you will see the ribbon tracing back onto its domain of origin. When correlated variables are in separate domains, the ribbons will arrange as needed across the circle to reach the required domain. The variables specified in the csv for the  correlations can be viewed by hovering over each ribbon. The default colour for positive correlations is blue, whereas the default for negative is red. GlobeCorr defaults to showing all correlation. 
+You can see a static example of a correlation globe below. The domains specified your csv will be shown around the circumference of the globe. Each domain will be present as a distinct arc with a unique colour. Correlations are represented as ribbons. When there are correlations between variables within the same domain, you will see the ribbon tracing back onto its domain of origin. When correlated variables are in separate domains, the ribbons will arrange as needed across the circle to reach the required domain. The variables specified in the csv for the  correlations can be viewed by hovering over each ribbon. The default colour for positive correlations is blue, whereas the default for negative is red. There is a legend present in the plot area to reflect the colours of the correlations. GlobeCorr defaults to showing all correlations. 
 
 ![globe example1](./tutorial/example_globe.png)
 
@@ -24,7 +24,11 @@ GlobeCorr users can customize their image by changing:
 
 Please note that by leaving the "Globe Analysis" page, you will lose any customization that has been done to your correlation globe. 
 
-To explore GlobeCorr, you can download our [sample datasets](/sample_small.csv) or view the correlation globe [directly](/globe?view=%2Fsample_small.csv).
+To explore GlobeCorr, you can download our [sample datasets](/sample_small.csv) and follow along with the tutorial. You can also view a sample globe.
+
+#### **Sample Globes**
+- [simple sample globe](/globe?view=%2Fsample_small.csv) 
+- [complex sample globe](/globe?view=%2Fsample.csv).
 
 Please see our [FAQ](/faq) for more information.  
 <br />
@@ -37,6 +41,7 @@ Please see our [FAQ](/faq) for more information.
 To upload data, click the "Upload data to visualize" bar at the top of the page, a file explorer will appear and you can select your data. Alternatively, you can drag and drop your file into the 'Globe Analysis' window.  
 
 GlobeCorr requires a 5 column dataset in .csv format. There are required headings for each of the columns, which are shown below. 
+
 If you would like an example, feel free to download one of our [sample datasets](/sample_small.csv). 
 
 + **Column 1:** variable1
@@ -83,6 +88,8 @@ After loading your data, the image will render automatically.
 
 -  To change the colours for negative corrlations, click "Negative Correlation Colour" and follow the same procedure for positive correlations. The colours will update automatically. 
 
+- A lengend is also present in the plot area and will reflect the updated colours of your visualization. 
+
 ![Colour Example](./tutorial/corr_colurs.png)
 
 
@@ -98,4 +105,8 @@ After loading your data, the image will render automatically.
 
 ## **4. Running Locally**  
 GlobeCorr is already running locally, we are not storing any data on our servers. You can also run GlobeCorr offline. See the following links for how to execute this in [Chrome](https://support.google.com/chrome/answer/7343019?co=GENIE.Platform%3DDesktop&hl=en) or [Safari](https://support.apple.com/en-ca/HT200294). 
+
+## **Sample Globes**
+- [simple sample globe](/globe?view=%2Fsample_small.csv) 
+- [complex sample globe](/globe?view=%2Fsample.csv).
 
