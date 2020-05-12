@@ -21,6 +21,7 @@
       v-model="value"
       :title="title"
       :threshold="globeOptions.threshold"
+      :font-size="globeOptions.fontSize"
       :positive-correlation-color="globeOptions.positiveCorrelationColor"
       :negative-correlation-color="globeOptions.negativeCorrelationColor"
     />
@@ -62,6 +63,7 @@
         private value: Data[] = [];
         private globeOptions: ExposomeConfig = {
             threshold: 0.0,
+            fontSize: 15,
             positiveCorrelationColor: {r: 79, g: 117, b: 210},
             negativeCorrelationColor: {r: 223, g: 60, b: 60},
         };

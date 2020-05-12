@@ -8,18 +8,19 @@
     import * as am4core from "@amcharts/amcharts4/core";
     import * as am4charts from "@amcharts/amcharts4/charts";
     import am4themesAnimated from "@amcharts/amcharts4/themes/animated";
-    import {Chart, ChordNode} from "@amcharts/amcharts4/charts";
+    import {ChordNode} from "@amcharts/amcharts4/charts";
     import {Data, RGBA} from "@/@types/data";
 
     am4core.useTheme(am4themesAnimated);
 
     @Component
     export default class ExposomeGlobe extends Vue {
-        private chart: Chart | null = null;
+        private chart: am4charts.ChordDiagram | null = null;
         private posLegendIcon: am4core.RoundedRectangle | null = null;
         private negLegendIcon: am4core.RoundedRectangle | null = null;
         @Prop(String) readonly title!: string;
         @Prop(Number) threshold!: number;
+        @Prop(Number) fontSize!: number;
         @Prop({default: ()=>({r: 79, g: 117, b: 210})}) readonly positiveCorrelationColor?: RGBA;
         @Prop({default: ()=>({r: 223, g: 60, b: 60})}) readonly negativeCorrelationColor?: RGBA;
         @Prop({default: ()=>({r: 211, g: 211, b: 211})}) readonly noCorrelationColor?: RGBA;
@@ -77,19 +78,27 @@
               this.chart.exporting.filePrefix = this.title;
         }
 
+        @Watch('fontSize')
+        updateFontSize(): void {
+            if (this.chart && this.posLegendIcon && this.negLegendIcon) {
+                this.chart.fontSize = this.fontSize;
+                this.chart.minNodeSize = 0.01 * this.fontSize / 5;
+                this.posLegendIcon.width = this.posLegendIcon.height = this.fontSize;
+                this.negLegendIcon.width = this.negLegendIcon.height = this.fontSize;
+            }
+        }
+
         mounted(): void {
             if (this.chart) this.chart.dispose();
             if (this.$el instanceof HTMLElement) {
                 // Export
                 const chart = am4core.create(this.$el, am4charts.ChordDiagram);
-                this.chart = chart;
-
                 //chart.exporting.menu = new am4core.ExportMenu();
-                const FONTSIZE = 15;
-                const LEGENDSIZE = FONTSIZE;
-                const MINNODESIZE = 0.01 * FONTSIZE/5;
+
                 const LABELMAXWIDTH = 110;
                 const PADDING = 0;
+
+                this.chart = chart;
 
                 // Color settings
                 chart.colors.saturation = 0.45;
@@ -103,10 +112,7 @@
 
                 // Chart spacing settings
                 chart.nodePadding = 0.5;
-                chart.minNodeSize = MINNODESIZE;
                 chart.sortBy = "value";
-                chart.fontSize = FONTSIZE;
-                chart.height = chart.pixelHeight - (LABELMAXWIDTH * 2);
                 chart.fontFamily = "Open Sans";
                 const nodeTemplate = chart.nodes.template;
                 nodeTemplate.propertyFields.fill = "color";
@@ -180,8 +186,6 @@
 
                 const positiveLegendIcon = positiveLegendItem.createChild(am4core.RoundedRectangle);
                 this.posLegendIcon = positiveLegendIcon;
-                positiveLegendIcon.width = LEGENDSIZE;
-                positiveLegendIcon.height = LEGENDSIZE;
                 positiveLegendIcon.fill = am4core.color(this.positiveCorrelationColor);
 
                 const positiveLegendLabel = positiveLegendItem.createChild(am4core.Label);
@@ -195,14 +199,14 @@
 
                 const negativeLegendIcon = negativeLegendItem.createChild(am4core.RoundedRectangle);
                 this.negLegendIcon = negativeLegendIcon;
-                negativeLegendIcon.width = LEGENDSIZE;
-                negativeLegendIcon.height = LEGENDSIZE;
                 negativeLegendIcon.fill = am4core.color(this.negativeCorrelationColor);
 
                 const negativeLegendLabel = negativeLegendItem.createChild(am4core.Label);
                 negativeLegendLabel.text = "Negative";
                 negativeLegendLabel.valign = "middle";
                 negativeLegendLabel.marginLeft = chart.fontSize;
+
+                this.updateFontSize();
             } else {
                 console.debug('ExposomeGlobe root element not DOM');
             }

@@ -28,6 +28,7 @@
         </v-list-item-content>
       </v-list-item>
       <v-divider />
+
       <v-list-item>
         <v-list-item-icon>
           <v-icon>mdi-code-greater-than-or-equal</v-icon>
@@ -61,6 +62,41 @@
           </v-slider>
         </v-list-item-content>
       </v-list-item>
+
+      <v-list-item>
+        <v-list-item-icon>
+          <v-icon>mdi-format-size</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-slider
+              :value="internalValue.fontSize"
+              max="50"
+              class="align-center"
+              min="4"
+              step="1"
+              dense
+              label="Font Size"
+              hide-details
+              @input="val=>input('fontSize', val)"
+          >
+            <template v-slot:append>
+              <v-text-field
+                  :value="internalValue.fontSize"
+                  single-line
+                  hide-details
+                  class="mt-0 pt-0"
+                  min="4"
+                  dense
+                  type="number"
+                  max="50"
+                  step="1"
+                  @input="val=>input('fontSize', val)"
+              />
+            </template>
+          </v-slider>
+        </v-list-item-content>
+      </v-list-item>
+
       <v-list-item link>
         <v-list-item-icon>
           <v-icon>
@@ -121,6 +157,7 @@
           </v-list>
         </v-menu>
       </v-list-item>
+
       <v-list-item>
         <v-list-item-icon><v-icon>mdi-content-copy</v-icon></v-list-item-icon>
         <v-list-item-content>
