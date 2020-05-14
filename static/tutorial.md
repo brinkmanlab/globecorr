@@ -20,6 +20,7 @@ GlobeCorr users can customize their image by changing:
 * colour of positive and negative correlation ribbons 
 * opacity of the correlation ribbons 
 * arrangement of domains around the circumference 
+* size of text 
 
 
 Please note that by leaving the "Globe Analysis" page, you will lose any customization that has been done to your correlation globe. 
@@ -28,7 +29,7 @@ To explore GlobeCorr, you can download our [sample datasets](/sample_small.csv) 
 
 #### **Sample Globes**
 - [simple sample globe](/globe?view=%2Fsample_small.csv) 
-- [complex sample globe](/globe?view=%2Fsample.csv).
+- [complex sample globe](/globe?view=%2Fsample.csv).  
 
 Please see our [FAQ](/faq) for more information.  
 <br />
@@ -79,6 +80,8 @@ After loading your data, the image will render automatically.
 **Layout and colouring**
 
 - The orientation of the domains around the circumference of the circle can be changed by clicking the domain and dragging. However, you will need to move other domains to accomodate the changes. It is possible to have domains overlapping. 
+
+- To change the font size in the image, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Below the threshold slider is a slider that can be used to update the font size. Users can also set the desired font size in the box to the right of the slider by typing or using the arrows. 
 
 - To update the colour of the ribbons shown in the globe, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. To change the colours for positive corrlations, click "Positive Correlation Colour". Colours can be selected several ways: 
   + Select preset colour
