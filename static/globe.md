@@ -4,4 +4,4 @@ By default, all correlations are shown. Red ribbons represent negative correlati
 
 Use the blue bar to the right of the screen to customize the view, including the correlation threshold, and colors of correlation ribbons. Customizations can be saved using "Quick Settings".
 
-Consult the [tutorial](/tutorial) and [FAQ](/faq) for more information.
+Consult the [tutorial](#/tutorial) and [FAQ](#/faq) for more information.
