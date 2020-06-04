@@ -28,10 +28,10 @@ Please note that by leaving the "Globe Analysis" page, you will lose any customi
 To explore GlobeCorr, you can download our [sample datasets](/sample_small.csv) and follow along with the tutorial. You can also view a sample globe.
 
 #### **Sample Globes**
-- [simple sample globe](/globe?view=%2Fsample_small.csv) 
-- [complex sample globe](/globe?view=%2Fsample.csv).  
+- [simple sample globe](#/globe?view=%2Fsample_small.csv) 
+- [complex sample globe](#/globe?view=%2Fsample.csv).
 
-Please see our [FAQ](/faq) for more information.  
+Please see our [FAQ](#/faq) for more information.  
 <br />
 <br />
 <br />
@@ -110,6 +110,6 @@ After loading your data, the image will render automatically.
 GlobeCorr is already running locally, we are not storing any data on our servers. You can also run GlobeCorr offline. See the following links for how to execute this in [Chrome](https://support.google.com/chrome/answer/7343019?co=GENIE.Platform%3DDesktop&hl=en) or [Safari](https://support.apple.com/en-ca/HT200294). 
 
 ## **Sample Globes**
-- [simple sample globe](/globe?view=%2Fsample_small.csv) 
-- [complex sample globe](/globe?view=%2Fsample.csv).
+- [simple sample globe](#/globe?view=%2Fsample_small.csv) 
+- [complex sample globe](#/globe?view=%2Fsample.csv).
 

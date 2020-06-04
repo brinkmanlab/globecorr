@@ -31,9 +31,8 @@ module.exports = {
                     }, {
                         loader: 'string-replace-loader',
                         options: {
-                            search: '\\[([^\\]]+)\\]\\(#(/[^\\)]*)\\)',
+                            search: /\[([^\]]+)]\(#(\/[^)]*)\)/g,
                             replace: (match, label, path) => `<router-link to="${path}">${label}</router-link>`,
-                            flags: 'g'
                         }
                     }],
                 }
