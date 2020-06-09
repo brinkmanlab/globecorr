@@ -38,7 +38,7 @@
 <script lang="ts">
     import {Component, Vue} from 'vue-property-decorator';
     import ExposomeGlobe from "../components/ExposomeGlobe.vue";
-    import {Data} from "@/@types/data";
+    import {Data, RGBA} from "@/@types/data";
     import papaparse, {ParseResult} from 'papaparse';
     import ExposomeGlobeDrawer from "@/components/ExposomeGlobeDrawer.vue";
     import { Value as ExposomeConfig } from "@/components/ExposomeGlobeDrawer";
@@ -117,6 +117,23 @@
 
         mounted(): void {
             if (this.$route.query.view) this.load(this.$route.query.view as string);
+            for (const key of Object.keys(this.globeOptions)) {
+                const query = this.$route.query[key];
+                if (typeof query === "string") {
+                    const option = this.globeOptions[key];
+                    if (typeof option === "number") {
+                        this.globeOptions[key] = parseFloat(query);
+                    } else {
+                        const components = query.split(',');
+                        const rgba = this.globeOptions[key] as RGBA;
+                        rgba.r = parseInt(components[0]);
+                        rgba.g = parseInt(components[1]);
+                        rgba.b = parseInt(components[2]);
+                        if (components.length === 4)
+                            rgba.a = parseFloat(components[3]);
+                    }
+                }
+            }
         }
     }
 </script>

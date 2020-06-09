@@ -37,6 +37,7 @@
                       r: Math.round(color.r + (255 - color.r) * (0.75 - intensity)),
                       g: Math.round(color.g + (255 - color.g) * (0.75 - intensity)),
                       b: Math.round(color.b + (255 - color.b) * (0.75 - intensity)),
+                      a: color.a === undefined ? 1 : color.a
                   }
                 }
                 return {
