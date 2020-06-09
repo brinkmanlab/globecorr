@@ -107,6 +107,7 @@
       "vue/valid-v-bind-sync": "error",
       "vue/valid-v-slot": "error",
       "vue/singleline-html-element-content-newline": "off",
+      "no-case-declarations": "off",
       "vue/max-attributes-per-line": [
         "error",
         {
