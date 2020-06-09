@@ -49,7 +49,7 @@
             });
         }
 
-        export<Key extends keyof am4core.ExportOptions>(type: Key, options?: am4core.IExportOptions[Key]): void {
+        export<Key extends keyof am4core.IExportOptions>(type: Key, options?: am4core.IExportOptions[Key]): void {
             if (this.chart) {
                 this.chart.exporting.export(type, options);
             }

@@ -3,7 +3,6 @@ import {PageRoute, Pages} from "@/@types/pageprops";
 import Visualization from "@/views/Visualization.vue";
 import Home from "@/views/Home.vue";
 import News from "@/components/News.vue";
-import {RouteConfig} from "vue-router";
 
 const pages: {[key: string]: Pages} = {};
 

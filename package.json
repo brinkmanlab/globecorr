@@ -46,7 +46,7 @@
     "gulp-markdownit": "^1.0.3",
     "gulp-rename": "^2.0.0",
     "html-loader": "^0.5.5",
-    "markdown-it": "latest",
+    "markdown-it": "^11.0.0",
     "markdown-it-deflist": "^2.0.3",
     "markdown-it-loader": "^0.7.0",
     "material-design-icons-iconfont": "^5.0.1",
