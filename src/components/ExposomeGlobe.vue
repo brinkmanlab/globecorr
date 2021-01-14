@@ -20,6 +20,7 @@
         private negLegendIcon: am4core.RoundedRectangle | null = null;
         @Prop(String) readonly title!: string;
         @Prop(Number) threshold!: number;
+        @Prop({default: "value"}) sort!: string;
         @Prop(Number) fontSize!: number;
         @Prop({default: ()=>({r: 79, g: 117, b: 210})}) readonly positiveCorrelationColor?: RGBA;
         @Prop({default: ()=>({r: 223, g: 60, b: 60})}) readonly negativeCorrelationColor?: RGBA;
@@ -27,7 +28,7 @@
         @Prop(Array) value!: Data[];
 
         get filteredData(): Data[] {
-            return this.value.filter(datum => Math.abs(datum.coef) >= this.threshold).map(datum=>{
+            const data = this.value.filter(datum => Math.abs(datum.coef) >= this.threshold).map(datum=>{
                 const intensity = Math.abs(datum.coef);
                 const color = datum.coef === 0 ? this.noCorrelationColor : datum.coef > 0 ? this.positiveCorrelationColor : this.negativeCorrelationColor;
                 let scaledColor: RGBA | null = null;
@@ -47,6 +48,14 @@
                   value: intensity,
                 }
             });
+            switch (this.sort) {
+              case "value":
+                data.sort((a: Data,b: Data)=>a.value - b.value);
+                break;
+              default:
+                break;
+            }
+            return data;
         }
 
         export<Key extends keyof am4core.IExportOptions>(type: Key, options?: am4core.IExportOptions[Key]): void {
@@ -113,7 +122,7 @@
 
                 // Chart spacing settings
                 chart.nodePadding = 0.5;
-                chart.sortBy = "value";
+                chart.sortBy = "none";
                 chart.fontFamily = "Open Sans";
                 const nodeTemplate = chart.nodes.template;
                 nodeTemplate.propertyFields.fill = "color";

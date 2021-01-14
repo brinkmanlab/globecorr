@@ -31,6 +31,22 @@
 
       <v-list-item>
         <v-list-item-icon>
+          <v-icon>mdi-sort-descending</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-select
+            :value="internalValue.sort"
+            :items="sortOptions"
+            label="Sort"
+            dense
+            hide-details
+            @input="val=>input('sort', val)"
+          />
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-list-item>
+        <v-list-item-icon>
           <v-icon>mdi-code-greater-than-or-equal</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
@@ -208,6 +224,10 @@
             ],
             "hide-inputs": false,
         };
+        private sortOptions = [
+            {text: "Document order", value: "none"},
+            {text: "Correlation magnitude", value: "value"},
+        ];
 
         input(key: keyof Value, val: number & RGBA ): void {
             this.internalValue[key] = val;
@@ -245,6 +265,10 @@
 
   .v-list-item {
     text-align: left;
+  }
+
+  .v-list >>> .v-divider {
+    margin-bottom: 4px;
   }
 
   .v-input >>> .v-text-field input {
