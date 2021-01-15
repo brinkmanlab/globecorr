@@ -50,8 +50,8 @@
             });
             switch (this.sort) {
               case "value":
-                const domainOrder = data.reduce((acc, cur)=>{acc.set(cur.var1_domain, (acc.get(cur.var1_domain) || 0) + 1); acc.set(cur.var2_domain, (acc.get(cur.var2_domain) || 0) + 1); return acc}, new Map());
-                data.sort((a: Data,b: Data)=>{const minA = Math.min(domainOrder.get(a.var1_domain), domainOrder.get(a.var2_domain)); const minB = Math.min(domainOrder.get(b.var1_domain), domainOrder.get(b.var2_domain)); return (minA === minB) ? a.value - b.value : minB - minA});
+                //const domainOrder = data.reduce((acc, cur)=>{acc.set(cur.var1_domain, (acc.get(cur.var1_domain) || 0) + 1); acc.set(cur.var2_domain, (acc.get(cur.var2_domain) || 0) + 1); return acc}, new Map());
+                //data.sort((a: Data,b: Data)=>{const minA = Math.min(domainOrder.get(a.var1_domain), domainOrder.get(a.var2_domain)); const minB = Math.min(domainOrder.get(b.var1_domain), domainOrder.get(b.var2_domain)); return (minA === minB) ? a.value - b.value : minB - minA});
                 break;
               default:
                 break;
@@ -69,6 +69,19 @@
         updateGlobe(): void {
             if (this.chart)
               this.chart.data = this.filteredData;
+        }
+
+        @Watch('sort')
+        updateSort(): void {
+            if (this.chart) {
+              switch (this.sort) {
+                case "value":
+                case "none":
+                case "name":
+                  this.chart.sortBy = this.sort;
+                  break;
+              }
+            }
         }
 
         @Watch('positiveCorrelationColor')
@@ -123,7 +136,7 @@
 
                 // Chart spacing settings
                 chart.nodePadding = 0.5;
-                chart.sortBy = "none";
+                chart.sortBy = "value";
                 chart.fontFamily = "Open Sans";
                 const nodeTemplate = chart.nodes.template;
                 nodeTemplate.propertyFields.fill = "color";

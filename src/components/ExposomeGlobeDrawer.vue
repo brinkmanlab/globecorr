@@ -226,7 +226,7 @@
         };
         private sortOptions = [
             {text: "Document order", value: "none"},
-            {text: "Correlation magnitude", value: "value"},
+            {text: "Domain size", value: "value"},
         ];
 
         input(key: keyof Value, val: number & RGBA ): void {
