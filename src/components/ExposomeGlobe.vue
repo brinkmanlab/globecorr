@@ -50,7 +50,8 @@
             });
             switch (this.sort) {
               case "value":
-                data.sort((a: Data,b: Data)=>a.value - b.value);
+                const domainOrder = data.reduce((acc, cur)=>{acc.set(cur.var1_domain, (acc.get(cur.var1_domain) || 0) + 1); acc.set(cur.var2_domain, (acc.get(cur.var2_domain) || 0) + 1); return acc}, new Map());
+                data.sort((a: Data,b: Data)=>{const minA = Math.min(domainOrder.get(a.var1_domain), domainOrder.get(a.var2_domain)); const minB = Math.min(domainOrder.get(b.var1_domain), domainOrder.get(b.var2_domain)); return (minA === minB) ? a.value - b.value : minB - minA});
                 break;
               default:
                 break;
