@@ -125,10 +125,10 @@
                     const option = this.globeOptions[key];
                     if (typeof option === "number") {
                       this.globeOptions[key] = parseFloat(query);
-                    } else if (typeof option === "boolean") {
+                    /*} else if (typeof option === "boolean") {
                       const q = query.toLowerCase();
                       this.globeOptions[key] = (q === 'true' || q === 't' || q === '1' || q === 'y')
-                    } else {
+                    */} else {
                         const components = query.split(',');
                         const rgba = this.globeOptions[key] as RGBA;
                         rgba.r = parseInt(components[0]);
