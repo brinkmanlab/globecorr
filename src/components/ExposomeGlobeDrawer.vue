@@ -1,16 +1,17 @@
 <template>
   <v-navigation-drawer
+    ref="drawer"
     persistent
     absolute
     hide-overlay
-    mini-variant
-    expand-on-hover
+    :mini-variant="!lockOpen"
+    :expand-on-hover="!lockOpen"
     right
     dark
-    :value="true"
     color="primary"
     width="25em"
     class="exposome-globe-controls"
+    @mouseleave.native="$refs['drawer'].isMouseover = false"
   >
     <v-list
       dense
@@ -41,6 +42,8 @@
             dense
             hide-details
             @input="val=>input('sort', val)"
+            @focus="lockOpen=true"
+            @blur="lockOpen=false"
           />
         </v-list-item-content>
       </v-list-item>
@@ -210,6 +213,7 @@
         $refs!: {};
         @Prop(Object) value!: Value;
         private internalValue: Value = this.value;
+        private lockOpen = false;
         private invalidOptions = false;
         private optionsString = JSON.stringify(this.value);
         private colorPickerOptions = {
@@ -233,6 +237,7 @@
             this.internalValue[key] = val;
             this.$emit('input', this.internalValue);
             this.resetOptions();
+            this.lockOpen = false;
         }
 
         resetOptions(): void {
