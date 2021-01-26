@@ -237,7 +237,7 @@
             this.internalValue[key] = val;
             this.$emit('input', this.internalValue);
             this.resetOptions();
-            this.lockOpen = false;
+            //this.lockOpen = false;
         }
 
         resetOptions(): void {
