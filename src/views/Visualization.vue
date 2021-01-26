@@ -21,6 +21,7 @@
       v-model="value"
       :title="title"
       :threshold="globeOptions.threshold"
+      :sort="globeOptions.sort"
       :font-size="globeOptions.fontSize"
       :positive-correlation-color="globeOptions.positiveCorrelationColor"
       :negative-correlation-color="globeOptions.negativeCorrelationColor"
@@ -63,6 +64,7 @@
         private value: Data[] = [];
         private globeOptions: ExposomeConfig = {
             threshold: 0.0,
+            sort: "value",
             fontSize: 15,
             positiveCorrelationColor: {r: 79, g: 117, b: 210},
             negativeCorrelationColor: {r: 223, g: 60, b: 60},
@@ -122,8 +124,11 @@
                 if (typeof query === "string") {
                     const option = this.globeOptions[key];
                     if (typeof option === "number") {
-                        this.globeOptions[key] = parseFloat(query);
-                    } else {
+                      this.globeOptions[key] = parseFloat(query);
+                    /*} else if (typeof option === "boolean") {
+                      const q = query.toLowerCase();
+                      this.globeOptions[key] = (q === 'true' || q === 't' || q === '1' || q === 'y')
+                    */} else if (query.includes(',')) {
                         const components = query.split(',');
                         const rgba = this.globeOptions[key] as RGBA;
                         rgba.r = parseInt(components[0]);
@@ -131,6 +136,8 @@
                         rgba.b = parseInt(components[2]);
                         if (components.length === 4)
                             rgba.a = parseFloat(components[3]);
+                    } else {
+                      this.globeOptions[key] = query;
                     }
                 }
             }

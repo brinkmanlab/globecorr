@@ -20,6 +20,7 @@
         private negLegendIcon: am4core.RoundedRectangle | null = null;
         @Prop(String) readonly title!: string;
         @Prop(Number) threshold!: number;
+        @Prop({default: "value"}) sort!: string;
         @Prop(Number) fontSize!: number;
         @Prop({default: ()=>({r: 79, g: 117, b: 210})}) readonly positiveCorrelationColor?: RGBA;
         @Prop({default: ()=>({r: 223, g: 60, b: 60})}) readonly negativeCorrelationColor?: RGBA;
@@ -27,7 +28,7 @@
         @Prop(Array) value!: Data[];
 
         get filteredData(): Data[] {
-            return this.value.filter(datum => Math.abs(datum.coef) >= this.threshold).map(datum=>{
+            const data = this.value.filter(datum => Math.abs(datum.coef) >= this.threshold).map(datum=>{
                 const intensity = Math.abs(datum.coef);
                 const color = datum.coef === 0 ? this.noCorrelationColor : datum.coef > 0 ? this.positiveCorrelationColor : this.negativeCorrelationColor;
                 let scaledColor: RGBA | null = null;
@@ -47,6 +48,15 @@
                   value: intensity,
                 }
             });
+            switch (this.sort) {
+              case "value":
+                //const domainOrder = data.reduce((acc, cur)=>{acc.set(cur.var1_domain, (acc.get(cur.var1_domain) || 0) + 1); acc.set(cur.var2_domain, (acc.get(cur.var2_domain) || 0) + 1); return acc}, new Map());
+                //data.sort((a: Data,b: Data)=>{const minA = Math.min(domainOrder.get(a.var1_domain), domainOrder.get(a.var2_domain)); const minB = Math.min(domainOrder.get(b.var1_domain), domainOrder.get(b.var2_domain)); return (minA === minB) ? a.value - b.value : minB - minA});
+                break;
+              default:
+                break;
+            }
+            return data;
         }
 
         export<Key extends keyof am4core.IExportOptions>(type: Key, options?: am4core.IExportOptions[Key]): void {
@@ -59,6 +69,19 @@
         updateGlobe(): void {
             if (this.chart)
               this.chart.data = this.filteredData;
+        }
+
+        @Watch('sort')
+        updateSort(): void {
+            if (this.chart) {
+              switch (this.sort) {
+                case "value":
+                case "none":
+                case "name":
+                  this.chart.sortBy = this.sort;
+                  break;
+              }
+            }
         }
 
         @Watch('positiveCorrelationColor')

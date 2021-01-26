@@ -1,16 +1,17 @@
 <template>
   <v-navigation-drawer
+    ref="drawer"
     persistent
     absolute
     hide-overlay
-    mini-variant
-    expand-on-hover
+    :mini-variant="!lockOpen"
+    :expand-on-hover="!lockOpen"
     right
     dark
-    :value="true"
     color="primary"
     width="25em"
     class="exposome-globe-controls"
+    @mouseleave.native="$refs['drawer'].isMouseover = false"
   >
     <v-list
       dense
@@ -28,6 +29,24 @@
         </v-list-item-content>
       </v-list-item>
       <v-divider />
+
+      <v-list-item>
+        <v-list-item-icon>
+          <v-icon>mdi-sort-descending</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-select
+            :value="internalValue.sort"
+            :items="sortOptions"
+            label="Sort"
+            dense
+            hide-details
+            @input="val=>input('sort', val)"
+            @focus="lockOpen=true"
+            @blur="lockOpen=false"
+          />
+        </v-list-item-content>
+      </v-list-item>
 
       <v-list-item>
         <v-list-item-icon>
@@ -194,6 +213,7 @@
         $refs!: {};
         @Prop(Object) value!: Value;
         private internalValue: Value = this.value;
+        private lockOpen = false;
         private invalidOptions = false;
         private optionsString = JSON.stringify(this.value);
         private colorPickerOptions = {
@@ -208,11 +228,16 @@
             ],
             "hide-inputs": false,
         };
+        private sortOptions = [
+            {text: "Document order", value: "none"},
+            {text: "Domain size", value: "value"},
+        ];
 
         input(key: keyof Value, val: number & RGBA ): void {
             this.internalValue[key] = val;
             this.$emit('input', this.internalValue);
             this.resetOptions();
+            //this.lockOpen = false;
         }
 
         resetOptions(): void {
@@ -245,6 +270,10 @@
 
   .v-list-item {
     text-align: left;
+  }
+
+  .v-list >>> .v-divider {
+    margin-bottom: 4px;
   }
 
   .v-input >>> .v-text-field input {

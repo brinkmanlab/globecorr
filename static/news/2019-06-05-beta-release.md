@@ -1,5 +1,5 @@
 ---
-slug: First Release 
+slug: first-release
 title: First Release 
 date: 2020-03-07
 ---
