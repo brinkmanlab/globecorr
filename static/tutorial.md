@@ -108,8 +108,8 @@ Users can also sort domains based on the input order in their csv. Below is an e
 
 - A lengend is also present in the plot area and will reflect the updated colours of your visualization. 
 
-![ Pos Colour Example](./tutorial/jan27update/poscolour_select.png)
-![ Neg Colour Example](./tutorial/jan27update/negcolour_select.png)
+![Chenge Colour Example](./tutorial/jan27update/colour_select.png)
+
 
 
  ## **3. Save your results** 
