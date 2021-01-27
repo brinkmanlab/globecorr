@@ -10,7 +10,7 @@ GlobeCorr is a data visualization software developed to facilitate the viewing a
 
 Please note that Firefox has known issues when exporting from this site. Please consider switching to Chrome or Safari for optimal results. 
 
-You can see a static example of a correlation globe below. The domains specified your csv will be shown around the circumference of the globe. Each domain will be present as a distinct arc with a unique colour. Correlations are represented as ribbons. When there are correlations between variables within the same domain, you will see the ribbon tracing back onto its domain of origin. When correlated variables are in separate domains, the ribbons will arrange as needed across the circle to reach the required domain. The variables specified in the csv for the  correlations can be viewed by hovering over each ribbon. The default colour for positive correlations is blue, whereas the default for negative is red. There is a legend present in the plot area to reflect the colours of the correlations. GlobeCorr defaults to showing all correlations. 
+You can see a static example of a correlation globe below. The domains specified your csv will be shown around the circumference of the globe, with the largest domain shown first when going clockwise from the 12 o'clock position. Each domain will be present as a distinct arc with a unique colour. Correlations are represented as ribbons. When there are correlations between variables within the same domain, you will see the ribbon tracing back onto its domain of origin. When correlated variables are in separate domains, the ribbons will arrange as needed across the circle to reach the required domain. The variables specified in the csv for the  correlations can be viewed by hovering over each ribbon. The default colour for positive correlations is blue, whereas the default for negative is red. There is a legend present in the plot area to reflect the colours of the correlations. GlobeCorr defaults to showing all correlations. 
 
 ![globe example1](./tutorial/example_globe.png)
 
@@ -64,7 +64,7 @@ After loading your data, the image will render automatically.
 
 - Change the correlation threshold for the globe by hovering over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Use the slider to select your desired threshold. You can also click on the box to the right of the slider and type in the desired threshold. The visualization will update automatically. 
 
-![Menu Example](./tutorial/corr_menu.png)
+![Menu Example](./tutorial/jan27update/threshold_select.png)
 
 
 - To remove domains from the visualization, click on its location at the circumference. The correlation ribbons will disappear, but a small grey box will remain at the circumference representing the hidden domain should the user want to include those correlations again. 
@@ -76,12 +76,27 @@ After loading your data, the image will render automatically.
 
 ![domain_var_hover_ex](./tutorial/domain_var.png)
 
+**Domain Layout**
+- The orientation of the domains around the circumference of the circle can be changed by clicking the domain and dragging. However, you will need to move other domains to accomodate the changes. It is possible to have domains overlapping. Users please note that clicking domains on or off will reset any rearrangements. 
+- Domains can be sorted two ways. To switch the way the domains are sorted, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Then click on the menu options under "Sort".
 
-**Layout and colouring**
+![domain sort menu](./tutorial/jan27update/domain_select.png) 
 
-- The orientation of the domains around the circumference of the circle can be changed by clicking the domain and dragging. However, you will need to move other domains to accomodate the changes. It is possible to have domains overlapping. 
+The default is by domain size, shown in the image below.  Domain 2 is the largest, therefore it is the first domain shown when going in a clockwise direction. 
+
+![domain size sort](./tutorial/jan27update/sample_globe_domain_size.svg)
+
+Users can also sort domains based on the input order in their csv. Below is an example of the input csv and the globe created. When "Document order" is selected, the arrangement goes row by row, so the clockwise order will be: domain 1, domain 2, domain 3 (as opposed to domain 1, domain 3, domain 4 if it was going down the column) 
+
+![input csv example](./tutorial/jan27update/documentorder_example.png)
+![domain document sort](./tutorial/jan27update/sample_globe_domain_size.svg) 
+
+
+**Font Size and colouring**
 
 - To change the font size in the image, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Below the threshold slider is a slider that can be used to update the font size. Users can also set the desired font size in the box to the right of the slider by typing or using the arrows. 
+
+![Fontsize example](./tutorial/jan27update/fontsize_select.png)
 
 - To update the colour of the ribbons shown in the globe, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. To change the colours for positive corrlations, click "Positive Correlation Colour". Colours can be selected several ways: 
   + Select preset colour
@@ -93,7 +108,8 @@ After loading your data, the image will render automatically.
 
 - A lengend is also present in the plot area and will reflect the updated colours of your visualization. 
 
-![Colour Example](./tutorial/corr_colurs.png)
+![ Pos Colour Example](./tutorial/jan27update/poscolour_select.png)
+![ Neg Colour Example](./tutorial/jan27update/negcolour_select.png)
 
 
  ## **3. Save your results** 
