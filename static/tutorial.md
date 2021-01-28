@@ -64,7 +64,7 @@ After loading your data, the image will render automatically.
 
 - Change the correlation threshold for the globe by hovering over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Use the slider to select your desired threshold. You can also click on the box to the right of the slider and type in the desired threshold. The visualization will update automatically. 
 
-![Menu Example](./tutorial/jan27update/threshold_select.png)
+![Menu Example](./tutorial/threshold_select.png)
 
 
 - To remove domains from the visualization, click on its location at the circumference. The correlation ribbons will disappear, but a small grey box will remain at the circumference representing the hidden domain should the user want to include those correlations again. 
@@ -80,23 +80,25 @@ After loading your data, the image will render automatically.
 - The orientation of the domains around the circumference of the circle can be changed by clicking the domain and dragging. However, you will need to move other domains to accomodate the changes. It is possible to have domains overlapping. Users please note that clicking domains on or off will reset any rearrangements. 
 - Domains can be sorted two ways. To switch the way the domains are sorted, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Then click on the menu options under "Sort".
 
-![domain sort menu](./tutorial/jan27update/domain_select.png) 
+![domain sort menu](./tutorial/domain_select.png) 
 
 The default is by domain size, shown in the image below.  Domain 2 is the largest, therefore it is the first domain shown when going in a clockwise direction. 
 
-![domain size sort](./tutorial/jan27update/sample_globe_domain_size.svg)
+![domain size sort](./tutorial/sample_globe_domain_size.svg)
 
 Users can also sort domains based on the input order in their csv. Below is an example of the input csv and the globe created. When "Document order" is selected, the arrangement goes row by row, so the clockwise order will be: domain 1, domain 2, domain 3 (as opposed to domain 1, domain 3, domain 4 if it was going down the column) 
 
-![input csv example](./tutorial/jan27update/documentorder_example.png)
-![domain document sort](./tutorial/jan27update/sample_globe_domain_size.svg) 
+<br />
+
+![input csv example](./tutorial/documentorder_example.png)
+![domain document sort](./tutorial/sample_globe_document_order.svg) 
 
 
 **Font Size and colouring**
 
 - To change the font size in the image, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Below the threshold slider is a slider that can be used to update the font size. Users can also set the desired font size in the box to the right of the slider by typing or using the arrows. 
 
-![Fontsize example](./tutorial/jan27update/fontsize_select.png)
+![Fontsize example](./tutorial/fontsize_select.png)
 
 - To update the colour of the ribbons shown in the globe, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. To change the colours for positive corrlations, click "Positive Correlation Colour". Colours can be selected several ways: 
   + Select preset colour
@@ -108,7 +110,7 @@ Users can also sort domains based on the input order in their csv. Below is an e
 
 - A lengend is also present in the plot area and will reflect the updated colours of your visualization. 
 
-![Chenge Colour Example](./tutorial/jan27update/colour_select.png)
+![Chenge Colour Example](./tutorial/colour_select.png)
 
 
 
