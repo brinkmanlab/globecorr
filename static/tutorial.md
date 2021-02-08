@@ -60,7 +60,7 @@ After loading your data, the image will render automatically.
 
 - Currently, the GlobeCorr diagram renders relative to the size of the user's screen. This can result in domain names being cut off if they are too long. It is best practice to avoid using long domain names, but we are actively working to remedy this problem. 
 
-**Correlation Thresholds** 
+### Correlation Thresholds
 
 - Change the correlation threshold for the globe by hovering over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Use the slider to select your desired threshold. You can also click on the box to the right of the slider and type in the desired threshold. The visualization will update automatically. 
 
@@ -76,7 +76,7 @@ After loading your data, the image will render automatically.
 
 ![domain_var_hover_ex](./tutorial/domain_var.png)
 
-**Domain Layout**
+### Domain Layout
  
 - Domains can be automatically sorted two ways. To switch the way the domains are sorted and plotted around the circumference of the globe, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Then click on the menu options under "Sort".
 
@@ -94,8 +94,9 @@ Users can also sort domains based on the input order in their csv. Below is an e
 ![domain document sort](./tutorial/sample_globe_document_order.svg) 
 
 - The orientation of the domains around the circumference of the circle can also be changed by the user clicking the domain and dragging. However, you will need to move other domains to accomodate the changes. It is possible to have domains overlapping. Users please note that clicking domains on or off will reset any rearrangements.
+<br />
 
-**Font Size and Colouring**
+### Font Size and Colouring
 
 - To change the font size in the image, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Below the threshold slider is a slider that can be used to update the font size. Users can also set the desired font size in the box to the right of the slider by typing or using the arrows. 
 
@@ -103,7 +104,7 @@ Users can also sort domains based on the input order in their csv. Below is an e
 
 - To update the colour of the ribbons shown in the globe, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. To change the colours for positive correlations, click "Positive Correlation Colour". Colours can be selected several ways: 
   + Select preset colour
-  + Select using slider (opacity can also be changed this way)
+  + Select using slider
   + Selecting a colour on the palette. 
   + Specify RGB code
 
