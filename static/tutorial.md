@@ -93,10 +93,7 @@ Users can also sort domains based on the input order in their csv. Below is an e
 ![input csv example](./tutorial/documentorder_example.png)
 ![domain document sort](./tutorial/sample_globe_document_order.svg) 
 
-- The orientation of the domains around the circumference of the circle can also be changed by the user clicking the domain and dragging. However, you will need to move other domains to accomodate the changes. It is possible to have domains overlapping. Users please note that clicking domains on or off will reset any rearrangements.   
-   
-      
-
+- The orientation of the domains around the circumference of the circle can also be changed by the user clicking the domain and dragging. However, you will need to move other domains to accomodate the changes. It is possible to have domains overlapping. Users please note that clicking domains on or off will reset any rearrangements. 
 
 ### Font Size and Colouring
 
