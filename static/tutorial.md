@@ -31,11 +31,11 @@ To explore GlobeCorr, you can download our [sample datasets](/sample_small.csv) 
 - [simple sample globe](#/globe?view=%2Fsample_small.csv) 
 - [complex sample globe](#/globe?view=%2Fsample.csv).
 
-Please see our [FAQ](#/faq) for more information.  
-<br />
-<br />
-<br />
-<br />
+Please see our [FAQ](#/faq) for more information.   
+   
+   
+   
+   
 
 ## **1. Upload your data**
 
@@ -86,16 +86,17 @@ The default is by domain size, shown in the image below.  Domain 2 is the larges
 
 ![domain size sort](./tutorial/sample_globe_domain_size.svg)
 
-Users can also sort domains based on the input order in their csv. Below is an example of the input csv and the globe created. When "Document order" is selected, the arrangement goes row by row, so the clockwise order will be domain 1, domain 2, domain 3 (as opposed to domain 1, domain 3, domain 4 if it was going down the column) 
-
-<br />
-
+Users can also sort domains based on the input order in their csv. Below is an example of the input csv and the globe created. When "Document order" is selected, the arrangement goes row by row, so the clockwise order will be domain 1, domain 2, domain 3 (as opposed to domain 1, domain 3, domain 4 if it was going down the column)  
+   
+      
+      
 ![input csv example](./tutorial/documentorder_example.png)
 ![domain document sort](./tutorial/sample_globe_document_order.svg) 
 
-- The orientation of the domains around the circumference of the circle can also be changed by the user clicking the domain and dragging. However, you will need to move other domains to accomodate the changes. It is possible to have domains overlapping. Users please note that clicking domains on or off will reset any rearrangements.
+- The orientation of the domains around the circumference of the circle can also be changed by the user clicking the domain and dragging. However, you will need to move other domains to accomodate the changes. It is possible to have domains overlapping. Users please note that clicking domains on or off will reset any rearrangements.   
+   
+      
 
-<br />
 
 ### Font Size and Colouring
 
