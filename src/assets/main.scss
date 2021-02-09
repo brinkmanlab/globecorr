@@ -16,7 +16,8 @@ img[alt='globe example1']{
   display: block;
 }
 
-strong::before { 
+
+h2::before { 
   font-weight: bold;
   content: '\A';
   white-space: pre;
