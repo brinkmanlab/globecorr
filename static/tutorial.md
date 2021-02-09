@@ -29,13 +29,11 @@ To explore GlobeCorr, you can download our [sample datasets](/sample_small.csv) 
 
 #### **Sample Globes**
 - [simple sample globe](#/globe?view=%2Fsample_small.csv) 
-- [complex sample globe](#/globe?view=%2Fsample.csv).
+- [complex sample globe](#/globe?view=%2Fsample.csv)  
 
-Please see our [FAQ](#/faq) for more information.   
-   
-   
-   
-   
+
+Please see our [FAQ](#/faq) for more information.  
+
 
 ## **1. Upload your data**
 
@@ -77,8 +75,9 @@ After loading your data, the image will render automatically.
 ![domain_var_hover_ex](./tutorial/domain_var.png)
 
 ### Domain Layout
+- There are several ways to arrange the domains. First, the domains can be arranged manually by the user. The orientation of the domains around the circumference of the circle can be changed by clicking the domain and dragging. However, you will need to move other domains to accomodate the changes. It is possible to have domains overlapping. Users please note that clicking domains on or off will reset any rearrangements.
  
-- Domains can be automatically sorted two ways. To switch the way the domains are sorted and plotted around the circumference of the globe, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Then click on the menu options under "Sort".
+- Domains can also be automatically sorted two ways. To switch the way the domains are sorted and plotted around the circumference of the globe, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Then click on the menu options under "Sort".
 
 ![domain sort menu](./tutorial/domain_select.png) 
 
@@ -93,7 +92,7 @@ Users can also sort domains based on the input order in their csv. Below is an e
 ![input csv example](./tutorial/documentorder_example.png)
 ![domain document sort](./tutorial/sample_globe_document_order.svg) 
 
-- The orientation of the domains around the circumference of the circle can also be changed by the user clicking the domain and dragging. However, you will need to move other domains to accomodate the changes. It is possible to have domains overlapping. Users please note that clicking domains on or off will reset any rearrangements. 
+ 
 
 ### Font Size and Colouring
 
