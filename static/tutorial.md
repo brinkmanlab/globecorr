@@ -6,7 +6,7 @@ nav: 2
 # {{ $attrs.title }} 
 
 
-GlobeCorr is a data visualization software developed to facilitate the viewing and analysis of multiple correlation datasets. To enable dynamic exploration of your data, users can upload a table of correlations in csv format and GlobeCorr provides an interactive and customizable “globe-based” visualization.  
+GlobeCorr is a data visualization software developed to facilitate the viewing and analysis of multiple correlation datasets. To enable dynamic exploration of their data, users can upload a table of correlations in csv format and GlobeCorr provides an interactive and customizable “globe-based” visualization.  
 
 Please note that Firefox has known issues when exporting from this site. Please consider switching to Chrome or Safari for optimal results. 
 
@@ -25,15 +25,12 @@ GlobeCorr users can customize their image by changing:
 
 Please note that by leaving the "Globe Analysis" page, you will lose any customization that has been done to your correlation globe. 
 
-To explore GlobeCorr, you can download our [sample datasets](/sample_small.csv) and follow along with the tutorial. You can also view a sample globe.
+To explore GlobeCorr, you can download our [sample datasets](/sample_small.csv) and follow along with the tutorial. You can also view a sample globe using the links below. Please see our [FAQ](#/faq) for more information. 
 
 #### **Sample Globes**
 - [simple sample globe](#/globe?view=%2Fsample_small.csv) 
 - [complex sample globe](#/globe?view=%2Fsample.csv)  
-
-
-Please see our [FAQ](#/faq) for more information.  
-
+ 
 
 ## **1. Upload your data**
 
@@ -110,7 +107,7 @@ Users can also sort domains based on the input order in their csv. Below is an e
 
 - A lengend is also present in the plot area and will reflect the updated colours of your visualization. 
 
-![Chenge Colour Example](./tutorial/colour_select.png)
+![Change Colour Example](./tutorial/colour_select.png)
 
 
 
