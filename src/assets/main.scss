@@ -15,3 +15,9 @@ img[alt='globe example1']{
   margin-right: auto;
   display: block;
 }
+
+strong::before { 
+  font-weight: bold;
+  content: '\A';
+  white-space: pre;
+}
