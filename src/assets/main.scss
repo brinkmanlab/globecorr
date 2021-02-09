@@ -17,8 +17,6 @@ img[alt='globe example1']{
 }
 
 
-h2::before { 
-  font-weight: bold;
-  content: '\A';
-  white-space: pre;
+[slug="tutorial"] h2 {
+  margin-top: 1em;
 }
