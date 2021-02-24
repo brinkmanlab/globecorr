@@ -229,7 +229,7 @@
             "hide-inputs": false,
         };
         private sortOptions = [
-            {text: "Document order", value: "none"},
+            {text: "Order in File", value: "none"},
             {text: "Domain size", value: "value"},
         ];
 
