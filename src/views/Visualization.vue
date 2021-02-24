@@ -9,7 +9,7 @@
       dense
       show-size
       label="CSV Data"
-      placeholder="Upload data to visualize"
+      placeholder="Upload CSV to visualize"
       solo
       accept="csv,tsv"
       hide-details="auto"
