@@ -1,0 +1,19 @@
+<!DOCTYPE html><html lang=en><head><script>// Handle redirect from 404.html and force https
+      (function () {
+        if ("production" !== "production") return;
+        let redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect) {
+          const u = new URL(redirect);
+          u.protocol = 'https:';
+          redirect = u.href;
+        }
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+        if (location.protocol !== 'https:') {
+          const u = new URL(location.href);
+          u.protocol = 'https:';
+          history.replaceState(null, null, u.href);
+        }
+      })();</script><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=icon href=/logo/globecorr_logo_no_text.svg sizes=any type=image/svg+xml><link rel=icon href=/logo/globecorr_logo_favicon-32.png sizes=32x32 type=image/png><link rel=icon href=/logo/globecorr_logo_favicon-128.png sizes=128x128 type=image/png><link rel=icon href=/logo/globecorr_logo_favicon-152.png sizes=152x152 type=image/png><link rel=icon href=/logo/globecorr_logo_favicon-167.png sizes=167x167 type=image/png><link rel=icon href=/logo/globecorr_logo_favicon-180.png sizes=180x180 type=image/png><link rel=icon href=/logo/globecorr_logo_favicon-192.png sizes=192x192 type=image/png><link rel=icon href=/logo/globecorr_logo_favicon-196.png sizes=196x196 type=image/png><title>globecorr</title><link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel=stylesheet><link href=https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css rel=stylesheet><link href=/js/canvg.b3b4e217.js rel=prefetch><link href=/js/pdfmake.84adc8f9.js rel=prefetch><link href=/js/xlsx.90e68193.js rel=prefetch><link href=/css/app.d4c41ac6.css rel=preload as=style><link href=/css/chunk-vendors.f3b84964.css rel=preload as=style><link href=/js/app.c1b6e812.js rel=preload as=script><link href=/js/chunk-vendors.f245d61e.js rel=preload as=script><link href=/css/chunk-vendors.f3b84964.css rel=stylesheet><link href=/css/app.d4c41ac6.css rel=stylesheet></head><body><noscript><strong>We're sorry but globecorr doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id=app></div><script src=/js/chunk-vendors.f245d61e.js></script><script src=/js/app.c1b6e812.js></script></body></html>
