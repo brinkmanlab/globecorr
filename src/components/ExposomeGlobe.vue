@@ -174,7 +174,7 @@
 
                 label.relativeRotation = 90;
                 label.fillOpacity = 0.4;
-                label.truncate = true;
+                label.wrap = true;
                 label.maxWidth = LABELMAXWIDTH;
                 const labelHS = label.states.create("hover");
                 labelHS.properties.fillOpacity = 1;
