@@ -16,7 +16,7 @@
       @change="load"
     />
     <ExposomeGlobe
-      v-if="value.length"
+      v-if="value && value.length"
       ref="globe"
       v-model="value"
       :title="title"
@@ -26,6 +26,7 @@
       :positive-correlation-color="globeOptions.positiveCorrelationColor"
       :negative-correlation-color="globeOptions.negativeCorrelationColor"
     />
+    <div v-if="error" class="data-error">We are sorry but there was an issue while parsing your data: {{ error }}</div>
     <Instructions class="instructions" :class="{'footer': value.length}" />
     <!--TabulatorComponent v-model="value" :options="tabOptions" /-->
     <ExposomeGlobeDrawer v-model="globeOptions" @export="type=>this.$refs.globe.export(type)">
@@ -40,7 +41,7 @@
     import {Component, Vue} from 'vue-property-decorator';
     import ExposomeGlobe from "../components/ExposomeGlobe.vue";
     import {Data, RGBA} from "@/@types/data";
-    import papaparse, {ParseResult} from 'papaparse';
+    import papaparse, {ParseResult, ParseError} from 'papaparse';
     import ExposomeGlobeDrawer from "@/components/ExposomeGlobeDrawer.vue";
     import { Value as ExposomeConfig } from "@/components/ExposomeGlobeDrawer";
     //import {TabulatorComponent} from "vue-tabulator";
@@ -62,6 +63,7 @@
         };
         private title = 'exposome-globe';
         private value: Data[] = [];
+        private error?: ParseError | string;
         private globeOptions: ExposomeConfig = {
             threshold: 0.0,
             sort: "value",
@@ -111,8 +113,20 @@
                 dynamicTyping: true,
                 skipEmptyLines: 'greedy',
                 complete: (results: ParseResult) => {
-                    this.value = results.data;
-                    console.debug('Finished parsing data: %O', this.value);
+                    if (!(this.tabOptions.columns.every(c => results.meta.fields.includes(c.field)))) {
+                        this.value = [];
+                        this.error = `Unexpected columns in data, should only contain [${this.tabOptions.columns.map(c=>c.field).join(", ")}]`;
+                        console.debug(this.error);
+                    } else {
+                        this.value = results.data;
+                        this.error = undefined;
+                        console.debug('Finished parsing data: %O', this.value);
+                    }
+                },
+                error: (error: ParseError) => {
+                    this.value = []
+                    this.error = error;
+                    console.debug('Failed parsing data: %O', error);
                 }
             })
         }
@@ -171,6 +185,11 @@
   .exposome-globe {
     height: 100vh;
     min-width: 120vh;
+  }
+
+  .data-error {
+      color: red;
+      margin: 2em;
   }
 
   .instructions {
