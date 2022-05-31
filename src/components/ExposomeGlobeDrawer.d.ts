@@ -8,4 +8,5 @@ export interface Value {
     padding: number;
     positiveCorrelationColor: RGBA;
     negativeCorrelationColor: RGBA;
+    backgroundColor: RGBA;
 }

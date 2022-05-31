@@ -18,6 +18,7 @@
         private chart: am4charts.ChordDiagram | null = null;
         private posLegendIcon: am4core.RoundedRectangle | null = null;
         private negLegendIcon: am4core.RoundedRectangle | null = null;
+        private legendLabels: am4core.Label[] | null = null;
         @Prop(String) readonly title!: string;
         @Prop(Number) threshold!: number;
         @Prop({default: "value"}) sort!: string;
@@ -26,6 +27,7 @@
         @Prop({default: ()=>({r: 79, g: 117, b: 210})}) readonly positiveCorrelationColor?: RGBA;
         @Prop({default: ()=>({r: 223, g: 60, b: 60})}) readonly negativeCorrelationColor?: RGBA;
         @Prop({default: ()=>({r: 211, g: 211, b: 211})}) readonly noCorrelationColor?: RGBA;
+        @Prop({default: ()=>({r: 255, g: 255, b: 255, a: 0})}) readonly backgroundColor?: RGBA;
         @Prop(Array) value!: Data[];
 
         get filteredData(): Data[] {
@@ -95,6 +97,18 @@
         updateNegativeLegend(): void {
             if (this.negLegendIcon)
                 this.negLegendIcon.fill = am4core.color(this.negativeCorrelationColor);
+        }
+
+        @Watch('backgroundColor')
+        updateBackgroundColor(): void {
+            if (this.chart && this.backgroundColor && this.legendLabels) {
+                this.chart.background.fill = am4core.color(this.backgroundColor);
+                const labelColor = am4core.color(
+                    ((this.backgroundColor.r + this.backgroundColor.g + this.backgroundColor.b) < 382 && (this.backgroundColor.a || 0) > 0.5)
+                        ? "white" : "black");
+                this.chart.nodes.template.label.fill = labelColor;
+                this.legendLabels.forEach(l=>l.fill = labelColor);
+            }
         }
 
         @Watch('title')
@@ -236,8 +250,11 @@
                 negativeLegendLabel.valign = "middle";
                 negativeLegendLabel.marginLeft = chart.fontSize;
 
+                this.legendLabels = [positiveLegendLabel, negativeLegendLabel];
+
                 this.updateFontSize();
                 this.updatePadding();
+                this.updateBackgroundColor();
             } else {
                 console.debug('ExposomeGlobe root element not DOM');
             }

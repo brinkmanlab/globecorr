@@ -26,6 +26,7 @@
       :padding="globeOptions.padding"
       :positive-correlation-color="globeOptions.positiveCorrelationColor"
       :negative-correlation-color="globeOptions.negativeCorrelationColor"
+      :background-color="globeOptions.backgroundColor"
     />
     <Instructions class="instructions" :class="{'footer': value.length}" />
     <!--TabulatorComponent v-model="value" :options="tabOptions" /-->
@@ -70,6 +71,7 @@
             padding: 110,
             positiveCorrelationColor: {r: 79, g: 117, b: 210},
             negativeCorrelationColor: {r: 223, g: 60, b: 60},
+            backgroundColor: {r: 255, g: 255, b: 255, a: 0},
         };
         private tabOptions = {
             pagination: 'local',
