@@ -18,13 +18,16 @@
         private chart: am4charts.ChordDiagram | null = null;
         private posLegendIcon: am4core.RoundedRectangle | null = null;
         private negLegendIcon: am4core.RoundedRectangle | null = null;
+        private legendLabels: am4core.Label[] | null = null;
         @Prop(String) readonly title!: string;
         @Prop(Number) threshold!: number;
         @Prop({default: "value"}) sort!: string;
         @Prop(Number) fontSize!: number;
+        @Prop(Number) padding!: number;
         @Prop({default: ()=>({r: 79, g: 117, b: 210})}) readonly positiveCorrelationColor?: RGBA;
         @Prop({default: ()=>({r: 223, g: 60, b: 60})}) readonly negativeCorrelationColor?: RGBA;
         @Prop({default: ()=>({r: 211, g: 211, b: 211})}) readonly noCorrelationColor?: RGBA;
+        @Prop({default: ()=>({r: 255, g: 255, b: 255, a: 0})}) readonly backgroundColor?: RGBA;
         @Prop(Array) value!: Data[];
 
         get filteredData(): Data[] {
@@ -96,6 +99,18 @@
                 this.negLegendIcon.fill = am4core.color(this.negativeCorrelationColor);
         }
 
+        @Watch('backgroundColor')
+        updateBackgroundColor(): void {
+            if (this.chart && this.backgroundColor && this.legendLabels) {
+                this.chart.background.fill = am4core.color(this.backgroundColor);
+                const labelColor = am4core.color(
+                    ((this.backgroundColor.r + this.backgroundColor.g + this.backgroundColor.b) < 382 && (this.backgroundColor.a || 0) > 0.5)
+                        ? "white" : "black");
+                this.chart.nodes.template.label.fill = labelColor;
+                this.legendLabels.forEach(l=>l.fill = labelColor);
+            }
+        }
+
         @Watch('title')
         updatePrefix(): void {
             if (this.chart)
@@ -112,6 +127,14 @@
             }
         }
 
+        @Watch('padding')
+        updatePadding(): void {
+            if (this.chart) {
+                this.chart.nodes.template.label.maxWidth = this.padding;
+                this.chart.padding(this.padding, this.padding, this.padding, this.padding);
+            }
+        }
+
         mounted(): void {
             if (this.chart) this.chart.dispose();
             if (this.$el instanceof HTMLElement) {
@@ -119,14 +142,10 @@
                 const chart = am4core.create(this.$el, am4charts.ChordDiagram);
                 //chart.exporting.menu = new am4core.ExportMenu();
 
-                const LABELMAXWIDTH = 110;
-                const PADDING = 0;
-
                 this.chart = chart;
 
                 // Color settings
                 chart.colors.saturation = 0.45;
-                chart.paddingTop = PADDING;
                 chart.valign = "middle";
 
                 chart.data = this.filteredData;
@@ -138,6 +157,8 @@
                 chart.nodePadding = 0.5;
                 chart.sortBy = "value";
                 chart.fontFamily = "Open Sans";
+                chart.percentHeight = 100;
+                chart.marginTop = 0;
                 const nodeTemplate = chart.nodes.template;
                 nodeTemplate.propertyFields.fill = "color";
 
@@ -174,8 +195,7 @@
 
                 label.relativeRotation = 90;
                 label.fillOpacity = 0.4;
-                label.truncate = true;
-                label.maxWidth = LABELMAXWIDTH;
+                label.wrap = true;
                 const labelHS = label.states.create("hover");
                 labelHS.properties.fillOpacity = 1;
 
@@ -199,8 +219,8 @@
 
                 // Legend
                 const legend = chart.chartContainer.createChild(am4core.Container);
-                legend.x = am4core.percent(75);
-                legend.y = am4core.percent(40);
+                legend.align = "right";
+                legend.valign = "top";
                 legend.padding(10, 10, 10, 10);
                 legend.layout = "vertical";
 
@@ -230,7 +250,11 @@
                 negativeLegendLabel.valign = "middle";
                 negativeLegendLabel.marginLeft = chart.fontSize;
 
+                this.legendLabels = [positiveLegendLabel, negativeLegendLabel];
+
                 this.updateFontSize();
+                this.updatePadding();
+                this.updateBackgroundColor();
             } else {
                 console.debug('ExposomeGlobe root element not DOM');
             }

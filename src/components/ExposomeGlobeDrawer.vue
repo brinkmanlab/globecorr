@@ -116,6 +116,40 @@
         </v-list-item-content>
       </v-list-item>
 
+      <v-list-item>
+        <v-list-item-icon>
+          <v-icon>mdi-arrow-split-vertical</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-slider
+              :value="internalValue.padding"
+              max="500"
+              class="align-center"
+              min="40"
+              step="10"
+              dense
+              label="Label Width"
+              hide-details
+              @input="val=>input('padding', val)"
+          >
+            <template v-slot:append>
+              <v-text-field
+                  :value="internalValue.padding"
+                  single-line
+                  hide-details
+                  class="mt-0 pt-0"
+                  min="40"
+                  dense
+                  type="number"
+                  max="500"
+                  step="1"
+                  @input="val=>input('padding', val)"
+              />
+            </template>
+          </v-slider>
+        </v-list-item-content>
+      </v-list-item>
+
       <v-list-item link>
         <v-list-item-icon>
           <v-icon>
@@ -152,6 +186,21 @@
             </v-list-item-content>
           </template>
           <v-color-picker v-bind="colorPickerOptions" :value="internalValue.negativeCorrelationColor" @input="val=>input('negativeCorrelationColor', val)" />
+        </v-menu>
+      </v-list-item>
+
+      <v-list-item link>
+        <v-list-item-icon>
+          <v-icon>mdi-format-color-fill</v-icon>
+        </v-list-item-icon>
+        <v-menu :close-on-content-click="false" absolute>
+          <template v-slot:activator="{ on }">
+            <v-list-item-content v-on="on">
+              <v-list-item-title>Background Color</v-list-item-title>
+              <v-list-item-subtitle>Pick the background color and opacity</v-list-item-subtitle>
+            </v-list-item-content>
+          </template>
+          <v-color-picker v-bind="colorPickerOptions" :value="internalValue.backgroundColor" @input="val=>input('backgroundColor', val)" />
         </v-menu>
       </v-list-item>
 
