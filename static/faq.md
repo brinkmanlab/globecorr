@@ -18,3 +18,7 @@ GlobeCorr is already running locally, we are not storing any data on our servers
 
 **Can I share an interactive view instead of a static image?**  
 To do this, you will need to provide other users the csv you are using and they will have to upload it to GlobeCorr themselves. To replicate any customizations use the 'Quick Settings' feature as specified in the [tutorial](#/tutorial). 
+
+**I want to customise the look of my globe beyond what is provided**  
+You can change nearly any aspect of the globe by downloading it in SVG format and manipulating it using your preferred vector graphics software.
+[Inkscape](https://inkscape.org/) is a popular free vector graphics program that should suit your needs. See the Inkscape [tutorial](https://inkscape.org/doc/tutorials/basic/tutorial-basic.html) for more information on its use.
