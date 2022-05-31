@@ -6,42 +6,36 @@ nav: 2
 # {{ $attrs.title }} 
 
 
-GlobeCorr is a data visualization software developed to facilitate the viewing and analysis of multiple correlation datasets. To enable further, dynamic exploration of your data, users can upload a table of correlations in csv format and GlobeCorr provides an interactive and customizable “globe-based” visualization.  
+GlobeCorr is a data visualization software developed to facilitate the viewing and analysis of multiple correlation datasets. To enable dynamic exploration of their data, users can upload a table of correlations in csv format and GlobeCorr provides an interactive and customizable “globe-based” visualization.  
 
 Please note that Firefox has known issues when exporting from this site. Please consider switching to Chrome or Safari for optimal results. 
 
-You can see a static example of a correlation globe below. The domains specified your csv will be shown around the circumference of the globe. Each domain will be present as a distinct arc with a unique colour. Correlations are represented as ribbons. When there are correlations between variables within the same domain, you will see the ribbon tracing back onto its domain of origin. When correlated variables are in separate domains, the ribbons will arrange as needed across the circle to reach the required domain. The variables specified in the csv for the  correlations can be viewed by hovering over each ribbon. The default colour for positive correlations is blue, whereas the default for negative is red. There is a legend present in the plot area to reflect the colours of the correlations. GlobeCorr defaults to showing all correlations. 
+A static example of a correlation globe is shown below. The domains specified in the csv will be shown around the circumference of the globe, with the largest domain shown first when going clockwise from the 12 o'clock position. Each domain will be present as a distinct arc with a unique colour. Correlations are represented as bands. When there are correlations between variables within the same domain, you will see the ribbon tracing back onto its domain of origin. When correlated variables are in separate domains, the bands will arrange as needed across the circle to reach the required domain. The variables specified in the csv for the  correlations can be viewed by hovering over each ribbon. The default colour for positive correlations is blue, whereas the default for negative is red. There is a legend present in the plot area to reflect the colours of the correlations. GlobeCorr defaults to showing all correlations. 
 
 ![globe example1](./tutorial/example_globe.png)
 
 
 GlobeCorr users can customize their image by changing: 
 * default correlation threshold 
-* colour of positive and negative correlation ribbons 
-* opacity of the correlation ribbons 
 * arrangement of domains around the circumference 
+* colour of positive and negative correlation bands
 * size of text 
 
 
 Please note that by leaving the "Globe Analysis" page, you will lose any customization that has been done to your correlation globe. 
 
-To explore GlobeCorr, you can download our [sample datasets](/sample_small.csv) and follow along with the tutorial. You can also view a sample globe.
+To explore GlobeCorr, you can download our [sample dataset](/sample_small.csv) and follow along with the tutorial. You can also view a sample globe using the links below. Please see our [FAQ](#/faq) for more information. 
 
 #### **Sample Globes**
 - [simple sample globe](#/globe?view=%2Fsample_small.csv) 
-- [complex sample globe](#/globe?view=%2Fsample.csv).
-
-Please see our [FAQ](#/faq) for more information.  
-<br />
-<br />
-<br />
-<br />
+- [complex sample globe](#/globe?view=%2Fsample.csv)  
+ 
 
 ## **1. Upload your data**
 
-To upload data, click the "Upload data to visualize" bar at the top of the page, a file explorer will appear and you can select your data. Alternatively, you can drag and drop your file into the 'Globe Analysis' window.  
+To upload data, click the "Upload data to visualize" bar at the top of the page, a file explorer will appear, and you can select your data. Alternatively, you can drag and drop your file into the 'Globe Analysis' window.  
 
-GlobeCorr requires a 5 column dataset in .csv format. There are required headings for each of the columns, which are shown below. 
+GlobeCorr requires a 5 column dataset in .csv format, it will not accept any other format. There are required headings for each of the columns, which are shown below. 
 
 If you would like an example, feel free to download one of our [sample datasets](/sample_small.csv). 
 
@@ -52,53 +46,73 @@ If you would like an example, feel free to download one of our [sample datasets]
 + **Column 5:** coef
 
 
-After loading your data, the image will render automatically. 
+After loading your data, the image will render automatically. If you upload another csv, the image will automatically update. 
 
 ## **2. Customize your view**
 
-- As default, all correlations are shown. Red ribbons represent negative correlations, while blue represent positive. All domains specified in the input file are included, but can be faded out.
+- By default, all correlations are shown. Red bands represent negative correlations, while blue represent positive. All domains specified in the input file are included but can be faded out.
 
 - Currently, the GlobeCorr diagram renders relative to the size of the user's screen. This can result in domain names being cut off if they are too long. It is best practice to avoid using long domain names, but we are actively working to remedy this problem. 
 
-**Change what correlations are shown** 
+### Correlation Thresholds
 
-- Change the correlation threshold for the globe by hovering over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Use the slider to select your desired threshold. You can also click on the box to the right of the slider and type in the desired threshold. The visualization will update automatically. 
+- Change the correlation threshold for the globe by hovering over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Use the slider to select your desired threshold. You can also click on the box to the right of the slider and type in the desired threshold. These values must be between 0-1. The visualization will update automatically. 
 
-![Menu Example](./tutorial/corr_menu.png)
+![Menu Example](./tutorial/threshold_select.png)
 
 
-- To remove domains from the visualization, click on its location at the circumference. The correlation ribbons will disappear, but a small grey box will remain at the circumference representing the hidden domain should the user want to include those correlations again. 
+- To remove domains from the visualization, click on its location at the circumference. The correlation bands will disappear, but a small grey box will remain at the circumference representing the hidden domain should the user want to include those correlations again. Please note that using this feature will reset any domain rearrangements that were previously set.
 
 - To explore all correlations within a specific domain, hover over the domain on the circumference of the circle and all correlations within that domain will go from transparent to opaque (Globe A). 
 
 
-- To explore specific correlations, hover over the ribbons on the interior of the circle to see the variable and their corresponding correlation coefficient (Globe B). 
+- To explore specific correlations, hover over the bands on the interior of the circle to see the variable and their corresponding correlation coefficient (Globe B). 
 
 ![domain_var_hover_ex](./tutorial/domain_var.png)
 
+### Domain Layout
+- There are several ways to arrange the domains. First, the domains can be arranged manually by the user. The orientation of the domains around the circumference of the circle can be changed by clicking the domain and dragging. However, you will need to move other domains to accomodate the changes. It is possible to have domains overlapping. **Users please note that clicking domains on or off will reset any rearrangements**.
+ 
+- Domains can also be automatically sorted two ways. To switch the way the domains are sorted and plotted around the circumference of the globe, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Then click on the menu options under "Sort".
 
-**Layout and colouring**
+![domain sort menu](./tutorial/domain_select.png) 
 
-- The orientation of the domains around the circumference of the circle can be changed by clicking the domain and dragging. However, you will need to move other domains to accomodate the changes. It is possible to have domains overlapping. 
+The default is by domain size, shown in the image below.  Domain 2 is the largest, therefore it is the first domain shown when going in a clockwise direction. 
+
+![domain size sort](./tutorial/sample_globe_domain_size.svg)
+
+Users can also sort domains based on the input order in their csv. Below is an example of the input csv and the globe created. When "Document order" is selected, the arrangement goes row by row, so the clockwise order will be domain 1, domain 2, domain 3 (as opposed to domain 1, domain 3, domain 4 if it was going down the column)  
+   
+      
+      
+![input csv example](./tutorial/documentorder_example.png)
+![domain document sort](./tutorial/sample_globe_document_order.svg) 
+
+ 
+
+### Font Size and Colouring
 
 - To change the font size in the image, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Below the threshold slider is a slider that can be used to update the font size. Users can also set the desired font size in the box to the right of the slider by typing or using the arrows. 
 
-- To update the colour of the ribbons shown in the globe, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. To change the colours for positive corrlations, click "Positive Correlation Colour". Colours can be selected several ways: 
+![Fontsize example](./tutorial/fontsize_select.png)
+
+- To update the colour of the bands shown in the globe, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. To change the colours for positive correlations, click "Positive Correlation Colour". Colours can be selected several ways: 
   + Select preset colour
-  + Select using slider (opacity can also be changed this way)
+  + Select using slider
   + Selecting a colour on the palette. 
   + Specify RGB code
 
--  To change the colours for negative corrlations, click "Negative Correlation Colour" and follow the same procedure for positive correlations. The colours will update automatically. 
+-  To change the colours for negative correlations, click "Negative Correlation Colour" and follow the same procedure for positive correlations. The colours will update automatically. 
 
-- A lengend is also present in the plot area and will reflect the updated colours of your visualization. 
+- A legend is also present in the plot area and will reflect the updated colours of your visualization. 
 
-![Colour Example](./tutorial/corr_colurs.png)
+![Change Colour Example](./tutorial/colour_select.png)
 
 
- ## **3. Save your results** 
 
-- To save the image, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Click on the "Export" button and select an output format. After selecting an export format the download will start automatically. If your image does not download automatically, check yor browser security settings. 
+ ## **3. Saving Results** 
+
+- To save the image, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Click on the "Export" button and select an output format. After selecting an export format, the download will start automatically. If your image does not download automatically, check yor browser security settings. 
 
 - To send the image directly to the printer hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Click on the "Export" button, then click "Send to printer" and follow the instructions for your printer. 
 
