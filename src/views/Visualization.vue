@@ -23,6 +23,7 @@
       :threshold="globeOptions.threshold"
       :sort="globeOptions.sort"
       :font-size="globeOptions.fontSize"
+      :padding="globeOptions.padding"
       :positive-correlation-color="globeOptions.positiveCorrelationColor"
       :negative-correlation-color="globeOptions.negativeCorrelationColor"
     />
@@ -66,6 +67,7 @@
             threshold: 0.0,
             sort: "value",
             fontSize: 15,
+            padding: 110,
             positiveCorrelationColor: {r: 79, g: 117, b: 210},
             negativeCorrelationColor: {r: 223, g: 60, b: 60},
         };
