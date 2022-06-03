@@ -11,7 +11,7 @@
     "ci": "yarn install --frozen-lockfile"
   },
   "dependencies": {
-    "@amcharts/amcharts4": "^4.9.4",
+    "@amcharts/amcharts4": "^4.10.25",
     "core-js": "^3.6.4",
     "papaparse": "^5.1.1",
     "tabulator-tables": "^4.5.3",
