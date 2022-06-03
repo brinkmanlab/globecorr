@@ -197,7 +197,7 @@
           <template v-slot:activator="{ on }">
             <v-list-item-content v-on="on">
               <v-list-item-title>Background Color</v-list-item-title>
-              <v-list-item-subtitle>Pick the background color and opacity</v-list-item-subtitle>
+              <v-list-item-subtitle>Pick the background color and opacity <br>(transparent by default)</v-list-item-subtitle>
             </v-list-item-content>
           </template>
           <v-color-picker v-bind="colorPickerOptions" :value="internalValue.backgroundColor" @input="val=>input('backgroundColor', val)" />
