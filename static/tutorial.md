@@ -18,8 +18,9 @@ A static example of a correlation globe is shown below. The domains specified in
 GlobeCorr users can customize their image by changing: 
 * default correlation threshold 
 * arrangement of domains around the circumference 
-* colour of positive and negative correlation bands
-* size of text 
+* color of positive and negative correlation bands
+* background color
+* size of text and width of labels
 
 
 Please note that by leaving the "Globe Analysis" page, you will lose any customization that has been done to your correlation globe. 
@@ -31,7 +32,7 @@ To explore GlobeCorr, you can download our [sample dataset](/sample_small.csv) a
 - [complex sample globe](#/globe?view=%2Fsample.csv)  
  
 
-## **1. Upload your data**
+## **1. Load your data**
 
 To upload data, click the "Upload data to visualize" bar at the top of the page, a file explorer will appear, and you can select your data. Alternatively, you can drag and drop your file into the 'Globe Analysis' window.  
 
@@ -51,8 +52,6 @@ After loading your data, the image will render automatically. If you upload anot
 ## **2. Customize your view**
 
 - By default, all correlations are shown. Red bands represent negative correlations, while blue represent positive. All domains specified in the input file are included but can be faded out.
-
-- Currently, the GlobeCorr diagram renders relative to the size of the user's screen. This can result in domain names being cut off if they are too long. It is best practice to avoid using long domain names, but we are actively working to remedy this problem. 
 
 ### Correlation Thresholds
 
@@ -90,24 +89,36 @@ Users can also sort domains based on the input order in their csv. Below is an e
 
  
 
-### Font Size and Colouring
+### Font Size and Labels
 
 - To change the font size in the image, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Below the threshold slider is a slider that can be used to update the font size. Users can also set the desired font size in the box to the right of the slider by typing or using the arrows. 
 
 ![Fontsize example](./tutorial/fontsize_select.png)
 
-- To update the colour of the bands shown in the globe, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. To change the colours for positive correlations, click "Positive Correlation Colour". Colours can be selected several ways: 
+- The labels around the globe will automatically wrap as the font size gets larger and larger. To modify this, users can hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. Below the Font Size slider there is a slider for label width. Users can increase or decrease the amount of space used by the labels by using the slider, setting the desired label with in the box to the right of the slider by typing or using the arrows. Users please note that increaseing the label width will decrease the size of the globe. 
+
+![Labelwidth example](./tutorial/labelwidth_select.png)
+
+### Globe Coloring and Background Colors
+- To update the color of the bands shown in the globe, hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen. To change the colors for positive correlations, click "Positive Correlation Color". Colors can be selected several ways: 
   + Select preset colour
   + Select using slider
-  + Selecting a colour on the palette. 
+  + Selecting a color on the palette. 
   + Specify RGB code
 
--  To change the colours for negative correlations, click "Negative Correlation Colour" and follow the same procedure for positive correlations. The colours will update automatically. 
+-  To change the colors for negative correlations, click "Negative Correlation Color" and follow the same procedure for positive correlations. The colors will update automatically. 
 
-- A legend is also present in the plot area and will reflect the updated colours of your visualization. 
+- A legend is also present in the plot area and will reflect the updated colors of your visualization. 
 
 ![Change Colour Example](./tutorial/colour_select.png)
 
+- To change the background color, users can hover over the "Globe Options" <i class="v-icon mdi mdi-tune" style="background-color:#1976d2;color:white;"></i> menu on the right hand side of the screen, and find the option for "Background Color". After clicking on "Background Color", a palette will pop up with several options. For the background color to change, ensure that the opacity of the background has been turned up as indicated in the image below. Once the opacity is increased, the background colour can be changed several ways: 
+  + Select preset colour
+  + Select using slider
+  + Selecting a color on the palette. 
+  + Specify RGB code
+
+![Background Colour example](./tutorial/background_select.png)
 
 
  ## **3. Saving Results** 
