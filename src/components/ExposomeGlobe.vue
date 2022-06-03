@@ -164,16 +164,17 @@
 
                 // eslint-disable-next-line no-inner-declarations
                 function hover(isHover: boolean): (this: unknown, event: { type: "over" | "out"; target: ChordNode } & PointerEvent & am4core.MouseTouchEvent & am4core.PointerEvent) => void {
+                    const state = isHover ? "nodeHover" : "default";
                     return (event): void => {
                         const node = event.target;
                         node.outgoingDataItems.each(function (dataItem) {
                             if (dataItem.toNode) {
-                                dataItem.link.isHover = isHover;
+                                dataItem.link.setState(state);
                             }
                         });
                         node.incomingDataItems.each(function (dataItem) {
                             if (dataItem.fromNode) {
-                                dataItem.link.isHover = isHover;
+                                dataItem.link.setState(state);
                             }
                         });
                         node.label.isHover = isHover;
@@ -215,6 +216,11 @@
                 const hoverState = linkTemplate.states.create("hover");
                 hoverState.properties.fillOpacity = 1.0;
                 hoverState.properties.strokeOpacity = 1.0;
+                hoverState.properties.zIndex = 1000;
+
+                const nodeHoverState = linkTemplate.states.create("nodeHover");
+                nodeHoverState.properties.fillOpacity = 1.0;
+                nodeHoverState.properties.strokeOpacity = 1.0;
                 hoverState.properties.zIndex = 1000;
 
                 // Legend
