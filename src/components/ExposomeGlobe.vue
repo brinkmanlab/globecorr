@@ -12,6 +12,7 @@
     import {Data, RGBA} from "@/@types/data";
 
     am4core.useTheme(am4themesAnimated);
+    am4core.options.autoDispose = true;
 
     @Component
     export default class ExposomeGlobe extends Vue {
@@ -21,7 +22,7 @@
         private legendLabels: am4core.Label[] | null = null;
         @Prop(String) readonly title!: string;
         @Prop(Number) threshold!: number;
-        @Prop({default: "value"}) sort!: string;
+        @Prop({default: "value"}) sort!: "value" | "none" | "name";
         @Prop(Number) fontSize!: number;
         @Prop(Number) padding!: number;
         @Prop({default: ()=>({r: 79, g: 117, b: 210})}) readonly positiveCorrelationColor?: RGBA;
@@ -31,12 +32,13 @@
         @Prop(Array) value!: Data[];
 
         get filteredData(): Data[] {
+            const domainOrder: string[] = this.value.reduce((acc,cur)=>{for (const c of [cur.var1_domain, cur.var2_domain]) if (!acc.includes(c)) acc.push(c); return acc}, [] as string[]);
             const data = this.value.filter(datum => Math.abs(datum.coef) >= this.threshold).map(datum=>{
                 const intensity = Math.abs(datum.coef);
                 const color = datum.coef === 0 ? this.noCorrelationColor : datum.coef > 0 ? this.positiveCorrelationColor : this.negativeCorrelationColor;
                 let scaledColor: RGBA | null = null;
                 if (datum.coef !== 0 && color) {
-                  // eslint-disable-next-line no-var
+                   // eslint-disable-next-line no-var
                    scaledColor = {
                       r: Math.round(color.r + (255 - color.r) * (0.75 - intensity)),
                       g: Math.round(color.g + (255 - color.g) * (0.75 - intensity)),
@@ -51,15 +53,14 @@
                   value: intensity,
                 }
             });
-            switch (this.sort) {
-              case "value":
-                //const domainOrder = data.reduce((acc, cur)=>{acc.set(cur.var1_domain, (acc.get(cur.var1_domain) || 0) + 1); acc.set(cur.var2_domain, (acc.get(cur.var2_domain) || 0) + 1); return acc}, new Map());
-                //data.sort((a: Data,b: Data)=>{const minA = Math.min(domainOrder.get(a.var1_domain), domainOrder.get(a.var2_domain)); const minB = Math.min(domainOrder.get(b.var1_domain), domainOrder.get(b.var2_domain)); return (minA === minB) ? a.value - b.value : minB - minA});
-                break;
-              default:
-                break;
+            const firstDomains: Data[] = [];
+            for (let di = 0; di < domainOrder.length; ++di) {
+                const domain = domainOrder[di];
+                let i = data.findIndex(d=>(d.var1_domain === domain && domainOrder.slice(0, di+2).includes(d.var2_domain)));
+                if (i === -1) i = data.findIndex(d=>(d.var2_domain === domain && domainOrder.slice(0, di).includes(d.var1_domain)));
+                if (i >= 0) firstDomains.push(...data.splice(i, 1));
             }
-            return data;
+            return firstDomains.concat(data);
         }
 
         export<Key extends keyof am4core.IExportOptions>(type: Key, options?: am4core.IExportOptions[Key]): void {
@@ -155,7 +156,7 @@
 
                 // Chart spacing settings
                 chart.nodePadding = 0.5;
-                chart.sortBy = "value";
+                chart.sortBy = "none"; //this.sort;
                 chart.fontFamily = "Open Sans";
                 chart.percentHeight = 100;
                 chart.marginTop = 0;
@@ -164,16 +165,17 @@
 
                 // eslint-disable-next-line no-inner-declarations
                 function hover(isHover: boolean): (this: unknown, event: { type: "over" | "out"; target: ChordNode } & PointerEvent & am4core.MouseTouchEvent & am4core.PointerEvent) => void {
+                    const state = isHover ? "nodeHover" : "default";
                     return (event): void => {
                         const node = event.target;
                         node.outgoingDataItems.each(function (dataItem) {
                             if (dataItem.toNode) {
-                                dataItem.link.isHover = isHover;
+                                dataItem.link.setState(state);
                             }
                         });
                         node.incomingDataItems.each(function (dataItem) {
                             if (dataItem.fromNode) {
-                                dataItem.link.isHover = isHover;
+                                dataItem.link.setState(state);
                             }
                         });
                         node.label.isHover = isHover;
@@ -217,6 +219,11 @@
                 hoverState.properties.strokeOpacity = 1.0;
                 hoverState.properties.zIndex = 1000;
 
+                const nodeHoverState = linkTemplate.states.create("nodeHover");
+                nodeHoverState.properties.fillOpacity = 1.0;
+                nodeHoverState.properties.strokeOpacity = 1.0;
+                hoverState.properties.zIndex = 1000;
+
                 // Legend
                 const legend = chart.chartContainer.createChild(am4core.Container);
                 legend.align = "right";
@@ -257,12 +264,6 @@
                 this.updateBackgroundColor();
             } else {
                 console.debug('ExposomeGlobe root element not DOM');
-            }
-        }
-
-        beforeDestroy(): void {
-            if (this.chart) {
-                this.chart.dispose();
             }
         }
     }
