@@ -4,6 +4,8 @@ GlobeCorr.ca is a web based application designed to provide user-friendly, secur
 
 Go to https://globecorr.ca/ to use this tool.
 
+# Development
+
 ## Project setup
 ```
 yarn install
