@@ -20,6 +20,7 @@
         private posLegendIcon: am4core.RoundedRectangle | null = null;
         private negLegendIcon: am4core.RoundedRectangle | null = null;
         private legendLabels: am4core.Label[] | null = null;
+        private null_message?: am4core.Container;
         @Prop(String) readonly title!: string;
         @Prop(Number) threshold!: number;
         @Prop({default: "value"}) sort!: "value" | "none" | "name";
@@ -71,8 +72,14 @@
 
         @Watch('filteredData')
         updateGlobe(): void {
-            if (this.chart)
-              this.chart.data = this.filteredData;
+            if (this.chart) {
+                if (this.filteredData.length) {
+                    this.null_message?.hide();
+                    this.chart.data = this.filteredData;
+                } else {
+                    this.null_message?.show();
+                }
+            }
         }
 
         @Watch('sort')
@@ -144,6 +151,21 @@
                 //chart.exporting.menu = new am4core.ExportMenu();
 
                 this.chart = chart;
+
+                if (chart.tooltipContainer) {
+                    this.null_message = chart.tooltipContainer.createChild(am4core.Container);
+                    this.null_message.hide();
+                    this.null_message.background.fill = am4core.color("#fff");
+                    this.null_message.background.fillOpacity = 0.8;
+                    this.null_message.width = am4core.percent(100);
+                    this.null_message.height = am4core.percent(100);
+
+                    const indicatorLabel = this.null_message.createChild(am4core.Label);
+                    indicatorLabel.text = "No data available that meets threshold criteria.";
+                    indicatorLabel.align = "center";
+                    indicatorLabel.valign = "middle";
+                    indicatorLabel.fontSize = 20;
+                }
 
                 // Color settings
                 chart.colors.saturation = 0.45;
