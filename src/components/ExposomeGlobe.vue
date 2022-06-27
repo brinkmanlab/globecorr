@@ -244,7 +244,7 @@
                 const nodeHoverState = linkTemplate.states.create("nodeHover");
                 nodeHoverState.properties.fillOpacity = 1.0;
                 nodeHoverState.properties.strokeOpacity = 1.0;
-                hoverState.properties.zIndex = 1000;
+                nodeHoverState.properties.zIndex = 1000;
 
                 // Legend
                 const legend = chart.chartContainer.createChild(am4core.Container);
