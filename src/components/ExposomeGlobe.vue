@@ -8,7 +8,7 @@
     import * as am4core from "@amcharts/amcharts4/core";
     import * as am4charts from "@amcharts/amcharts4/charts";
     import am4themesAnimated from "@amcharts/amcharts4/themes/animated";
-    import {ChordNode} from "@amcharts/amcharts4/charts";
+    import {ChordLink, ChordNode} from "@amcharts/amcharts4/charts";
     import {Data, RGBA} from "@/@types/data";
 
     am4core.useTheme(am4themesAnimated);
@@ -54,14 +54,21 @@
                   value: intensity,
                 }
             });
-            const firstDomains: Data[] = [];
-            for (let di = 0; di < domainOrder.length; ++di) {
-                const domain = domainOrder[di];
-                let i = data.findIndex(d=>(d.var1_domain === domain && domainOrder.slice(0, di+2).includes(d.var2_domain)));
-                if (i === -1) i = data.findIndex(d=>(d.var2_domain === domain && domainOrder.slice(0, di).includes(d.var1_domain)));
-                if (i >= 0) firstDomains.push(...data.splice(i, 1));
+            if (data.length) {
+                const firstDomains: Data[] = [];
+                if (domainOrder.length % 2 !== 0) domainOrder.push(domainOrder[-1]);
+                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                //@ts-ignore
+                for (let i = 0; i < domainOrder.length; i += 2) firstDomains.push({
+                    "var1_domain": domainOrder[i],
+                    "var2_domain": domainOrder[i + 1],
+                    "variable1": "",
+                    "variable2": ""
+                });
+                return firstDomains.concat(data);
+            } else {
+                return data;
             }
-            return firstDomains.concat(data);
         }
 
         export<Key extends keyof am4core.IExportOptions>(type: Key, options?: am4core.IExportOptions[Key]): void {
@@ -186,21 +193,26 @@
                 nodeTemplate.propertyFields.fill = "color";
 
                 // eslint-disable-next-line no-inner-declarations
-                function hover(isHover: boolean): (this: unknown, event: { type: "over" | "out"; target: ChordNode } & PointerEvent & am4core.MouseTouchEvent & am4core.PointerEvent) => void {
+                function hover(isHover: boolean): (this: unknown, event: { type: "over" | "out"; target: ChordNode | ChordLink } & PointerEvent & am4core.MouseTouchEvent & am4core.PointerEvent) => void {
                     const state = isHover ? "nodeHover" : "default";
                     return (event): void => {
                         const node = event.target;
-                        node.outgoingDataItems.each(function (dataItem) {
-                            if (dataItem.toNode) {
-                                dataItem.link.setState(state);
-                            }
+                        chart.links.each(l=> {
+                            if (l !== node) l.setState(isHover ? "chartHover" : "default");
                         });
-                        node.incomingDataItems.each(function (dataItem) {
-                            if (dataItem.fromNode) {
-                                dataItem.link.setState(state);
-                            }
-                        });
-                        node.label.isHover = isHover;
+                        if ("outgoingDataItems" in node) {
+                            node.outgoingDataItems.each(function (dataItem) {
+                                if (dataItem.toNode) {
+                                    dataItem.link.setState(state);
+                                }
+                            });
+                            node.incomingDataItems.each(function (dataItem) {
+                                if (dataItem.fromNode) {
+                                    dataItem.link.setState(state);
+                                }
+                            });
+                            node.label.isHover = isHover;
+                        }
                     }
                 }
 
@@ -240,6 +252,19 @@
                 hoverState.properties.fillOpacity = 1.0;
                 hoverState.properties.strokeOpacity = 1.0;
                 hoverState.properties.zIndex = 1000;
+
+                const chartHoverState = linkTemplate.states.create("chartHover");
+                chartHoverState.properties.fillOpacity = 0.25;
+
+                // Highlight links when hovering over node
+                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                //@ts-ignore
+                linkTemplate.events.on("over", hover(true));
+
+                // When un-hovering from node, un-hover over links
+                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                //@ts-ignore
+                linkTemplate.events.on("out", hover(false));
 
                 const nodeHoverState = linkTemplate.states.create("nodeHover");
                 nodeHoverState.properties.fillOpacity = 1.0;
