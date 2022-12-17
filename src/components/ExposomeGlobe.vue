@@ -41,10 +41,8 @@
                 if (datum.coef !== 0 && color) {
                    // eslint-disable-next-line no-var
                    scaledColor = {
-                      r: Math.round(color.r * intensity),
-                      g: Math.round(color.g * intensity),
-                      b: Math.round(color.b * intensity),
-                      a: color.a === undefined ? 1 : color.a
+                      ...color,
+                      a: (color.a === undefined ? 1 : color.a) * intensity,
                   }
                 }
                 return {
