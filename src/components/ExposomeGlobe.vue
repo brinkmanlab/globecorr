@@ -35,7 +35,7 @@
         get filteredData(): Data[] {
             const domainOrder: string[] = this.value.reduce((acc,cur)=>{for (const c of [cur.var1_domain, cur.var2_domain]) if (!acc.includes(c)) acc.push(c); return acc}, [] as string[]);
             const data = this.value.filter(datum => Math.abs(datum.coef) >= this.threshold).map(datum=>{
-                const intensity = 1 - Math.min(1, Math.abs(datum.coef));
+                const intensity = Math.min(1, Math.abs(datum.coef));
                 const color = datum.coef === 0 ? this.noCorrelationColor : datum.coef > 0 ? this.positiveCorrelationColor : this.negativeCorrelationColor;
                 let scaledColor: RGBA | null = null;
                 if (datum.coef !== 0 && color) {
